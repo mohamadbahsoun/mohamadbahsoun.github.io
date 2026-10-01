@@ -1,12 +1,813 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Mohamad Bahsoun</title>
-</head>
-<body>
-    <h1>Mohamad Bahsoun</h1>
-    <h2>SharePoint | SQL Server | C#/.NET</h2>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <p>My professional portfolio is coming soon.</p>
+    <title>Mohamad Bahsoun | SharePoint, SQL Server & C#/.NET Consultant</title>
+
+    <meta name="description"
+          content="Mohamad Bahsoun — SharePoint, SQL Server and C#/.NET consultant specializing in installation, configuration, migration, troubleshooting and custom business applications.">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #ffffff;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        /* Navigation */
+
+        nav {
+            border-bottom: 1px solid #e5e7eb;
+            background: #ffffff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            min-height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #4b5563;
+            font-size: 15px;
+        }
+
+        .nav-links a:hover {
+            color: #111827;
+        }
+
+        /* Hero */
+
+        .hero {
+            padding: 100px 0 90px;
+            background: #f8fafc;
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .eyebrow {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #2563eb;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 6vw, 64px);
+            line-height: 1.1;
+            color: #111827;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 span {
+            color: #2563eb;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #4b5563;
+            max-width: 760px;
+            margin-bottom: 32px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 13px 22px;
+            border-radius: 7px;
+            font-weight: 600;
+            border: 1px solid #2563eb;
+        }
+
+        .button-primary {
+            background: #2563eb;
+            color: white;
+        }
+
+        .button-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .button-secondary {
+            color: #2563eb;
+            background: white;
+        }
+
+        .button-secondary:hover {
+            background: #eff6ff;
+        }
+
+        /* Sections */
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            margin-bottom: 45px;
+        }
+
+        .section-header h2 {
+            font-size: 36px;
+            color: #111827;
+            margin-bottom: 12px;
+        }
+
+        .section-header p {
+            color: #6b7280;
+            max-width: 700px;
+        }
+
+        /* Services */
+
+        .services {
+            background: white;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .service-card {
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 28px;
+            background: white;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+        }
+
+        .service-number {
+            font-size: 13px;
+            font-weight: 700;
+            color: #2563eb;
+            margin-bottom: 15px;
+        }
+
+        .service-card h3 {
+            font-size: 20px;
+            color: #111827;
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            color: #6b7280;
+            font-size: 15px;
+        }
+
+        /* Projects */
+
+        .projects {
+            background: #f8fafc;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .project-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 30px;
+        }
+
+        .project-card h3 {
+            font-size: 22px;
+            color: #111827;
+            margin-bottom: 12px;
+        }
+
+        .project-card p {
+            color: #6b7280;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 5px 10px;
+            margin: 3px;
+            border-radius: 20px;
+            background: #eff6ff;
+            color: #1d4ed8;
+            font-size: 13px;
+        }
+
+        .project-link {
+            display: inline-block;
+            margin-top: 18px;
+            color: #2563eb;
+            font-weight: 600;
+        }
+
+        /* About */
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .about-content h3 {
+            font-size: 24px;
+            color: #111827;
+            margin-bottom: 15px;
+        }
+
+        .about-content p {
+            color: #6b7280;
+            margin-bottom: 16px;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill {
+            padding: 9px 13px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #374151;
+        }
+
+        /* Contact */
+
+        .contact {
+            background: #111827;
+            color: white;
+        }
+
+        .contact .section-header h2 {
+            color: white;
+        }
+
+        .contact .section-header p {
+            color: #d1d5db;
+        }
+
+        .contact-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+            padding: 35px;
+            border: 1px solid #374151;
+            border-radius: 10px;
+            background: #1f2937;
+        }
+
+        .contact-box h3 {
+            margin-bottom: 8px;
+        }
+
+        .contact-box p {
+            color: #d1d5db;
+        }
+
+        .email {
+            color: #93c5fd;
+            font-weight: 600;
+            word-break: break-word;
+        }
+
+        /* Footer */
+
+        footer {
+            background: #111827;
+            border-top: 1px solid #374151;
+            color: #9ca3af;
+            padding: 25px 0;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* Mobile */
+
+        @media (max-width: 800px) {
+
+            .nav-container {
+                flex-direction: column;
+                padding: 18px 0;
+                gap: 12px;
+            }
+
+            .nav-links {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 70px 0;
+            }
+
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+
+            .contact-box {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Navigation -->
+
+<nav>
+    <div class="container nav-container">
+
+        <a href="#home" class="logo">
+            Mohamad Bahsoun
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+
+    </div>
+</nav>
+
+
+<!-- Hero -->
+
+<section class="hero" id="home">
+
+    <div class="container">
+
+        <div class="hero-content">
+
+            <div class="eyebrow">
+                SharePoint · SQL Server · C#/.NET
+            </div>
+
+            <h1>
+                Microsoft Technology
+                <span>Consultant</span>
+            </h1>
+
+            <p>
+                I help businesses build, configure, migrate and troubleshoot
+                Microsoft-based business systems — from SharePoint and SQL Server
+                to custom C#/.NET applications.
+            </p>
+
+            <div class="buttons">
+
+                <a href="#projects" class="button button-primary">
+                    View My Work
+                </a>
+
+                <a href="#contact" class="button button-secondary">
+                    Contact Me
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Services -->
+
+<section class="services" id="services">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <h2>Services</h2>
+
+            <p>
+                Practical technical services for Microsoft-based business
+                environments and custom applications.
+            </p>
+
+        </div>
+
+
+        <div class="service-grid">
+
+            <div class="service-card">
+
+                <div class="service-number">01</div>
+
+                <h3>SharePoint</h3>
+
+                <p>
+                    SharePoint installation, configuration, administration,
+                    troubleshooting and farm support.
+                </p>
+
+            </div>
+
+
+            <div class="service-card">
+
+                <div class="service-number">02</div>
+
+                <h3>SharePoint Migration</h3>
+
+                <p>
+                    Migration and upgrade projects including legacy SharePoint
+                    environments and SharePoint 2013 to SharePoint Subscription
+                    Edition.
+                </p>
+
+            </div>
+
+
+            <div class="service-card">
+
+                <div class="service-number">03</div>
+
+                <h3>SQL Server</h3>
+
+                <p>
+                    SQL Server installation, configuration, database migration,
+                    backup, troubleshooting and database administration.
+                </p>
+
+            </div>
+
+
+            <div class="service-card">
+
+                <div class="service-number">04</div>
+
+                <h3>C# / .NET</h3>
+
+                <p>
+                    Custom business software, internal applications, APIs,
+                    integrations and database-driven applications.
+                </p>
+
+            </div>
+
+
+            <div class="service-card">
+
+                <div class="service-number">05</div>
+
+                <h3>Microsoft 365</h3>
+
+                <p>
+                    Microsoft 365 and SharePoint Online configuration,
+                    administration and troubleshooting.
+                </p>
+
+            </div>
+
+
+            <div class="service-card">
+
+                <div class="service-number">06</div>
+
+                <h3>Web Development</h3>
+
+                <p>
+                    Website development, maintenance, troubleshooting and
+                    improvements for business websites.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Projects -->
+
+<section class="projects" id="projects">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <h2>Featured Projects</h2>
+
+            <p>
+                Selected technical projects and practical demonstrations.
+                Detailed case studies will be added as the portfolio develops.
+            </p>
+
+        </div>
+
+
+        <div class="project-grid">
+
+            <div class="project-card">
+
+                <h3>
+                    SharePoint 2013 → SPSE Migration
+                </h3>
+
+                <p>
+                    A practical migration lab demonstrating assessment,
+                    architecture, database migration, SharePoint configuration,
+                    upgrade planning and post-migration validation.
+                </p>
+
+                <span class="tag">SharePoint</span>
+                <span class="tag">SPSE</span>
+                <span class="tag">SQL Server</span>
+                <span class="tag">Migration</span>
+
+                <br>
+
+                <a href="#" class="project-link">
+                    Case study coming soon →
+                </a>
+
+            </div>
+
+
+            <div class="project-card">
+
+                <h3>
+                    SQL Server Administration
+                </h3>
+
+                <p>
+                    A practical SQL Server environment covering installation,
+                    configuration, database creation, backup and restore,
+                    migration and troubleshooting.
+                </p>
+
+                <span class="tag">SQL Server</span>
+                <span class="tag">Database</span>
+                <span class="tag">Backup</span>
+
+                <br>
+
+                <a href="#" class="project-link">
+                    Case study coming soon →
+                </a>
+
+            </div>
+
+
+            <div class="project-card">
+
+                <h3>
+                    C# / .NET Business Application
+                </h3>
+
+                <p>
+                    A database-driven business application demonstrating
+                    application design, C#/.NET development, SQL integration
+                    and business workflows.
+                </p>
+
+                <span class="tag">C#</span>
+                <span class="tag">.NET</span>
+                <span class="tag">SQL</span>
+                <span class="tag">API</span>
+
+                <br>
+
+                <a href="#" class="project-link">
+                    Project coming soon →
+                </a>
+
+            </div>
+
+
+            <div class="project-card">
+
+                <h3>
+                    Microsoft 365 / SharePoint Online
+                </h3>
+
+                <p>
+                    A practical Microsoft 365 demonstration covering SharePoint
+                    Online configuration, sites, permissions and business
+                    collaboration scenarios.
+                </p>
+
+                <span class="tag">Microsoft 365</span>
+                <span class="tag">SharePoint Online</span>
+
+                <br>
+
+                <a href="#" class="project-link">
+                    Case study coming soon →
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- About -->
+
+<section id="about">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <h2>About Me</h2>
+
+        </div>
+
+
+        <div class="about-content">
+
+            <div>
+
+                <h3>Technology-focused problem solving</h3>
+
+                <p>
+                    I work with Microsoft technologies to help businesses
+                    implement, maintain and improve their applications and
+                    collaboration platforms.
+                </p>
+
+                <p>
+                    My experience includes SharePoint Server, SQL Server,
+                    C#/.NET applications, Microsoft 365 and business websites.
+                </p>
+
+                <p>
+                    I focus on practical solutions that are reliable,
+                    maintainable and aligned with business requirements.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>Technical Skills</h3>
+
+                <div class="skills">
+
+                    <span class="skill">SharePoint Server</span>
+                    <span class="skill">SharePoint Online</span>
+                    <span class="skill">SharePoint Migration</span>
+                    <span class="skill">SQL Server</span>
+                    <span class="skill">C#</span>
+                    <span class="skill">.NET</span>
+                    <span class="skill">ASP.NET</span>
+                    <span class="skill">REST APIs</span>
+                    <span class="skill">Microsoft 365</span>
+                    <span class="skill">Umbraco</span>
+                    <span class="skill">Web Development</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Contact -->
+
+<section class="contact" id="contact">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <h2>Let's Work Together</h2>
+
+            <p>
+                Have a SharePoint, SQL Server, .NET or Microsoft 365 project?
+                Feel free to get in touch.
+            </p>
+
+        </div>
+
+
+        <div class="contact-box">
+
+            <div>
+
+                <h3>Mohamad Bahsoun</h3>
+
+                <p>
+                    SharePoint · SQL Server · C#/.NET
+                </p>
+
+            </div>
+
+
+            <a
+                class="email"
+                href="mailto:mohd.bahsoun@hotmail.com">
+                mohd.bahsoun@hotmail.com
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Footer -->
+
+<footer>
+
+    <div class="container">
+
+        © 2026 Mohamad Bahsoun. All rights reserved.
+
+    </div>
+
+</footer>
+
+
 </body>
 </html>
