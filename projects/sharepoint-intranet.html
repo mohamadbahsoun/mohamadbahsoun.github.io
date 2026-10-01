@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SharePoint Intranet & Portal Development | Mohamad Bahsoun</title>
+
+    <meta name="description"
+          content="Portfolio case study demonstrating the design and development of a SharePoint-based company intranet portal.">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fa;
+            color: #1f2937;
+            line-height: 1.7;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        /* Navigation */
+        nav {
+            background: #0f172a;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 70px;
+        }
+
+        .logo {
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #e5e7eb;
+            font-size: 15px;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #0f172a, #1e3a5f);
+            color: white;
+            padding: 90px 20px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            max-width: 800px;
+            font-size: 19px;
+            color: #dbeafe;
+        }
+
+        .badge {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 7px 14px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.12);
+            color: #bfdbfe;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* Sections */
+        section {
+            padding: 70px 0;
+        }
+
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 18px;
+            color: #111827;
+        }
+
+        .section-intro {
+            max-width: 800px;
+            color: #4b5563;
+            margin-bottom: 35px;
+        }
+
+        /* Cards */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.05);
+        }
+
+        .card h3 {
+            margin-bottom: 12px;
+            color: #0f172a;
+            font-size: 20px;
+        }
+
+        .card p {
+            color: #4b5563;
+        }
+
+        /* Architecture */
+        .architecture {
+            background: #111827;
+            color: white;
+            border-radius: 14px;
+            padding: 35px;
+            margin-top: 25px;
+            overflow-x: auto;
+        }
+
+        .architecture pre {
+            font-family: Consolas, monospace;
+            font-size: 15px;
+            line-height: 1.8;
+            color: #dbeafe;
+        }
+
+        /* Features */
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            list-style: none;
+        }
+
+        .feature-list li {
+            background: white;
+            padding: 18px 20px;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .feature-list li::before {
+            content: "✓";
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Process */
+        .process {
+            counter-reset: process;
+        }
+
+        .process-item {
+            position: relative;
+            padding: 20px 20px 20px 70px;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .process-item::before {
+            counter-increment: process;
+            content: counter(process);
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #0f172a;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .process-item h3 {
+            margin-bottom: 5px;
+        }
+
+        /* Technologies */
+        .tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tech span {
+            background: #e5e7eb;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* Disclaimer */
+        .disclaimer {
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            padding: 25px;
+            border-radius: 10px;
+            color: #7c2d12;
+        }
+
+        /* CTA */
+        .cta {
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            padding: 70px 20px;
+        }
+
+        .cta h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            color: #cbd5e1;
+            margin-bottom: 25px;
+        }
+
+        .button {
+            display: inline-block;
+            background: white;
+            color: #0f172a;
+            padding: 12px 24px;
+            border-radius: 7px;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background: #020617;
+            color: #94a3b8;
+            text-align: center;
+            padding: 25px;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+
+            .nav-container {
+                flex-direction: column;
+                padding: 18px 0;
+                gap: 15px;
+            }
+
+            .nav-links {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .grid,
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 50px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav>
+    <div class="nav-container">
+
+        <div class="logo">
+            Mohamad Bahsoun
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#solution">Solution</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#technologies">Technologies</a></li>
+        </ul>
+
+    </div>
+</nav>
+
+
+<!-- Hero -->
+<header class="hero">
+
+    <div class="container">
+
+        <div class="badge">
+            Portfolio Demonstration
+        </div>
+
+        <h1>
+            SharePoint Intranet & Portal Development
+        </h1>
+
+        <p>
+            Designing and developing a centralized SharePoint-based
+            intranet portal for company information, documents,
+            departments, forms, announcements and employee resources.
+        </p>
+
+    </div>
+
+</header>
+
+
+<!-- Overview -->
+<section id="overview">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Project Overview
+        </h2>
+
+        <p class="section-intro">
+            This portfolio project demonstrates how a SharePoint intranet
+            can be designed to provide employees with a centralized
+            location for company information, documents, policies,
+            departmental resources and internal business processes.
+        </p>
+
+        <div class="grid">
+
+            <div class="card">
+                <h3>Business Scenario</h3>
+
+                <p>
+                    A company needs an internal portal where employees
+                    can quickly access company news, policies, procedures,
+                    forms, departmental information and frequently used
+                    resources.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Business Objective</h3>
+
+                <p>
+                    Create a structured and easy-to-navigate intranet
+                    that centralizes information while providing
+                    appropriate access to departments and employees.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Primary Users</h3>
+
+                <p>
+                    Employees, department managers, HR, Finance,
+                    Sales, IT and management.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Platform</h3>
+
+                <p>
+                    Microsoft SharePoint with structured sites,
+                    pages, document libraries, lists, permissions
+                    and navigation.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Requirements -->
+<section>
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Business Requirements
+        </h2>
+
+        <p class="section-intro">
+            The portal was designed around common requirements found
+            in business intranet environments.
+        </p>
+
+        <ul class="feature-list">
+
+            <li>Centralized company information</li>
+
+            <li>Company news and announcements</li>
+
+            <li>Department-specific information</li>
+
+            <li>Central document management</li>
+
+            <li>Policies and procedures</li>
+
+            <li>Employee forms and requests</li>
+
+            <li>Quick links to business resources</li>
+
+            <li>Controlled access to sensitive information</li>
+
+            <li>Searchable documents and information</li>
+
+            <li>Simple and consistent navigation</li>
+
+        </ul>
+
+    </div>
+
+</section>
+
+
+<!-- Solution -->
+<section id="solution">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Solution Architecture
+        </h2>
+
+        <p class="section-intro">
+            The intranet is organized into logical areas so employees
+            can access information according to their responsibilities.
+        </p>
+
+        <div class="architecture">
+
+<pre>
+                         COMPANY EMPLOYEES
+                                |
+                                v
+                    +------------------------+
+                    |   SharePoint Intranet  |
+                    |        Home Page       |
+                    +-----------+------------+
+                                |
+          +---------------------+---------------------+
+          |                     |                     |
+          v                     v                     v
+   +-------------+       +-------------+       +-------------+
+   | Departments |       |  Documents  |       |    Forms    |
+   +-------------+       +-------------+       +-------------+
+   | HR          |       | Policies    |       | IT Request  |
+   | Finance     |       | Procedures  |       | Vacation    |
+   | Sales       |       | Templates   |       | Purchase    |
+   | IT          |       | Resources   |       | Other       |
+   +-------------+       +-------------+       +-------------+
+          |
+          v
+   +-------------------+
+   | Employee Resources|
+   +-------------------+
+   | Links             |
+   | Contacts          |
+   | Procedures        |
+   | Internal Resources|
+   +-------------------+
+</pre>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Site Structure -->
+<section>
+
+    <div class="container">
+
+        <h2 class="section-title">
+            SharePoint Site Structure
+        </h2>
+
+        <p class="section-intro">
+            A clear information architecture helps employees locate
+            content quickly and provides a foundation for future
+            expansion of the intranet.
+        </p>
+
+        <div class="card">
+
+<pre>
+Company Intranet
+│
+├── Home
+│   ├── Company News
+│   ├── Announcements
+│   └── Quick Links
+│
+├── Departments
+│   ├── HR
+│   ├── Finance
+│   ├── Sales
+│   └── IT
+│
+├── Documents
+│   ├── Policies
+│   ├── Procedures
+│   └── Templates
+│
+├── Forms
+│   ├── IT Request
+│   ├── Vacation Request
+│   └── Purchase Request
+│
+└── Employee Resources
+    ├── Contacts
+    ├── Internal Links
+    └── Useful Resources
+</pre>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Features -->
+<section id="features">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Intranet Features
+        </h2>
+
+        <p class="section-intro">
+            The portal can provide a range of features to improve
+            internal communication and document accessibility.
+        </p>
+
+        <div class="grid">
+
+            <div class="card">
+                <h3>Company News</h3>
+
+                <p>
+                    Centralized announcements and company news allow
+                    employees to stay informed about important
+                    organizational updates.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Document Libraries</h3>
+
+                <p>
+                    Policies, procedures, templates and other business
+                    documents are organized into searchable SharePoint
+                    document libraries.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Department Pages</h3>
+
+                <p>
+                    Dedicated areas can provide each department with
+                    its own information, documents, links and resources.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Forms & Requests</h3>
+
+                <p>
+                    Internal requests such as IT support, vacation
+                    requests and purchase requests can be organized
+                    using SharePoint lists and forms.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Quick Links</h3>
+
+                <p>
+                    Frequently used internal applications, resources
+                    and websites can be exposed through centralized
+                    quick links.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Search & Navigation</h3>
+
+                <p>
+                    Structured navigation and SharePoint search help
+                    employees locate documents and information quickly.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Document Management -->
+<section>
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Document Management
+        </h2>
+
+        <p class="section-intro">
+            The intranet uses SharePoint document libraries to provide
+            structured storage for common business documents.
+        </p>
+
+        <div class="grid">
+
+            <div class="card">
+                <h3>Policies</h3>
+                <p>
+                    Company policies can be organized by category
+                    and made available to employees according to
+                    their access permissions.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Procedures</h3>
+                <p>
+                    Operational procedures can be maintained in a
+                    centralized and searchable location.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Templates</h3>
+                <p>
+                    Standard business templates can be maintained
+                    so employees always have access to approved
+                    versions.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Version Management</h3>
+                <p>
+                    SharePoint document management capabilities can
+                    help maintain document history and controlled
+                    collaboration.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Permissions -->
+<section>
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Permissions & Security
+        </h2>
+
+        <p class="section-intro">
+            Access should be designed according to business roles
+            and information sensitivity.
+        </p>
+
+        <div class="grid">
+
+            <div class="card">
+                <h3>Employee Access</h3>
+
+                <p>
+                    General company information and employee resources
+                    can be available to the appropriate employee groups.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Department Access</h3>
+
+                <p>
+                    Department-specific resources can be restricted
+                    to the appropriate teams or groups.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Management Access</h3>
+
+                <p>
+                    Sensitive management information can be protected
+                    through appropriate SharePoint permissions.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Permission Strategy</h3>
+
+                <p>
+                    Access should be planned around groups and roles
+                    rather than relying on unnecessary individual
+                    permissions.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Implementation -->
+<section>
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Implementation Approach
+        </h2>
+
+        <div class="process">
+
+            <div class="process-item">
+                <h3>Requirements Analysis</h3>
+
+                <p>
+                    Identify business departments, users, documents,
+                    processes and information that need to be included
+                    in the intranet.
+                </p>
+            </div>
+
+            <div class="process-item">
+                <h3>Information Architecture</h3>
+
+                <p>
+                    Define the site structure, navigation, pages,
+                    libraries, lists and departmental areas.
+                </p>
+            </div>
+
+            <div class="process-item">
+                <h3>SharePoint Configuration</h3>
+
+                <p>
+                    Configure sites, pages, libraries, lists,
+                    permissions and navigation.
+                </p>
+            </div>
+
+            <div class="process-item">
+                <h3>Content Organization</h3>
+
+                <p>
+                    Organize documents, policies, procedures,
+                    templates and internal resources.
+                </p>
+            </div>
+
+            <div class="process-item">
+                <h3>Testing</h3>
+
+                <p>
+                    Validate navigation, permissions, document access,
+                    forms and search functionality.
+                </p>
+            </div>
+
+            <div class="process-item">
+                <h3>Deployment & Maintenance</h3>
+
+                <p>
+                    Deploy the completed portal and establish a process
+                    for ongoing content and permission management.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Business Benefits -->
+<section>
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Business Benefits
+        </h2>
+
+        <div class="grid">
+
+            <div class="card">
+                <h3>Centralized Information</h3>
+
+                <p>
+                    Employees have a central location for important
+                    company information and resources.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Improved Accessibility</h3>
+
+                <p>
+                    Employees can find documents, forms and resources
+                    without searching across multiple locations.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Better Organization</h3>
+
+                <p>
+                    Standardized information architecture provides a
+                    consistent structure for business content.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Controlled Access</h3>
+
+                <p>
+                    Business information can be organized according
+                    to departments, teams and user responsibilities.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Technologies -->
+<section id="technologies">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Technologies Used
+        </h2>
+
+        <p class="section-intro">
+            Technologies and Microsoft platforms relevant to the
+            solution include:
+        </p>
+
+        <div class="tech">
+
+            <span>SharePoint</span>
+            <span>SharePoint Server</span>
+            <span>SharePoint Online</span>
+            <span>Microsoft 365</span>
+            <span>Document Libraries</span>
+            <span>SharePoint Lists</span>
+            <span>Permissions</span>
+            <span>Search</span>
+            <span>Site Pages</span>
+            <span>Microsoft Technologies</span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Disclaimer -->
+<section>
+
+    <div class="container">
+
+        <div class="disclaimer">
+
+            <strong>Portfolio Demonstration</strong>
+
+            <p>
+                This is a portfolio demonstration based on a realistic
+                business scenario. It is intended to demonstrate
+                SharePoint architecture, intranet design and
+                implementation capabilities and is not presented as
+                a specific client project.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CTA -->
+<section class="cta">
+
+    <div class="container">
+
+        <h2>
+            Need a SharePoint Intranet?
+        </h2>
+
+        <p>
+            I can help design, configure, migrate and develop
+            SharePoint-based business solutions and internal portals.
+        </p>
+
+        <a class="button"
+           href="mailto:mohd.bahsoun@hotmail.com">
+            Contact Me
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- Footer -->
+<footer>
+
+    © 2026 Mohamad Bahsoun · SharePoint · SQL Server · C#/.NET · Web Development
+
+</footer>
+
+</body>
+</html>
