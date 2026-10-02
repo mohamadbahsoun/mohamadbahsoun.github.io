@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SQL Server Administration & Database Solutions | Mohamad Bahsoun</title>
+
+    <meta name="description"
+          content="SQL Server administration and database solutions portfolio project covering installation, configuration, performance, backup, recovery and application connectivity.">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fa;
+            color: #1f2937;
+            line-height: 1.7;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        /* Navigation */
+        nav {
+            background: #0f172a;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+            min-height: 70px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #e5e7eb;
+            font-size: 15px;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #0f172a, #1e3a5f);
+            color: white;
+            padding: 90px 20px;
+        }
+
+        .hero h1 {
+            font-size: 46px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            max-width: 820px;
+            font-size: 19px;
+            color: #dbeafe;
+        }
+
+        .badge {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 7px 14px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.12);
+            color: #bfdbfe;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* Sections */
+        section {
+            padding: 70px 0;
+        }
+
+        .section-title {
+            font-size: 32px;
+            color: #111827;
+            margin-bottom: 18px;
+        }
+
+        .section-intro {
+            max-width: 850px;
+            color: #4b5563;
+            margin-bottom: 35px;
+        }
+
+        /* Cards */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.05);
+        }
+
+        .card h3 {
+            color: #0f172a;
+            margin-bottom: 12px;
+            font-size: 20px;
+        }
+
+        .card p {
+            color: #4b5563;
+        }
+
+        /* Architecture */
+        .architecture {
+            background: #111827;
+            color: white;
+            padding: 35px;
+            border-radius: 14px;
+            overflow-x: auto;
+        }
+
+        .architecture pre {
+            font-family: Consolas, monospace;
+            font-size: 14px;
+            line-height: 1.8;
+            color: #dbeafe;
+        }
+
+        /* Lists */
+        .check-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .check-list li {
+            background: white;
+            padding: 18px 20px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+        }
+
+        .check-list li::before {
+            content: "✓";
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Process */
+        .process-item {
+            position: relative;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 22px 25px 22px 75px;
+            margin-bottom: 15px;
+        }
+
+        .process-number {
+            position: absolute;
+            left: 20px;
+            top: 22px;
+            width: 35px;
+            height: 35px;
+            background: #0f172a;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        .process-item h3 {
+            margin-bottom: 5px;
+            color: #0f172a;
+        }
+
+        /* Code */
+        .code-box {
+            background: #111827;
+            color: #dbeafe;
+            padding: 25px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+
+        .code-box pre {
+            font-family: Consolas, monospace;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* Technology tags */
+        .tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tech span {
+            background: #e5e7eb;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* Note */
+        .note {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 10px;
+            padding: 25px;
+            color: #1e3a8a;
+        }
+
+        /* Disclaimer */
+        .disclaimer {
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 25px;
+            color: #475569;
+        }
+
+        .disclaimer strong {
+            color: #0f172a;
+        }
+
+        /* CTA */
+        .cta {
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            padding: 70px 20px;
+        }
+
+        .cta h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            color: #cbd5e1;
+            margin-bottom: 25px;
+        }
+
+        .button {
+            display: inline-block;
+            background: white;
+            color: #0f172a;
+            padding: 12px 24px;
+            border-radius: 7px;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background: #020617;
+            color: #94a3b8;
+            text-align: center;
+            padding: 25px;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+
+            .nav-container {
+                flex-direction: column;
+                padding: 18px 0;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .grid,
+            .check-list {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 50px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav>
+    <div class="nav-container">
+
+        <div class="logo">
+            Mohamad Bahsoun
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#installation">Installation</a></li>
+            <li><a href="#administration">Administration</a></li>
+            <li><a href="#performance">Performance</a></li>
+        </ul>
+
+    </div>
+</nav>
+
+
+<!-- Hero -->
+<header class="hero">
+
+    <div class="container">
+
+        <div class="badge">
+            Demonstration / Reference Architecture
+        </div>
+
+        <h1>
+            SQL Server Administration & Database Solutions
+        </h1>
+
+        <p>
+            A practical SQL Server environment covering installation,
+            configuration, database management, security, backup and
+            recovery, performance monitoring and application connectivity.
+        </p>
+
+    </div>
+
+</header>
+
+
+<!-- Overview -->
+<section id="overview">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Project Overview
+        </h2>
+
+        <p class="section-intro">
+            This project represents a typical business SQL Server
+            environment supporting database-driven applications.
+            The focus is on building a stable, maintainable and
+            properly managed database platform.
+        </p>
+
+        <div class="grid">
+
+            <div class="card">
+                <h3>Business Scenario</h3>
+
+                <p>
+                    A business application requires a centralized SQL
+                    Server database environment for storing operational
+                    data and supporting application transactions.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Primary Objectives</h3>
+
+                <p>
+                    Configure SQL Server correctly, establish database
+                    standards, implement backup procedures and provide
+                    reliable connectivity for business applications.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Database Workloads</h3>
+
+                <p>
+                    Transactional databases supporting applications,
+                    reporting requirements, internal tools and
+                    business processes.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Operational Focus</h3>
+
+                <p>
+                    Availability, security, performance, backup,
+                    recovery and troubleshooting.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Architecture -->
+<section>
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Reference Architecture
+        </h2>
+
+        <p class="section-intro">
+            A simplified architecture showing how business applications
+            interact with the SQL Server environment.
+        </p>
+
+        <div class="architecture">
+
+<pre>
+                    BUSINESS USERS
+                          |
+                          v
+                +-------------------+
+                |  Business Apps    |
+                |  C# / .NET Apps   |
+                +---------+---------+
+                          |
+                    SQL Connection
+                          |
+                          v
+                +-------------------+
+                |    SQL Server     |
+                |      Instance     |
+                +---------+---------+
+                          |
+             +------------+------------+
+             |            |            |
+             v            v            v
+        Application   Reporting    System /
+         Database      Database    Maintenance
+             |
+             v
+       Tables / Views
+       Stored Procedures
+       Functions
+       Indexes
+
+
+              BACKUP / RECOVERY
+                     |
+                     v
+             Backup Storage
+                     |
+                     v
+              Recovery Testing
+</pre>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Installation -->
+<section id="installation">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            SQL Server Installation & Configuration
+        </h2>
+
+        <p class="section-intro">
+            A reliable SQL Server environment starts with proper
+            installation and configuration rather than simply
+            installing the database engine.
+        </p>
+
+        <div class="grid">
+
+            <div class="card">
+                <h3>Installation Planning</h3>
+
+                <p>
+                    Review operating system requirements, SQL Server
+                    edition, storage layout, memory requirements and
+                    application dependencies before installation.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>SQL Server Services</h3>
+
+                <p>
+                    Configure the required SQL Server services and
+                    establish appropriate service accounts and startup
+                    behavior.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Storage Configuration</h3>
+
+                <p>
+                    Separate database files, transaction logs and
+                    temporary database workloads where appropriate
+                    based on the environment.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Connectivity</h3>
+
+                <p>
+                    Configure SQL Server connectivity and verify that
+                    authorized applications can establish database
+                    connections.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Database Management -->
+<section>
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Database Management
+        </h2>
+
+        <p class="section-intro">
+            Database administration includes ongoing maintenance,
+            monitoring and controlled changes to production databases.
+        </p>
+
+        <ul class="check-list">
+
+            <li>Database creation and configuration</li>
+
+            <li>Data and log file management</li>
+
+            <li>Database growth configuration</li>
+
+            <li>Recovery model configuration</li>
+
+            <li>Index maintenance</li>
+
+            <li>Statistics maintenance</li>
+
+            <li>Database integrity checks</li>
+
+            <li>Stored procedures and views</li>
+
+            <li>User and permission management</li>
+
+            <li>Database monitoring</li>
+
+        </ul>
+
+    </div>
+
+</section>
+
+
+<!-- Security -->
+<section>
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Security & Access Control
+        </h2>
+
+        <p class="section-intro">
+            Database access should follow the principle of giving
+            users and applications only the permissions they require.
+        </p>
+
+        <div class="grid">
+
+            <div class="card">
+                <h3>Authentication</h3>
+
+                <p>
+                    Configure appropriate authentication methods based
+                    on application and organizational requirements.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Logins & Users</h3>
+
+                <p>
+                    Manage SQL Server logins, database users and
+                    appropriate role memberships.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Least Privilege</h3>
+
+                <p>
+                    Application accounts should receive only the
+                    permissions required for their operations.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Auditing & Monitoring</h3>
+
+                <p>
+                    Monitor access and database activity according
+                    to the organization's security requirements.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Backup -->
+<section>
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Backup & Recovery
+        </h2>
+
+        <p class="section-intro">
+            A backup strategy is only useful when recovery procedures
+            are understood and periodically tested.
+        </p>
+
+        <div class="grid">
+
+            <div class="card">
+                <h3>Full Backups</h3>
+
+                <p>
+                    Establish scheduled full database backups according
+                    to business recovery requirements.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Differential Backups</h3>
+
+                <p>
+                    Use differential backups where appropriate to reduce
+                    recovery time and backup workload.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Transaction Log Backups</h3>
+
+                <p>
+                    For databases using the full recovery model,
+                    transaction log backups can support point-in-time
+                    recovery requirements.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Restore Testing</h3>
+
+                <p>
+                    Periodically restore backups in a controlled
+                    environment to validate that recovery procedures
+                    actually work.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Performance -->
+<section id="performance">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Performance & Troubleshooting
+        </h2>
+
+        <p class="section-intro">
+            SQL Server troubleshooting starts with identifying the
+            actual source of a performance problem instead of
+            immediately changing configuration.
+        </p>
+
+        <div class="grid">
+
+            <div class="card">
+                <h3>Query Performance</h3>
+
+                <p>
+                    Review slow queries, execution plans, indexes and
+                    database statistics to identify potential bottlenecks.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Blocking</h3>
+
+                <p>
+                    Investigate blocking sessions and locking behavior
+                    that can affect application performance.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Resource Monitoring</h3>
+
+                <p>
+                    Monitor CPU, memory, disk activity and database
+                    workload to identify infrastructure-related issues.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Application Connectivity</h3>
+
+                <p>
+                    Troubleshoot connection errors between SQL Server
+                    and business applications.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Application Integration -->
+<section>
+
+    <div class="container">
+
+        <h2 class="section-title">
+            C# / .NET Application Connectivity
+        </h2>
+
+        <p class="section-intro">
+            SQL Server environments commonly support custom business
+            applications. The application layer must be designed to
+            communicate reliably with the database.
+        </p>
+
+        <div class="code-box">
+
+<pre>
+C# Application
+      |
+      v
+Database Connection
+      |
+      v
+SQL Server
+      |
+      +---- Tables
+      |
+      +---- Views
+      |
+      +---- Stored Procedures
+      |
+      +---- Transactions
+</pre>
+
+        </div>
+
+        <div class="grid" style="margin-top: 25px;">
+
+            <div class="card">
+                <h3>Connection Management</h3>
+
+                <p>
+                    Configure application database connections and
+                    manage connection settings securely.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Stored Procedures</h3>
+
+                <p>
+                    Use stored procedures where appropriate for
+                    reusable database operations and controlled
+                    data access.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Transactions</h3>
+
+                <p>
+                    Use transactions when multiple database operations
+                    need to succeed or fail as a single unit.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Error Handling</h3>
+
+                <p>
+                    Handle database connectivity and query errors
+                    appropriately at the application layer.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Administration Process -->
+<section>
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Administration Approach
+        </h2>
+
+        <div class="process-item">
+
+            <div class="process-number">1</div>
+
+            <h3>Assess</h3>
+
+            <p>
+                Understand the application workload, database size,
+                business requirements and existing configuration.
+            </p>
+
+        </div>
+
+        <div class="process-item">
+
+            <div class="process-number">2</div>
+
+            <h3>Configure</h3>
+
+            <p>
+                Configure SQL Server, databases, storage, security
+                and connectivity according to requirements.
+            </p>
+
+        </div>
+
+        <div class="process-item">
+
+            <div class="process-number">3</div>
+
+            <h3>Protect</h3>
+
+            <p>
+                Establish backup, recovery and security procedures.
+            </p>
+
+        </div>
+
+        <div class="process-item">
+
+            <div class="process-number">4</div>
+
+            <h3>Monitor</h3>
+
+            <p>
+                Monitor database health, performance, storage and
+                application connectivity.
+            </p>
+
+        </div>
+
+        <div class="process-item">
+
+            <div class="process-number">5</div>
+
+            <h3>Troubleshoot</h3>
+
+            <p>
+                Investigate database and application problems using
+                logs, queries, performance information and system data.
+            </p>
+
+        </div>
+
+        <div class="process-item">
+
+            <div class="process-number">6</div>
+
+            <h3>Maintain</h3>
+
+            <p>
+                Apply appropriate maintenance activities and review
+                the environment as business requirements change.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Technical Areas -->
+<section>
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Technical Areas
+        </h2>
+
+        <div class="tech">
+
+            <span>SQL Server</span>
+            <span>SQL Server Management Studio</span>
+            <span>T-SQL</span>
+            <span>Database Administration</span>
+            <span>Stored Procedures</span>
+            <span>Views</span>
+            <span>Indexes</span>
+            <span>Backup & Recovery</span>
+            <span>Performance Monitoring</span>
+            <span>Database Security</span>
+            <span>C#</span>
+            <span>.NET</span>
+            <span>Application Integration</span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Skills -->
+<section>
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Skills Demonstrated
+        </h2>
+
+        <div class="grid">
+
+            <div class="card">
+                <h3>SQL Server Administration</h3>
+
+                <p>
+                    Installation, configuration, database management,
+                    maintenance and troubleshooting.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Database Development</h3>
+
+                <p>
+                    Tables, views, stored procedures, queries and
+                    database-driven application functionality.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Performance Troubleshooting</h3>
+
+                <p>
+                    Investigating queries, blocking, resource usage
+                    and application connectivity issues.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Business Application Integration</h3>
+
+                <p>
+                    Connecting C#/.NET applications to SQL Server
+                    databases and implementing reliable data access.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Disclaimer -->
+<section>
+
+    <div class="container">
+
+        <div class="disclaimer">
+
+            <strong>Project Type: Demonstration / Reference Architecture</strong>
+
+            <p>
+                This project presents a realistic SQL Server environment
+                and administration scenario for demonstrating technical
+                capabilities. It is not presented as a specific client
+                engagement.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CTA -->
+<section class="cta">
+
+    <div class="container">
+
+        <h2>
+            Need SQL Server or Database Support?
+        </h2>
+
+        <p>
+            I can help with SQL Server installation, configuration,
+            database development, troubleshooting and integration
+            with business applications.
+        </p>
+
+        <a class="button"
+           href="mailto:mohd.bahsoun@hotmail.com">
+            Contact Me
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- Footer -->
+<footer>
+
+    © 2026 Mohamad Bahsoun · SharePoint · SQL Server · C#/.NET · Web Development
+
+</footer>
+
+</body>
+</html>
