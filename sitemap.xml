@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <url>
+        <loc>https://mohamadbahsoun.github.io/</loc>
+    </url>
+
+    <url>
+        <loc>https://mohamadbahsoun.github.io/projects/sharepoint-intranet.html</loc>
+    </url>
+
+    <url>
+        <loc>https://mohamadbahsoun.github.io/projects/sharepoint-migration.html</loc>
+    </url>
+
+    <url>
+        <loc>https://mohamadbahsoun.github.io/projects/sql-server.html</loc>
+    </url>
+
+    <url>
+        <loc>https://mohamadbahsoun.github.io/projects/dotnet-business-application.html</loc>
+    </url>
+
+    <url>
+        <loc>https://mohamadbahsoun.github.io/projects/umbraco-business-website.html</loc>
+    </url>
+
+    <url>
+        <loc>https://mohamadbahsoun.github.io/projects/drupal-business-website.html</loc>
+    </url>
+
+</urlset>
