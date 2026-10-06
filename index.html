@@ -1,1101 +1,281 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>
-        Mohamad Bahsoun | SharePoint & SQL Server Consultant | C#/.NET
-    </title>
-
-    <meta name="description" content="Mohamad Bahsoun is a Microsoft technology consultant specializing in SharePoint, SQL Server, C#/.NET, Microsoft 365, intranet portals, migrations and business websites.">
-
-    <link rel="canonical" href="https://mohamadbahsoun.github.io/">
-
-    <!-- Open Graph -->
-
-    <meta property="og:title" content="Mohamad Bahsoun | SharePoint & SQL Server Consultant">
-
-    <meta property="og:description" content="SharePoint, SQL Server, C#/.NET, Microsoft 365, intranet portals, migrations and business websites.">
-
-    <meta property="og:type" content="website">
-
-    <meta property="og:url" content="https://mohamadbahsoun.github.io">
-
-    <!-- Structured Data -->
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Mohamad Bahsoun",
-      "url": "https://mohamadbahsoun.github.io",
-      "email": "mailto:mohd.bahsoun@hotmail.com",
-      "jobTitle": "Microsoft Technology Consultant",
-      "knowsAbout": [
-        "SharePoint",
-        "SharePoint Server",
-        "SharePoint Online",
-        "SQL Server",
-        "C#",
-        ".NET",
-        "Microsoft 365",
-        "Intranet Development",
-        "SharePoint Migration",
-        "Umbraco",
-        "Drupal",
-        "Web Development"
-      ]
-    }
-    </script>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-8JBMQBZ3VV"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-8JBMQBZ3VV');
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohamad Bahsoun | SharePoint & SQL Server Consultant | C#/.NET</title>
+<meta name="description" content="Mohamad Bahsoun is a Microsoft technology consultant specializing in SharePoint, SQL Server, C#/.NET, Microsoft 365, intranet portals, migrations and business websites.">
+<link rel="canonical" href="https://mohamadbahsoun.github.io/">
+<meta property="og:title" content="Mohamad Bahsoun | SharePoint & SQL Server Consultant">
+<meta property="og:description" content="SharePoint, SQL Server, C#/.NET, Microsoft 365, intranet portals, migrations and business websites.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mohamadbahsoun.github.io">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Mohamad Bahsoun","url":"https://mohamadbahsoun.github.io","email":"mailto:mohd.bahsoun@hotmail.com","jobTitle":"Microsoft Technology Consultant","knowsAbout":["SharePoint","SharePoint Server","SharePoint Online","SQL Server","C#",".NET","Microsoft 365","Intranet Development","SharePoint Migration","Umbraco","Drupal","Web Development"]}
 </script>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            line-height: 1.6;
-            color: #1f2937;
-            background: #ffffff;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1100px;
-            margin: auto;
-        }
-
-        /* Navigation */
-
-        nav {
-            border-bottom: 1px solid #e5e7eb;
-            background: #ffffff;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .nav-container {
-            min-height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            font-size: 22px;
-            font-weight: 700;
-            color: #111827;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 28px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: #4b5563;
-            font-size: 15px;
-        }
-
-        .nav-links a:hover {
-            color: #2563eb;
-        }
-
-        /* Hero */
-
-        .hero {
-            padding: 100px 0 90px;
-            background: #f8fafc;
-        }
-
-        .hero-content {
-            max-width: 900px;
-        }
-
-        .eyebrow {
-            font-size: 14px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: #2563eb;
-            margin-bottom: 18px;
-        }
-
-        .hero h1 {
-            font-size: clamp(40px, 6vw, 64px);
-            line-height: 1.1;
-            color: #111827;
-            margin-bottom: 24px;
-        }
-
-        .hero h1 span {
-            color: #2563eb;
-        }
-
-        .hero p {
-            font-size: 20px;
-            color: #4b5563;
-            max-width: 800px;
-            margin-bottom: 32px;
-        }
-
-        .buttons {
-            display: flex;
-            gap: 14px;
-            flex-wrap: wrap;
-        }
-
-        .button {
-            display: inline-block;
-            padding: 13px 22px;
-            border-radius: 7px;
-            font-weight: 600;
-            border: 1px solid #2563eb;
-        }
-
-        .button-primary {
-            background: #2563eb;
-            color: white;
-        }
-
-        .button-primary:hover {
-            background: #1d4ed8;
-        }
-
-        .button-secondary {
-            color: #2563eb;
-            background: white;
-        }
-
-        .button-secondary:hover {
-            background: #eff6ff;
-        }
-
-        /* Sections */
-
-        section {
-            padding: 80px 0;
-        }
-
-        .section-header {
-            margin-bottom: 45px;
-        }
-
-        .section-header h2 {
-            font-size: 36px;
-            color: #111827;
-            margin-bottom: 12px;
-        }
-
-        .section-header p {
-            color: #6b7280;
-            max-width: 750px;
-        }
-
-        /* Services */
-
-        .services {
-            background: white;
-        }
-
-        .service-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 22px;
-        }
-
-        .service-card {
-            border: 1px solid #e5e7eb;
-            border-radius: 10px;
-            padding: 28px;
-            background: white;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .service-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.07);
-        }
-
-        .service-number {
-            font-size: 13px;
-            font-weight: 700;
-            color: #2563eb;
-            margin-bottom: 15px;
-        }
-
-        .service-card h3 {
-            font-size: 20px;
-            color: #111827;
-            margin-bottom: 10px;
-        }
-
-        .service-card p {
-            color: #6b7280;
-            font-size: 15px;
-        }
-
-        /* Projects */
-
-        .projects {
-            background: #f8fafc;
-        }
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-        }
-
-        .project-card {
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 10px;
-            padding: 30px;
-        }
-
-        .project-card h3 {
-            font-size: 22px;
-            color: #111827;
-            margin-bottom: 12px;
-        }
-
-        .project-card p {
-            color: #6b7280;
-            margin-bottom: 20px;
-        }
-
-        .tag {
-            display: inline-block;
-            padding: 5px 10px;
-            margin: 3px;
-            border-radius: 20px;
-            background: #eff6ff;
-            color: #1d4ed8;
-            font-size: 13px;
-        }
-
-        .project-link {
-            display: inline-block;
-            margin-top: 18px;
-            color: #2563eb;
-            font-weight: 600;
-        }
-
-        .project-link:hover {
-            text-decoration: underline;
-        }
-
-        /* About */
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: start;
-        }
-
-        .about-content h3 {
-            font-size: 24px;
-            color: #111827;
-            margin-bottom: 15px;
-        }
-
-        .about-content p {
-            color: #6b7280;
-            margin-bottom: 16px;
-        }
-
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .skill {
-            padding: 9px 13px;
-            border: 1px solid #d1d5db;
-            border-radius: 6px;
-            font-size: 14px;
-            color: #374151;
-        }
-
-        /* Contact */
-
-        .contact {
-            background: #111827;
-            color: white;
-        }
-
-        .contact .section-header h2 {
-            color: white;
-        }
-
-        .contact .section-header p {
-            color: #d1d5db;
-        }
-
-        .contact-box {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 30px;
-            padding: 35px;
-            border: 1px solid #374151;
-            border-radius: 10px;
-            background: #1f2937;
-        }
-
-        .contact-box h3 {
-            margin-bottom: 8px;
-        }
-
-        .contact-box p {
-            color: #d1d5db;
-        }
-
-        .email {
-            color: #93c5fd;
-            font-weight: 600;
-            word-break: break-word;
-        }
-
-        /* Footer */
-
-        footer {
-            background: #111827;
-            border-top: 1px solid #374151;
-            color: #9ca3af;
-            padding: 25px 0;
-            text-align: center;
-            font-size: 14px;
-        }
-
-        /* Mobile */
-
-        @media (max-width: 800px) {
-
-            .nav-container {
-                flex-direction: column;
-                padding: 18px 0;
-                gap: 12px;
-            }
-
-            .nav-links {
-                gap: 15px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .hero {
-                padding: 70px 0;
-            }
-
-            .service-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .project-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 35px;
-            }
-
-            .contact-box {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
-    </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#080c1a;--panel:#111833;--line:rgba(255,255,255,.12);--text:#e9edf8;--mute:#9aa6c4;--blue:#5b7cff;--teal:#22c3b0;--amber:#ffb454;
+--mx:0;--my:0;--spread:0;--p:0;
+--head:'Space Grotesk',system-ui,sans-serif;--body:'DM Sans',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{font-family:var(--body);background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+.wrap{width:90%;max-width:1160px;margin:auto}
+h1,h2,h3{font-family:var(--head);line-height:1.1}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(14px);background:rgba(8,12,26,.6);border-bottom:1px solid var(--line)}
+.nav{height:64px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:var(--head);font-weight:700;font-size:20px}
+.nav ul{display:flex;gap:28px;list-style:none}
+.nav ul a{color:var(--mute);font-size:15px;transition:color .2s}
+.nav ul a:hover{color:#fff}
+
+/* Hero */
+.pin{height:280vh;position:relative}.hero{position:sticky;top:0;height:100vh;display:flex;align-items:center;padding:60px 0 0;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.55;will-change:transform;pointer-events:none}
+.o1{width:460px;height:460px;background:var(--blue);top:-120px;left:-120px}
+.o2{width:380px;height:380px;background:var(--teal);bottom:-100px;right:10%;opacity:.35}
+.o3{width:260px;height:260px;background:var(--amber);top:30%;right:-80px;opacity:.28}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:center;position:relative}
+.hero h1{font-size:clamp(40px,6vw,74px);letter-spacing:-.02em;margin-bottom:24px}
+.hero p{font-size:19px;color:var(--mute);max-width:540px;margin-bottom:34px}
+.btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn{padding:14px 26px;border-radius:999px;font-weight:700;border:1px solid var(--line);transition:transform .2s,box-shadow .2s,background .2s,translate .3s cubic-bezier(.2,.8,.2,1)}
+.btn.p{background:linear-gradient(135deg,var(--blue),#8a63ff);border-color:transparent;box-shadow:0 10px 30px rgba(91,124,255,.4)}
+.btn:hover{transform:translateY(-3px)}
+.btn.s:hover{background:rgba(255,255,255,.07)}
+
+/* 3D stack */
+.scene{perspective:1400px;height:480px;display:grid;place-items:center}
+.stack{position:relative;width:min(300px,62vw);aspect-ratio:1;transform-style:preserve-3d;
+transform:rotateX(calc(58deg + var(--my)*-9deg)) rotateZ(calc(-38deg + var(--p)*50deg + var(--mx)*14deg)) scale(calc(1 + var(--p)*.18));transition:transform .15s ease-out}
+.layer{position:absolute;inset:0;border-radius:24px;padding:20px;display:flex;align-items:flex-end;font:700 20px var(--head);
+border:1px solid rgba(255,255,255,.3);background:linear-gradient(135deg,var(--a),var(--b));
+transform:translateZ(calc(var(--i)*(48px + var(--spread)*1px)));box-shadow:0 30px 60px rgba(0,0,0,.45),inset 0 0 40px rgba(255,255,255,.12);transition:filter .4s;animation:drop 1s cubic-bezier(.2,.9,.3,1.15) both;animation-delay:calc(var(--i)*.22s + .15s)}
+.layer.dim{filter:brightness(.35) saturate(.6)}
+.layer small{display:block;font:500 13px var(--body);opacity:.85}
+.l0{--i:0;--a:#2a2278;--b:#5546d6}.l1{--i:1;--a:#4a2bd0;--b:#8a63ff}
+.l2{--i:2;--a:#0e7584;--b:#22c3b0}.l3{--i:3;--a:#ffb454;--b:#ff8a4c;color:#1a1204}
+
+/* Motion */
+@keyframes drop{from{opacity:0;translate:0 0 700px}to{opacity:1;translate:0 0 0}}
+@keyframes up{from{transform:translateY(110%)}to{transform:none}}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.14em;margin-bottom:-.14em}
+.w i{display:inline-block;font-style:normal;animation:up .8s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--d,0s) + var(--k)*.07s);animation-play-state:paused}
+h1{--d:.9s}h1 .w i,.in .w i{animation-play-state:running}
+.lead{position:relative}.copy{will-change:opacity,translate}
+.caps{position:absolute;left:0;top:50%;translate:0 -50%;max-width:470px;opacity:0;pointer-events:none;transition:opacity .4s}
+.caps.on{opacity:1}.caps h3{font-size:clamp(32px,4.2vw,54px);margin-bottom:12px}.caps p{color:var(--mute);font-size:19px}
+.caps small{display:block;margin-top:18px;color:var(--amber);font-size:14px}
+.cur{position:fixed;left:0;top:0;width:34px;height:34px;margin:-17px;border:1.5px solid rgba(255,255,255,.7);border-radius:50%;pointer-events:none;z-index:99;opacity:0;
+box-shadow:0 0 24px rgba(91,124,255,.6);transition:width .25s,height .25s,margin .25s,background .25s,opacity .3s}
+.cur.big{width:68px;height:68px;margin:-34px;background:rgba(91,124,255,.2)}
+[hidden]{display:none!important}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:22px;padding-top:70px;text-align:center}
+.stats b{display:block;font:700 clamp(42px,6vw,66px) var(--head);background:linear-gradient(135deg,var(--blue),var(--teal));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stats span{color:var(--mute)}
+.cta .btns{justify-content:center}
+/* Parallax band */
+.band{overflow:hidden;border-block:1px solid var(--line);padding:26px 0;background:var(--panel)}
+.band div{white-space:nowrap;font:700 clamp(40px,8vw,96px) var(--head);color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.35);will-change:transform;letter-spacing:-.02em}
+
+/* Sections */
+section{padding:100px 0}
+.head{margin-bottom:46px}
+.head h2{font-size:clamp(32px,4.5vw,50px);margin-bottom:12px}
+.head p{color:var(--mute);max-width:640px}
+.grid{display:grid;gap:22px}
+.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:repeat(2,1fr)}
+.card{position:relative;padding:30px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));
+transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transform-style:preserve-3d;transition:transform .15s ease-out,border-color .2s;overflow:hidden}
+.card::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at var(--gx,50%) var(--gy,0%),rgba(255,255,255,.16),transparent 55%);opacity:0;transition:opacity .2s}
+.card:hover{border-color:rgba(91,124,255,.6)}.card:hover::after{opacity:1}
+.card h3{font-size:21px;margin-bottom:10px;transform:translateZ(30px)}
+.card p{color:var(--mute);font-size:15px;transform:translateZ(16px)}
+.proj h3{font-size:25px}.proj p{margin-bottom:18px}
+.tag{display:inline-block;padding:4px 12px;margin:0 6px 6px 0;border-radius:99px;background:rgba(91,124,255,.16);color:#b9c6ff;font-size:13px}
+.more{display:inline-block;margin-top:12px;font-weight:700;color:var(--amber);transform:translateZ(24px)}
+.more:hover{text-decoration:underline}
+.rv{opacity:0;translate:0 40px;transition:opacity .7s,translate .7s}.rv.in{opacity:1;translate:0 0}
+
+/* About */
+.about{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px;align-items:center}
+.photo{perspective:900px}
+.frame{aspect-ratio:4/5;border-radius:26px;border:1px solid var(--line);overflow:hidden;position:relative;background:linear-gradient(135deg,var(--blue),var(--teal));
+transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .15s ease-out;box-shadow:0 40px 80px rgba(0,0,0,.5)}
+.frame img{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:1}
+.frame b{position:absolute;inset:0;display:grid;place-items:center;font:700 90px var(--head);color:rgba(255,255,255,.9)}
+.about h2{font-size:clamp(30px,4vw,44px);margin-bottom:18px}
+.about p{color:var(--mute);margin-bottom:16px}
+.skills{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.skills span{padding:8px 14px;border:1px solid var(--line);border-radius:8px;font-size:14px}
+
+/* Contact */
+.cta{padding:60px;border-radius:28px;border:1px solid var(--line);text-align:center;background:radial-gradient(circle at 50% 0%,rgba(91,124,255,.35),transparent 60%),var(--panel)}
+.cta h2{font-size:clamp(32px,5vw,56px);margin-bottom:16px}
+.cta p{color:var(--mute);max-width:560px;margin:0 auto 30px}
+footer{padding:30px 0;text-align:center;color:var(--mute);font-size:14px;border-top:1px solid var(--line)}
+
+@media(max-width:860px){
+.nav ul{gap:16px}.nav ul a{font-size:13px}.logo{font-size:16px}
+.hero .wrap,.about{grid-template-columns:1fr}.scene{height:380px}
+.pin{height:auto}.hero{position:relative;height:auto;min-height:100vh;padding:100px 0 60px}.g3,.g2{grid-template-columns:1fr}.about{gap:40px}.photo{max-width:320px}.cta{padding:40px 22px}}
+@media(prefers-reduced-motion:reduce){.pin{height:auto}.hero{position:relative;height:auto;min-height:100vh;padding:100px 0 60px}.w i,.layer{animation:none!important}.cur{display:none}*{transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;translate:0 0}}
+</style>
 </head>
-
 <body>
 
-<!-- Navigation -->
-
-<nav>
-    <div class="container nav-container">
-
-        <a href="#home" class="logo">
-            Mohamad Bahsoun
-        </a>
-
-        <ul class="nav-links">
-    <li><a href="#services">Services</a></li>
-    <li><a href="#help">How I Can Help</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#contact">Contact</a></li>
-</ul>
-    </div>
-</nav>
-
-
-<!-- Hero -->
-
-<section class="hero" id="home">
-
-    <div class="container">
-
-        <div class="hero-content">
-
-            <div class="eyebrow">
-                SharePoint · SQL Server · C#/.NET · Web Development
-            </div>
-
-            <h1>
-                Microsoft Technology
-                <span>Consultant</span>
-            </h1>
-
-            <p>
-                I help businesses build, configure, migrate and troubleshoot
-                Microsoft-based business systems, intranet portals, websites
-                and custom business applications.
-            </p>
-
-            <div class="buttons">
-
-                <a href="#projects" class="button button-primary">
-                    View My Work
-                </a>
-
-                <a href="#contact" class="button button-secondary">
-                    Contact Me
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- Services -->
-
-<section class="services" id="services">
-
-    <div class="container">
-
-        <div class="section-header">
-
-            <h2>Services</h2>
-
-            <p>
-                Practical technology services for business applications,
-                collaboration platforms, databases and websites.
-            </p>
-
-        </div>
-
-
-        <div class="service-grid">
-
-            <div class="service-card">
-
-                <div class="service-number">01</div>
-
-                <h3>SharePoint Installation & Administration</h3>
-
-                <p>
-                    SharePoint Server installation, configuration,
-                    administration, troubleshooting and ongoing support.
-                </p>
-
-            </div>
-
-
-            <div class="service-card">
-
-                <div class="service-number">02</div>
-
-                <h3>SharePoint Migration & Upgrade</h3>
-
-                <p>
-                    Migration and upgrade projects involving legacy
-                    SharePoint environments, including SharePoint 2013
-                    to SharePoint Subscription Edition.
-                </p>
-
-            </div>
-
-
-            <div class="service-card">
-
-                <div class="service-number">03</div>
-
-                <h3>SharePoint Intranet & Portal Development</h3>
-
-                <p>
-                    Business intranets, internal portals, document
-                    management solutions, collaboration sites and
-                    business-focused SharePoint solutions.
-                </p>
-
-            </div>
-
-
-            <div class="service-card">
-
-                <div class="service-number">04</div>
-
-                <h3>SQL Server & Database Solutions</h3>
-
-                <p>
-                    SQL Server installation, configuration, database
-                    development, migration, backup, restore and
-                    troubleshooting.
-                </p>
-
-            </div>
-
-
-            <div class="service-card">
-
-                <div class="service-number">05</div>
-
-                <h3>C# / .NET Business Applications</h3>
-
-                <p>
-                    Custom business software, internal applications,
-                    APIs, integrations and database-driven applications
-                    using C# and .NET.
-                </p>
-
-            </div>
-
-
-            <div class="service-card">
-
-                <div class="service-number">06</div>
-
-                <h3>Microsoft 365 & SharePoint Online</h3>
-
-                <p>
-                    Microsoft 365 and SharePoint Online configuration,
-                    administration, collaboration solutions and
-                    troubleshooting.
-                </p>
-
-            </div>
-
-
-            <div class="service-card">
-
-                <div class="service-number">07</div>
-
-                <h3>Umbraco Website Development</h3>
-
-                <p>
-                    Business website development, customization,
-                    maintenance and troubleshooting using Umbraco CMS.
-                </p>
-
-            </div>
-
-
-            <div class="service-card">
-
-                <div class="service-number">08</div>
-
-                <h3>Drupal Website Development</h3>
-
-                <p>
-                    Website development, customization, maintenance
-                    and troubleshooting using Drupal CMS.
-                </p>
-
-            </div>
-
-
-            <div class="service-card">
-
-                <div class="service-number">09</div>
-
-                <h3>Business Website Development</h3>
-
-                <p>
-                    Development, maintenance and troubleshooting of
-                    business websites and web-based solutions using
-                    modern web technologies and CMS platforms.
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
- <!-- How I Can Help -->
-
-<section id="help" class="section">
-
-    <div class="container">
-
-        <div class="section-header">
-
-            <h2>How I Can Help</h2>
-
-            <p>
-                Practical solutions for businesses that need to build,
-                migrate, configure or troubleshoot their technology
-                environment.
-            </p>
-
-        </div>
-
-
-        <div class="service-grid">
-
-            <div class="service-card">
-
-                <div class="service-number">01</div>
-
-                <h3>Need a SharePoint Intranet?</h3>
-
-                <p>
-                    Build an internal portal for employees, departments,
-                    documents, announcements, forms and business resources.
-                </p>
-
-                <a href="projects/sharepoint-intranet.html"
-                   class="project-link">
-                    View SharePoint Example →
-                </a>
-
-            </div>
-
-
-            <div class="service-card">
-
-                <div class="service-number">02</div>
-
-                <h3>Planning a SharePoint Migration?</h3>
-
-                <p>
-                    Assess your existing SharePoint environment and plan
-                    migration, upgrade, configuration and validation activities.
-                </p>
-
-                <a href="projects/sharepoint-migration.html"
-                   class="project-link">
-                    View Migration Example →
-                </a>
-
-            </div>
-
-
-            <div class="service-card">
-
-                <div class="service-number">03</div>
-
-                <h3>Need SQL Server Setup or Support?</h3>
-
-                <p>
-                    Configure SQL Server, databases, security, backups,
-                    connectivity and performance-related administration.
-                </p>
-
-                <a href="projects/sql-server.html"
-                   class="project-link">
-                    View SQL Example →
-                </a>
-
-            </div>
-
-
-            <div class="service-card">
-
-                <div class="service-number">04</div>
-
-                <h3>Need a Custom Business Application?</h3>
-
-                <p>
-                    Develop C#/.NET applications for internal processes,
-                    approvals, requests, integrations and database-driven
-                    business workflows.
-                </p>
-
-                <a href="projects/dotnet-business-application.html"
-                   class="project-link">
-                    View .NET Example →
-                </a>
-
-            </div>
-
-
-            <div class="service-card">
-
-                <div class="service-number">05</div>
-
-                <h3>Need an Umbraco Website?</h3>
-
-                <p>
-                    Build and maintain content-managed business websites
-                    using Umbraco, .NET and SQL Server.
-                </p>
-
-                <a href="projects/umbraco-business-website.html"
-                   class="project-link">
-                    View Umbraco Example →
-                </a>
-
-            </div>
-
-
-            <div class="service-card">
-
-                <div class="service-number">06</div>
-
-                <h3>Need Drupal Support?</h3>
-
-                <p>
-                    Develop, maintain and troubleshoot Drupal websites,
-                    content structures, integrations and custom functionality.
-                </p>
-
-                <a href="projects/drupal-business-website.html"
-                   class="project-link">
-                    View Drupal Example →
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- Projects -->
-
-<section class="projects" id="projects">
-
-    <div class="container">
-
-        <div class="section-header">
-
-            <h2>Featured Projects</h2>
-
-           <p>
-    Selected technical projects and practical demonstrations covering
-    SharePoint, SQL Server, C#/.NET and business websites.
-</p>
-
-        </div>
-
-
-        <div class="project-grid">
-
-            <div class="project-card">
-
-                <h3>
-                    SharePoint 2013 → SPSE Migration
-                </h3>
-
-                <p>
-                    A practical migration lab demonstrating assessment,
-                    architecture, database migration, SharePoint configuration,
-                    upgrade planning and post-migration validation.
-                </p>
-
-                <span class="tag">SharePoint</span>
-                <span class="tag">SPSE</span>
-                <span class="tag">SQL Server</span>
-                <span class="tag">Migration</span>
-
-                <br>
-
-                <a href="projects/sharepoint-migration.html" class="project-link">View Case Study →</a>
-
-            </div>
-
-
-            <div class="project-card">
-
-                <h3>
-                    SharePoint Intranet Portal
-                </h3>
-
-                <p>
-                    A business-focused intranet concept demonstrating
-                    SharePoint sites, document management, collaboration,
-                    navigation and internal business information.
-                </p>
-
-                <span class="tag">SharePoint</span>
-                <span class="tag">Intranet</span>
-                <span class="tag">Portal</span>
-
-                <br>
-
-                <a href="projects/sharepoint-intranet.html" class="project-link">
-                  View Case Study →
-                </a>
-
-            </div>
-
-
-            <div class="project-card">
-
-                <h3>
-                    SQL Server Administration
-                </h3>
-
-                <p>
-                    A practical SQL Server environment covering installation,
-                    configuration, database creation, backup and restore,
-                    migration and troubleshooting.
-                </p>
-
-                <span class="tag">SQL Server</span>
-                <span class="tag">Database</span>
-                <span class="tag">Backup</span>
-
-                <br>
-
-               <a href="projects/sql-server.html" class="project-link">View Case Study →</a>
-
-            </div>
-
-
-            <div class="project-card">
-
-                <h3>
-                    C# / .NET Business Application
-                </h3>
-
-                <p>
-                    A database-driven business application demonstrating
-                    application design, C#/.NET development, SQL integration
-                    and business workflows.
-                </p>
-
-                <span class="tag">C#</span>
-                <span class="tag">.NET</span>
-                <span class="tag">SQL</span>
-                <span class="tag">API</span>
-
-                <br>
-
-               <a href="projects/dotnet-business-application.html" class="project-link">View Case Study →</a>
-
-            </div>
-
-
-            <div class="project-card">
-
-                <h3>
-                    Umbraco Business Website
-                </h3>
-
-                <p>
-                    A website development demonstration using Umbraco CMS,
-                    focusing on content management, page structure,
-                    customization and business website requirements.
-                </p>
-
-                <span class="tag">Umbraco</span>
-                <span class="tag">CMS</span>
-                <span class="tag">Web Development</span>
-
-                <br>
-<a href="projects/umbraco-business-website.html" class="project-link">View Case Study →</a>
-            </div>
-
-
-            <div class="project-card">
-
-                <h3>
-                    Drupal Business Website
-                </h3>
-
-                <p>
-                    A website development demonstration using Drupal,
-                    covering content management, website structure,
-                    customization and maintenance.
-                </p>
-
-                <span class="tag">Drupal</span>
-                <span class="tag">CMS</span>
-                <span class="tag">Web Development</span>
-
-                <br>
-<a href="projects/drupal-business-website.html" class="project-link">View Case Study →</a>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- About -->
-
-<section id="about">
-
-    <div class="container">
-
-        <div class="section-header">
-
-            <h2>About Me</h2>
-
-        </div>
-
-
-        <div class="about-content">
-
-            <div>
-
-                <h3>Technology-focused problem solving</h3>
-
-                <p>
-                    I work with Microsoft technologies and web platforms
-                    to help businesses implement, maintain and improve
-                    their applications, collaboration platforms and websites.
-                </p>
-
-                <p>
-                    My experience includes SharePoint Server, SharePoint
-                    Online, SQL Server, C#/.NET applications, Microsoft 365,
-                    Umbraco and Drupal.
-                </p>
-
-                <p>
-                    I focus on practical solutions that are reliable,
-                    maintainable and aligned with business requirements.
-                </p>
-
-            </div>
-
-
-            <div>
-
-                <h3>Technical Skills</h3>
-
-                <div class="skills">
-
-                    <span class="skill">SharePoint Server</span>
-                    <span class="skill">SharePoint Online</span>
-                    <span class="skill">SharePoint Intranet</span>
-                    <span class="skill">SharePoint Portals</span>
-                    <span class="skill">SharePoint Migration</span>
-                    <span class="skill">SQL Server</span>
-                    <span class="skill">Database Development</span>
-                    <span class="skill">C#</span>
-                    <span class="skill">.NET</span>
-                    <span class="skill">ASP.NET</span>
-                    <span class="skill">REST APIs</span>
-                    <span class="skill">Microsoft 365</span>
-                    <span class="skill">Umbraco</span>
-                    <span class="skill">Drupal</span>
-                    <span class="skill">Web Development</span>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- Contact -->
-
-<section class="contact" id="contact">
-
-    <div class="container">
-
-        <div class="section-header">
-
-            <h2>Let's Work Together</h2>
-
-            <p>
-                Have a project, technical issue or migration that needs
-                attention? Tell me what you're working on and what you need help with.
-            </p>
-
-        </div>
-
-
-        <div class="contact-box">
-
-            <div>
-
-                <h3>Mohamad Bahsoun</h3>
-
-                <p>
-                    SharePoint · SQL Server · C#/.NET · Web Development
-                </p>
-
-                <p style="margin-top: 12px;">
-                    Available for development, configuration, migration,
-                    troubleshooting and technical consulting.
-                </p>
-
-            </div>
-
-
-            <a
-                class="button button-primary"
-                href="mailto:mohd.bahsoun@hotmail.com?subject=Project%20Inquiry">
-                Start a Conversation →
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- Footer -->
-
-<footer>
-
-    <div class="container">
-
-        © 2026 Mohamad Bahsoun. All rights reserved.
-
-    </div>
-
-</footer>
-
-
+<nav><div class="wrap nav">
+<a href="#home" class="logo">Mohamad Bahsoun</a>
+<ul><li><a href="#services">Services</a></li><li><a href="#projects">Projects</a></li><li><a href="#about">About</a></li><li><a href="#contact">Contact</a></li></ul>
+</div></nav>
+
+<div class="pin" id="home"><header class="hero">
+<div class="orb o1" data-speed="0.15"></div><div class="orb o2" data-speed="-0.1"></div><div class="orb o3" data-speed="0.25"></div>
+<div class="wrap">
+<div class="lead"><div class="copy">
+<h1>I build the Microsoft systems your business runs on.</h1>
+<p>SharePoint, SQL Server, C#/.NET and business websites. I help companies build, configure, migrate and troubleshoot the platforms their teams depend on.</p>
+<div class="btns"><a href="#projects" class="btn p mag">View my work</a><a href="#contact" class="btn s mag">Contact me</a></div>
+</div><div class="caps" aria-hidden="true"></div>
+</div>
+<div class="scene" aria-hidden="true"><div class="stack">
+<div class="layer l0"><span>SQL Server<small>Data layer</small></span></div>
+<div class="layer l1"><span>C# / .NET<small>Business logic</small></span></div>
+<div class="layer l2"><span>SharePoint<small>Collaboration</small></span></div>
+<div class="layer l3"><span>Web &amp; CMS<small>Umbraco · Drupal</small></span></div>
+</div></div>
+</div>
+</header></div>
+
+<div class="band" aria-hidden="true"><div id="band">SharePoint &nbsp; SQL Server &nbsp; C# .NET &nbsp; Microsoft 365 &nbsp; Umbraco &nbsp; Drupal &nbsp; SharePoint &nbsp; SQL Server &nbsp; C# .NET</div></div>
+
+<div class="wrap stats" id="stats" hidden></div>
+
+<section id="services"><div class="wrap">
+<div class="head rv"><h2>Services</h2><p>Practical technology services for business applications, collaboration platforms, databases and websites.</p></div>
+<div class="grid g3" id="svc"></div>
+</div></section>
+
+<section id="projects" style="background:var(--panel)"><div class="wrap">
+<div class="head rv"><h2>Featured projects</h2><p>Selected technical projects and practical demonstrations covering SharePoint, SQL Server, C#/.NET and business websites.</p></div>
+<div class="grid g2" id="prj"></div>
+</div></section>
+
+<section id="about"><div class="wrap about">
+<div class="photo rv"><div class="frame tilt">
+<b>MB</b>
+<img src="assets/photo.jpg" alt="Mohamad Bahsoun, Microsoft technology consultant" width="480" height="600" loading="lazy" onerror="this.remove()">
+</div></div>
+<div class="rv">
+<h2>Technology-focused problem solving</h2>
+<p>I work with Microsoft technologies and web platforms to help businesses implement, maintain and improve their applications, collaboration platforms and websites.</p>
+<p>My experience includes SharePoint Server, SharePoint Online, SQL Server, C#/.NET applications, Microsoft 365, Umbraco and Drupal. I focus on practical solutions that are reliable, maintainable and aligned with business requirements.</p>
+<div class="skills" id="sk"></div>
+</div>
+</div></section>
+
+<section id="contact" style="padding-top:0"><div class="wrap">
+<div class="cta rv">
+<h2>Let's work together</h2>
+<p>Have a project, technical issue or migration that needs attention? Tell me what you're working on and what you need help with.</p>
+<div class="btns"><a class="btn p mag" href="mailto:mohd.bahsoun@hotmail.com?subject=Project%20Inquiry">Start a conversation</a><a id="li" class="btn s mag" href="#" target="_blank" rel="noopener" hidden>LinkedIn</a></div>
+</div>
+</div></section>
+
+<footer>© 2026 Mohamad Bahsoun. All rights reserved.</footer>
+
+<div class="cur" aria-hidden="true"></div>
+<script>
+/* ---- EDIT THESE ---- */
+const LINKEDIN="";            // e.g. "https://www.linkedin.com/in/your-name"
+const STATS=[];               // e.g. [[10,"+","Years of experience"],[50,"+","Projects delivered"]]
+/* -------------------- */
+const S=[["SharePoint Installation & Administration","SharePoint Server installation, configuration, administration, troubleshooting and ongoing support."],
+["SharePoint Migration & Upgrade","Migration and upgrade of legacy environments, including SharePoint 2013 to SharePoint Subscription Edition."],
+["SharePoint Intranet & Portals","Business intranets, internal portals, document management and collaboration sites."],
+["SQL Server & Databases","Installation, configuration, database development, migration, backup, restore and troubleshooting."],
+["C# / .NET Applications","Custom business software, internal applications, APIs and integrations built with C# and .NET."],
+["Microsoft 365 & SharePoint Online","Configuration, administration, collaboration solutions and troubleshooting."],
+["Umbraco Websites","Business website development, customization and maintenance with Umbraco CMS."],
+["Drupal Websites","Website development, customization and maintenance with Drupal CMS."],
+["Business Websites","Development and support of business websites and web solutions on modern platforms and CMSs."]];
+const P=[["SharePoint 2013 → SPSE Migration","A practical migration lab covering assessment, architecture, database migration, configuration, upgrade planning and post-migration validation.",["SharePoint","SPSE","SQL Server","Migration"],"sharepoint-migration"],
+["SharePoint Intranet Portal","An intranet concept with sites, document management, collaboration, navigation and internal business information.",["SharePoint","Intranet","Portal"],"sharepoint-intranet"],
+["SQL Server Administration","Installation, configuration, database creation, backup and restore, migration and troubleshooting.",["SQL Server","Database","Backup"],"sql-server"],
+["C# / .NET Business Application","A database-driven application showing design, C#/.NET development, SQL integration and business workflows.",["C#",".NET","SQL","API"],"dotnet-business-application"],
+["Umbraco Business Website","Content management, page structure, customization and business website requirements with Umbraco.",["Umbraco","CMS","Web"],"umbraco-business-website"],
+["Drupal Business Website","Content management, site structure, customization and maintenance with Drupal.",["Drupal","CMS","Web"],"drupal-business-website"]];
+const K=["SharePoint Server","SharePoint Online","SQL Server","C#","ASP.NET","REST APIs","Microsoft 365","Umbraco","Drupal","Web Development"];
+const $=s=>document.querySelector(s);
+$('#svc').innerHTML=S.map(s=>`<div class="card tilt rv"><h3>${s[0]}</h3><p>${s[1]}</p></div>`).join('');
+$('#prj').innerHTML=P.map(p=>`<div class="card proj tilt rv"><h3>${p[0]}</h3><p>${p[1]}</p><div>${p[2].map(t=>`<span class="tag">${t}</span>`).join('')}</div><a class="more" href="projects/${p[3]}.html">View case study →</a></div>`).join('');
+$('#sk').innerHTML=K.map(k=>`<span>${k}</span>`).join('');
+
+const calm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const root=document.documentElement;
+if(LINKEDIN){$('#li').href=LINKEDIN;$('#li').hidden=false}
+if(STATS.length){const st=$('#stats');st.hidden=false;
+ st.innerHTML=STATS.map(s=>`<div><b data-n="${s[0]}" data-x="${s[1]}">${calm?s[0]+s[1]:'0'+s[1]}</b><span>${s[2]}</span></div>`).join('');
+ if(!calm){const so=new IntersectionObserver(e=>e.forEach(x=>{if(!x.isIntersecting)return;so.unobserve(x.target);
+  const el=x.target.querySelector('b'),n=+el.dataset.n,t0=performance.now();
+  (function f(t){const k=Math.min((t-t0)/1400,1);el.textContent=Math.round(n*(1-Math.pow(1-k,3)))+el.dataset.x;if(k<1)requestAnimationFrame(f)})(t0)}),{threshold:.6});
+  st.querySelectorAll('div').forEach(d=>so.observe(d))}}
+document.querySelectorAll('h1,h2').forEach(h=>{h.innerHTML=h.textContent.trim().split(/\s+/).map((w,k)=>`<span class="w"><i style="--k:${k}">${w}</i></span>`).join(' ')});
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+if(!calm){
+const orbs=[...document.querySelectorAll('.orb')],band=$('#band'),pin=$('.pin'),hero=$('.hero'),copy=$('.copy'),caps=$('.caps'),lay=[...document.querySelectorAll('.layer')];
+const L=[["SQL Server","The foundation. Installation, tuning, backup and migration so your data stays safe and fast.","Layer 1 of 4"],
+["C# / .NET","Custom applications, APIs and integrations that turn business rules into working software.","Layer 2 of 4"],
+["SharePoint","Intranets, portals and document management that your teams actually use.","Layer 3 of 4"],
+["Web & CMS","Umbraco and Drupal websites your team can manage without a developer.","Layer 4 of 4"]];
+let last=-2;
+function onScroll(){
+ const y=scrollY,pinned=getComputedStyle(hero).position==='sticky';
+ const p=pinned?Math.min(Math.max(y/(pin.offsetHeight-innerHeight),0),1):Math.min(y/700,1)*.5;
+ root.style.setProperty('--p',p.toFixed(3));
+ root.style.setProperty('--spread',(p*110).toFixed(1));
+ orbs.forEach(o=>o.style.transform=`translate3d(0,${y*o.dataset.speed}px,0)`);
+ const r=band.parentElement.getBoundingClientRect();
+ band.style.transform=`translateX(${(r.top-innerHeight)*0.35}px)`;
+ const idx=pinned&&p>=.3?Math.min(3,Math.floor((p-.3)/.7*4)):-1;
+ copy.style.opacity=pinned?Math.max(0,1-p*4):'';
+ copy.style.translate=pinned?`0 ${-p*80}px`:'';
+ copy.style.pointerEvents=pinned&&p>.2?'none':'';
+ if(idx!==last){last=idx;caps.classList.toggle('on',idx>=0);
+  if(idx>=0)caps.innerHTML=`<h3>${L[idx][0]}</h3><p>${L[idx][1]}</p><small>${L[idx][2]}</small>`;
+  lay.forEach((l,i)=>l.classList.toggle('dim',idx>=0&&i!==idx));}
+}
+addEventListener('scroll',()=>requestAnimationFrame(onScroll),{passive:true});onScroll();
+
+if(matchMedia('(hover:hover)').matches){
+ const cur=$('.cur'),mags=[...document.querySelectorAll('.mag')];let cx=0,cy=0,tx=0,ty=0;
+ mags.forEach(b=>{b._x=0;b._y=0});
+ addEventListener('mousemove',e=>{
+  root.style.setProperty('--mx',(e.clientX/innerWidth*2-1).toFixed(3));
+  root.style.setProperty('--my',(e.clientY/innerHeight*2-1).toFixed(3));
+  tx=e.clientX;ty=e.clientY;cur.style.opacity=1;
+  cur.classList.toggle('big',!!e.target.closest('a,button,.card'));
+  mags.forEach(b=>{const r=b.getBoundingClientRect(),dx=e.clientX-(r.left+r.width/2-b._x),dy=e.clientY-(r.top+r.height/2-b._y);
+   const near=Math.hypot(dx,dy)<r.width*.8;b._x=near?dx*.3:0;b._y=near?dy*.3:0;b.style.translate=`${b._x}px ${b._y}px`});
+  const t=e.target.closest('.tilt');
+  document.querySelectorAll('.tilt').forEach(el=>{if(el!==t){el.style.setProperty('--rx','0deg');el.style.setProperty('--ry','0deg')}});
+  if(!t)return;
+  const r=t.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+  t.style.setProperty('--ry',((x-.5)*14).toFixed(2)+'deg');t.style.setProperty('--rx',((.5-y)*14).toFixed(2)+'deg');
+  t.style.setProperty('--gx',x*100+'%');t.style.setProperty('--gy',y*100+'%');
+ });
+ document.addEventListener('mouseleave',()=>cur.style.opacity=0);
+ (function f(){cx+=(tx-cx)*.18;cy+=(ty-cy)*.18;cur.style.transform=`translate(${cx}px,${cy}px)`;requestAnimationFrame(f)})();
+}
+}
+</script>
 </body>
 </html>
-```
