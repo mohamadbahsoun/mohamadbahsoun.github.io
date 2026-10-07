@@ -43,8 +43,27 @@ transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));tra
 .chips li:hover{transform:translateY(-4px);border-color:var(--teal)}
 .chips li::before{content:"✓";position:absolute;left:18px;color:var(--teal);font-weight:700}
 .note{padding:26px;border-radius:16px;border:1px solid rgba(91,124,255,.45);background:rgba(91,124,255,.1);color:#cdd7ff}.note strong{display:block;margin-bottom:6px;color:#fff}
-.arch{padding:32px;border-radius:18px;border:1px solid var(--line);background:#050816;overflow-x:auto}
-.arch pre{font:14px/1.8 Consolas,monospace;color:#b9d4ff}
+.arch{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:16px;align-items:stretch;padding:28px;border-radius:20px;border:1px solid var(--line);background:#050816}
+.col{min-width:0;padding:20px 14px 22px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.03);text-align:center}
+.tag{display:inline-block;margin-bottom:18px;padding:5px 14px;border-radius:99px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:linear-gradient(135deg,var(--c1),var(--c2))}
+.tree,.pipe{display:flex;flex-direction:column;align-items:center}
+.node{padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.06);font-size:14px;line-height:1.35}
+.node.root{border:0;font:700 15px var(--head);color:#fff;background:linear-gradient(135deg,var(--c1),var(--c2));box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.node.sm{font-size:13px;padding:7px 10px;color:var(--mute);width:100%;border-left:3px solid var(--c2)}
+.vline{width:2px;height:22px;background:var(--line)}
+.vline.f{background:linear-gradient(var(--c2) 50%,transparent 50%);background-size:2px 8px;animation:flow .7s linear infinite}
+@keyframes flow{to{background-position:0 8px}}
+.branches{display:flex;width:100%;justify-content:center}
+.branch{position:relative;flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:6px;padding:22px 5px 0}
+.branch::before{content:"";position:absolute;top:0;left:50%;width:2px;height:22px;background:var(--line)}
+.branch::after{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--line)}
+.branch:first-child::after{left:50%}.branch:last-child::after{right:50%}
+.branch .node:first-child{font-weight:700;width:100%}
+.kids{display:flex;flex-direction:column;gap:6px;width:100%;padding-top:4px;position:relative}
+.pipe .node{width:100%;font-weight:700;border-left:3px solid var(--c2)}
+.arrow{align-self:center;font-size:30px;color:var(--teal);animation:nudge 1.4s ease-in-out infinite}
+@keyframes nudge{50%{translate:6px 0}}
+@keyframes nudgey{50%{translate:0 6px}}
 .steps{position:relative;padding-left:70px}
 .steps::before,.fill{content:"";position:absolute;left:21px;top:0;width:3px;border-radius:3px}
 .steps::before{bottom:0;background:var(--line)}
@@ -64,8 +83,9 @@ footer{padding:28px 0;text-align:center;color:var(--mute);font-size:14px;border-
 .w i{display:inline-block;font-style:normal;animation:up .8s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--d,0s) + var(--k)*.06s);animation-play-state:paused}
 h1{--d:.2s}h1 .w i,.in .w i{animation-play-state:running}
 .rv{opacity:0;translate:0 36px;transition:opacity .7s,translate .7s}.rv.in{opacity:1;translate:0 0}
+@media(max-width:900px){.arch{grid-template-columns:1fr}.arrow{rotate:90deg;animation:nudgey 1.4s ease-in-out infinite}}
 @media(max-width:800px){.nav ul{gap:14px}.nav ul a{font-size:13px}.logo{font-size:16px}.grid,.g3{grid-template-columns:1fr}.hero{padding:130px 0 80px}section{padding:60px 0}.steps{padding-left:58px}.step b{left:-58px;width:38px;height:38px}.steps::before,.fill{left:18px}}
-@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}.w i{animation:none!important}.rv{opacity:1;translate:0 0}}
+@media(prefers-reduced-motion:reduce){.vline.f,.arrow{animation:none!important}*{transition:none!important;scroll-behavior:auto!important}.w i{animation:none!important}.rv{opacity:1;translate:0 0}}
 </style>
 </head>
 <body>
@@ -91,48 +111,7 @@ h1{--d:.2s}h1 .w i,.in .w i{animation-play-state:running}
 
 <section><div class="wrap">
 <div class="rv"><h2>Reference architecture</h2><p class="intro">A simplified migration scenario. The exact number of servers and components depends on the organization's requirements.</p></div>
-<div class="arch rv"><pre>
-                 EXISTING ENVIRONMENT
-                 SharePoint 2013 Farm
-                         |
-          +--------------+--------------+
-          |                             |
-          v                             v
-   SharePoint Servers              SQL Server
-          |                             |
-          |                       Content DBs
-          |                       Config DBs
-          |                       Service DBs
-          v
-   Web Applications / Site Collections
-   Workflows / Customizations
-
-                    MIGRATION
-        Assessment &amp; Planning
-                 |
-        Dependency Analysis
-                 |
-          Test Migration
-                 |
-            Validation
-                 |
-           Cutover Plan
-                 v
-
-                 TARGET ENVIRONMENT
-             SharePoint Subscription
-                    Edition
-                         |
-          +--------------+--------------+
-          |                             |
-          v                             v
-   SharePoint Servers              SQL Server
-          |                             |
-          v                             v
-   Web Applications              Databases
-   Site Collections              Backup / HA
-   Service Applications
-</pre></div></div></section>
+<div class="arch rv" role="img" aria-label="Migration architecture: SharePoint 2013 farm, migration steps, SharePoint Subscription Edition farm"><div class="col" style="--c1:#b8741a;--c2:#ffb454"><div class="tag">Existing environment</div><div class="tree"><div class="node root">SharePoint 2013 Farm</div><div class="vline f"></div><div class="branches"><div class="branch"><div class="node">SharePoint Servers</div><div class="vline f"></div><div class="kids"><div class="node sm">Web Applications</div><div class="node sm">Site Collections</div><div class="node sm">Workflows</div><div class="node sm">Customizations</div></div></div><div class="branch"><div class="node">SQL Server</div><div class="vline f"></div><div class="kids"><div class="node sm">Content DBs</div><div class="node sm">Config DBs</div><div class="node sm">Service DBs</div></div></div></div></div></div><div class="arrow" aria-hidden="true">→</div><div class="col" style="--c1:#4a2bd0;--c2:#8a63ff"><div class="tag">Migration</div><div class="pipe"><div class="node">Assessment &amp; Planning</div><div class="vline f"></div><div class="node">Dependency Analysis</div><div class="vline f"></div><div class="node">Test Migration</div><div class="vline f"></div><div class="node">Validation</div><div class="vline f"></div><div class="node">Cutover Plan</div></div></div><div class="arrow" aria-hidden="true">→</div><div class="col" style="--c1:#0e7584;--c2:#22c3b0"><div class="tag">Target environment</div><div class="tree"><div class="node root">SharePoint Subscription Edition</div><div class="vline f"></div><div class="branches"><div class="branch"><div class="node">SharePoint Servers</div><div class="vline f"></div><div class="kids"><div class="node sm">Web Applications</div><div class="node sm">Site Collections</div><div class="node sm">Service Applications</div></div></div><div class="branch"><div class="node">SQL Server</div><div class="vline f"></div><div class="kids"><div class="node sm">Databases</div><div class="node sm">Backup / HA</div></div></div></div></div></div></div></div></section>
 
 <section id="migration" class="alt"><div class="wrap">
 <div class="rv"><h2>Migration strategy</h2><p class="intro">The migration is treated as a controlled project rather than a simple server replacement.</p></div>
