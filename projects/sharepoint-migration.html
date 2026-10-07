@@ -1,536 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>SharePoint 2013 to SPSE Migration | Mohamad Bahsoun</title>
-
-    <meta name="description"
-          content="SharePoint migration and upgrade portfolio project covering assessment, architecture, SQL Server, migration planning, testing and cutover.">
-
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f5f7fa;
-            color: #1f2937;
-            line-height: 1.7;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1100px;
-            margin: auto;
-        }
-
-        /* Navigation */
-        nav {
-            background: #0f172a;
-            color: white;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .nav-container {
-            width: 90%;
-            max-width: 1100px;
-            margin: auto;
-            min-height: 70px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 21px;
-            font-weight: bold;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 25px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: #e5e7eb;
-            font-size: 15px;
-        }
-
-        .nav-links a:hover {
-            color: white;
-        }
-
-        /* Hero */
-        .hero {
-            background: linear-gradient(135deg, #0f172a, #1e3a5f);
-            color: white;
-            padding: 90px 20px;
-        }
-
-        .hero h1 {
-            font-size: 46px;
-            line-height: 1.2;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            max-width: 820px;
-            font-size: 19px;
-            color: #dbeafe;
-        }
-
-        .badge {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 7px 14px;
-            border-radius: 20px;
-            background: rgba(255,255,255,0.12);
-            color: #bfdbfe;
-            font-size: 14px;
-            font-weight: bold;
-        }
-
-        /* Sections */
-        section {
-            padding: 70px 0;
-        }
-
-        .section-title {
-            font-size: 32px;
-            color: #111827;
-            margin-bottom: 18px;
-        }
-
-        .section-intro {
-            max-width: 850px;
-            color: #4b5563;
-            margin-bottom: 35px;
-        }
-
-        /* Cards */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
-        }
-
-        .card {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            border: 1px solid #e5e7eb;
-            box-shadow: 0 5px 18px rgba(0,0,0,0.05);
-        }
-
-        .card h3 {
-            color: #0f172a;
-            margin-bottom: 12px;
-            font-size: 20px;
-        }
-
-        .card p {
-            color: #4b5563;
-        }
-
-        /* Architecture */
-        .architecture {
-            background: #111827;
-            color: white;
-            padding: 35px;
-            border-radius: 14px;
-            overflow-x: auto;
-        }
-
-        .architecture pre {
-            font-family: Consolas, monospace;
-            font-size: 14px;
-            line-height: 1.8;
-            color: #dbeafe;
-        }
-
-        /* Lists */
-        .check-list {
-            list-style: none;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
-
-        .check-list li {
-            background: white;
-            padding: 18px 20px;
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
-        }
-
-        .check-list li::before {
-            content: "✓";
-            font-weight: bold;
-            margin-right: 10px;
-        }
-
-        /* Process */
-        .process-item {
-            position: relative;
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 10px;
-            padding: 22px 25px 22px 75px;
-            margin-bottom: 15px;
-        }
-
-        .process-number {
-            position: absolute;
-            left: 20px;
-            top: 22px;
-            width: 35px;
-            height: 35px;
-            background: #0f172a;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: bold;
-        }
-
-        .process-item h3 {
-            margin-bottom: 5px;
-            color: #0f172a;
-        }
-
-        /* Code / commands */
-        .code-box {
-            background: #111827;
-            color: #dbeafe;
-            padding: 25px;
-            border-radius: 10px;
-            overflow-x: auto;
-            margin-top: 20px;
-        }
-
-        .code-box pre {
-            font-family: Consolas, monospace;
-            font-size: 14px;
-            line-height: 1.7;
-        }
-
-        /* Technology tags */
-        .tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .tech span {
-            background: #e5e7eb;
-            padding: 8px 14px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: bold;
-        }
-
-        /* Note */
-        .note {
-            background: #eff6ff;
-            border: 1px solid #bfdbfe;
-            border-radius: 10px;
-            padding: 25px;
-            color: #1e3a8a;
-        }
-
-        /* Disclaimer */
-        .disclaimer {
-            background: #f8fafc;
-            border: 1px solid #cbd5e1;
-            border-radius: 10px;
-            padding: 25px;
-            color: #475569;
-        }
-
-        .disclaimer strong {
-            color: #0f172a;
-        }
-
-        /* CTA */
-        .cta {
-            background: #0f172a;
-            color: white;
-            text-align: center;
-            padding: 70px 20px;
-        }
-
-        .cta h2 {
-            font-size: 32px;
-            margin-bottom: 15px;
-        }
-
-        .cta p {
-            color: #cbd5e1;
-            margin-bottom: 25px;
-        }
-
-        .button {
-            display: inline-block;
-            background: white;
-            color: #0f172a;
-            padding: 12px 24px;
-            border-radius: 7px;
-            font-weight: bold;
-        }
-
-        /* Footer */
-        footer {
-            background: #020617;
-            color: #94a3b8;
-            text-align: center;
-            padding: 25px;
-            font-size: 14px;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-
-            .nav-container {
-                flex-direction: column;
-                padding: 18px 0;
-                gap: 15px;
-            }
-
-            .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 15px;
-            }
-
-            .hero h1 {
-                font-size: 36px;
-            }
-
-            .grid,
-            .check-list {
-                grid-template-columns: 1fr;
-            }
-
-            section {
-                padding: 50px 0;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SharePoint 2013 to SPSE Migration | Mohamad Bahsoun</title>
+<meta name="description" content="SharePoint migration and upgrade portfolio project covering assessment, architecture, SQL Server, migration planning, testing and cutover.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#080c1a;--panel:#111833;--line:rgba(255,255,255,.12);--text:#e9edf8;--mute:#9aa6c4;--blue:#5b7cff;--teal:#22c3b0;--amber:#ffb454;--head:'Space Grotesk',system-ui,sans-serif;--body:'DM Sans',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{font-family:var(--body);background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+.wrap{width:90%;max-width:1100px;margin:auto}
+h1,h2,h3{font-family:var(--head);line-height:1.12}
+#bar{position:fixed;top:0;left:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--blue),var(--teal),var(--amber));z-index:60}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(14px);background:rgba(8,12,26,.6);border-bottom:1px solid var(--line)}
+.nav{height:64px;display:flex;align-items:center;justify-content:space-between}
+.logo{font:700 20px var(--head)}
+.nav ul{display:flex;gap:26px;list-style:none}.nav ul a{color:var(--mute);font-size:15px;transition:color .2s}.nav ul a:hover{color:#fff}
+.hero{position:relative;overflow:hidden;padding:170px 0 110px;border-bottom:1px solid var(--line)}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;will-change:transform}
+.o1{width:420px;height:420px;background:var(--blue);top:-140px;left:-100px;opacity:.5}.o2{width:340px;height:340px;background:var(--teal);right:5%;bottom:-120px;opacity:.3}
+.hero .wrap{position:relative}
+.badge{display:inline-block;margin-bottom:22px;padding:7px 16px;border-radius:99px;border:1px solid var(--line);background:rgba(255,255,255,.06);color:#b9c6ff;font-size:14px;font-weight:700}
+.hero h1{font-size:clamp(36px,5.6vw,68px);letter-spacing:-.02em;margin-bottom:22px;max-width:900px}
+.hero p{font-size:19px;color:var(--mute);max-width:760px}
+section{padding:90px 0}.alt{background:var(--panel)}
+h2{font-size:clamp(28px,4vw,42px);margin-bottom:14px}
+.intro{color:var(--mute);max-width:780px;margin-bottom:40px}
+.grid{display:grid;gap:22px;grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}
+.card{padding:28px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));position:relative;overflow:hidden;
+transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transform-style:preserve-3d;transition:transform .15s ease-out,border-color .2s}
+.card::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .2s;background:radial-gradient(circle at var(--gx,50%) var(--gy,0%),rgba(255,255,255,.15),transparent 55%)}
+.card:hover{border-color:rgba(91,124,255,.6)}.card:hover::after{opacity:1}
+.card h3{font-size:20px;margin-bottom:8px;transform:translateZ(26px)}.card p,.card li{color:var(--mute);font-size:15px}
+.card ul{list-style:none}.card li{padding:5px 0 5px 26px;position:relative}.card li::before{content:"✓";position:absolute;left:0;color:var(--teal);font-weight:700}
+.chips{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;list-style:none}
+.chips li{padding:16px 18px 16px 48px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.04);position:relative;transition:transform .2s,border-color .2s}
+.chips li:hover{transform:translateY(-4px);border-color:var(--teal)}
+.chips li::before{content:"✓";position:absolute;left:18px;color:var(--teal);font-weight:700}
+.note{padding:26px;border-radius:16px;border:1px solid rgba(91,124,255,.45);background:rgba(91,124,255,.1);color:#cdd7ff}.note strong{display:block;margin-bottom:6px;color:#fff}
+.arch{padding:32px;border-radius:18px;border:1px solid var(--line);background:#050816;overflow-x:auto}
+.arch pre{font:14px/1.8 Consolas,monospace;color:#b9d4ff}
+.steps{position:relative;padding-left:70px}
+.steps::before,.fill{content:"";position:absolute;left:21px;top:0;width:3px;border-radius:3px}
+.steps::before{bottom:0;background:var(--line)}
+.fill{height:var(--h,0%);background:linear-gradient(var(--blue),var(--teal));box-shadow:0 0 14px var(--blue)}
+.step{position:relative;padding:22px 26px;margin-bottom:18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.04)}
+.step b{position:absolute;left:-70px;top:20px;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font:700 18px var(--head);background:var(--bg);border:2px solid var(--blue);transition:background .4s,box-shadow .4s}
+.step.in b{background:linear-gradient(135deg,var(--blue),#8a63ff);box-shadow:0 0 20px rgba(91,124,255,.7)}
+.step h3{margin-bottom:4px}.step p{color:var(--mute)}
+.tech{display:flex;flex-wrap:wrap;gap:10px}.tech span{padding:9px 16px;border-radius:99px;border:1px solid var(--line);font-size:14px;font-weight:700;background:rgba(91,124,255,.12);color:#c3cfff}
+.disc{padding:26px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--mute)}.disc strong{display:block;color:#fff;margin-bottom:6px}
+.cta{text-align:center;background:radial-gradient(circle at 50% 0%,rgba(91,124,255,.35),transparent 60%),var(--panel)}
+.cta p{color:var(--mute);max-width:640px;margin:0 auto 30px}
+.btn{display:inline-block;padding:14px 28px;border-radius:99px;font-weight:700;background:linear-gradient(135deg,var(--blue),#8a63ff);box-shadow:0 10px 30px rgba(91,124,255,.4);transition:transform .2s}.btn:hover{transform:translateY(-3px)}
+footer{padding:28px 0;text-align:center;color:var(--mute);font-size:14px;border-top:1px solid var(--line)}
+@keyframes up{from{transform:translateY(110%)}to{transform:none}}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.14em;margin-bottom:-.14em}
+.w i{display:inline-block;font-style:normal;animation:up .8s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--d,0s) + var(--k)*.06s);animation-play-state:paused}
+h1{--d:.2s}h1 .w i,.in .w i{animation-play-state:running}
+.rv{opacity:0;translate:0 36px;transition:opacity .7s,translate .7s}.rv.in{opacity:1;translate:0 0}
+@media(max-width:800px){.nav ul{gap:14px}.nav ul a{font-size:13px}.logo{font-size:16px}.grid,.g3{grid-template-columns:1fr}.hero{padding:130px 0 80px}section{padding:60px 0}.steps{padding-left:58px}.step b{left:-58px;width:38px;height:38px}.steps::before,.fill{left:18px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}.w i{animation:none!important}.rv{opacity:1;translate:0 0}}
+</style>
 </head>
-
 <body>
-
-<!-- Navigation -->
-<nav>
-    <div class="nav-container">
-
-        <div class="logo">
-            Mohamad Bahsoun
-        </div>
-
-        <ul class="nav-links">
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="#overview">Overview</a></li>
-            <li><a href="#assessment">Assessment</a></li>
-            <li><a href="#migration">Migration</a></li>
-            <li><a href="#testing">Testing</a></li>
-        </ul>
-
-    </div>
-</nav>
-
-
-<!-- Hero -->
-<header class="hero">
-
-    <div class="container">
-
-        <div class="badge">
-            Demonstration / Reference Architecture
-        </div>
-
-        <h1>
-            SharePoint 2013 → SharePoint Subscription Edition Migration
-        </h1>
-
-        <p>
-            A structured migration scenario covering environment assessment,
-            farm architecture, SQL Server dependencies, content migration,
-            application dependencies, testing and production cutover.
-        </p>
-
-    </div>
-
-</header>
-
-
-<!-- Overview -->
-<section id="overview">
-
-    <div class="container">
-
-        <h2 class="section-title">
-            Project Overview
-        </h2>
-
-        <p class="section-intro">
-            This project presents a practical approach to planning a
-            SharePoint migration from a legacy SharePoint 2013 environment
-            to a modern SharePoint Subscription Edition environment.
-        </p>
-
-        <div class="grid">
-
-            <div class="card">
-                <h3>Starting Environment</h3>
-
-                <p>
-                    SharePoint 2013 farm supporting collaboration,
-                    document management, internal applications and
-                    business workflows.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Target Environment</h3>
-
-                <p>
-                    SharePoint Subscription Edition environment designed
-                    with updated server infrastructure, supported
-                    components and a structured farm architecture.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Primary Goal</h3>
-
-                <p>
-                    Move SharePoint workloads while maintaining business
-                    functionality and minimizing disruption to users.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Key Dependencies</h3>
-
-                <p>
-                    SharePoint configuration, SQL Server databases,
-                    service applications, customizations, authentication,
-                    workflows and third-party components.
-                </p>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- Important note -->
-<section>
-
-    <div class="container">
-
-        <div class="note">
-
-            <strong>Migration Planning Note</strong>
-
-            <p>
-                A SharePoint migration should begin with an assessment
-                of the existing environment and the supported migration
-                path. The exact implementation approach depends on the
-                source version, target version, customizations, databases,
-                integrations and business requirements.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- Assessment -->
-<section id="assessment">
-
-    <div class="container">
-
-        <h2 class="section-title">
-            Environment Assessment
-        </h2>
-
-        <p class="section-intro">
-            Before migration, the existing farm needs to be documented
-            and analyzed. The assessment identifies dependencies that
-            could affect the migration or require remediation.
-        </p>
-
-        <ul class="check-list">
-
-            <li>SharePoint farm topology</li>
-
-            <li>Web applications</li>
-
-            <li>Site collections</li>
-
-            <li>Content databases</li>
-
-            <li>Service applications</li>
-
-            <li>SQL Server configuration</li>
-
-            <li>Authentication configuration</li>
-
-            <li>Custom solutions and features</li>
-
-            <li>Third-party components</li>
-
-            <li>Workflows and automation</li>
-
-            <li>Search configuration</li>
-
-            <li>External integrations</li>
-
-        </ul>
-
-    </div>
-
-</section>
-
-
-<!-- Architecture -->
-<section>
-
-    <div class="container">
-
-        <h2 class="section-title">
-            Reference Architecture
-        </h2>
-
-        <p class="section-intro">
-            The following architecture represents a simplified
-            migration scenario. The exact number of servers and
-            components would depend on the organization's requirements.
-        </p>
-
-        <div class="architecture">
-
-<pre>
+<div id="bar"></div>
+<nav><div class="wrap nav"><a class="logo" href="../index.html">Mohamad Bahsoun</a>
+<ul><li><a href="../index.html">Home</a></li><li><a href="#overview">Overview</a></li><li><a href="#assessment">Assessment</a></li><li><a href="#migration">Migration</a></li><li><a href="#testing">Testing</a></li></ul></div></nav>
+
+<header class="hero"><div class="orb o1" data-s=".2"></div><div class="orb o2" data-s="-.12"></div>
+<div class="wrap"><div class="badge">Demonstration / Reference Architecture</div>
+<h1>SharePoint 2013 → SharePoint Subscription Edition Migration</h1>
+<p>A structured migration scenario covering environment assessment, farm architecture, SQL Server dependencies, content migration, application dependencies, testing and production cutover.</p></div></header>
+
+<section id="overview"><div class="wrap">
+<div class="rv"><h2>Project overview</h2><p class="intro">A practical approach to planning a migration from a legacy SharePoint 2013 environment to a modern SharePoint Subscription Edition environment.</p></div>
+<div class="grid" data-cards='[["Starting Environment","SharePoint 2013 farm supporting collaboration, document management, internal applications and business workflows."],["Target Environment","SharePoint Subscription Edition with updated server infrastructure, supported components and a structured farm architecture."],["Primary Goal","Move SharePoint workloads while maintaining business functionality and minimizing disruption to users."],["Key Dependencies","SharePoint configuration, SQL Server databases, service applications, customizations, authentication, workflows and third-party components."]]'></div>
+<div class="note rv" style="margin-top:30px"><strong>Migration planning note</strong>A migration should begin with an assessment of the existing environment and the supported migration path. The exact approach depends on the source version, target version, customizations, databases, integrations and business requirements.</div>
+</div></section>
+
+<section id="assessment" class="alt"><div class="wrap">
+<div class="rv"><h2>Environment assessment</h2><p class="intro">Before migration, the existing farm is documented and analyzed to find dependencies that could affect the migration or require remediation.</p></div>
+<ul class="chips" data-chips='["SharePoint farm topology","Web applications","Site collections","Content databases","Service applications","SQL Server configuration","Authentication configuration","Custom solutions and features","Third-party components","Workflows and automation","Search configuration","External integrations"]'></ul>
+</div></section>
+
+<section><div class="wrap">
+<div class="rv"><h2>Reference architecture</h2><p class="intro">A simplified migration scenario. The exact number of servers and components depends on the organization's requirements.</p></div>
+<div class="arch rv"><pre>
                  EXISTING ENVIRONMENT
                  SharePoint 2013 Farm
                          |
@@ -542,29 +103,21 @@
           |                       Content DBs
           |                       Config DBs
           |                       Service DBs
-          |
           v
-   Web Applications
-   Site Collections
-   Workflows
-   Customizations
-
+   Web Applications / Site Collections
+   Workflows / Customizations
 
                     MIGRATION
-                        |
-                        v
-              Assessment & Planning
-                        |
-              Dependency Analysis
-                        |
-                  Test Migration
-                        |
-                   Validation
-                        |
-                   Cutover Plan
-                        |
-                        v
-
+        Assessment &amp; Planning
+                 |
+        Dependency Analysis
+                 |
+          Test Migration
+                 |
+            Validation
+                 |
+           Cutover Plan
+                 v
 
                  TARGET ENVIRONMENT
              SharePoint Subscription
@@ -579,504 +132,78 @@
    Web Applications              Databases
    Site Collections              Backup / HA
    Service Applications
-</pre>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- Migration Strategy -->
-<section id="migration">
-
-    <div class="container">
-
-        <h2 class="section-title">
-            Migration Strategy
-        </h2>
-
-        <p class="section-intro">
-            The migration is treated as a controlled project rather
-            than a simple server replacement.
-        </p>
-
-        <div class="process-item">
-
-            <div class="process-number">1</div>
-
-            <h3>Discovery</h3>
-
-            <p>
-                Document the existing SharePoint farm, databases,
-                applications, customizations and dependencies.
-            </p>
-
-        </div>
-
-        <div class="process-item">
-
-            <div class="process-number">2</div>
-
-            <h3>Assessment</h3>
-
-            <p>
-                Identify unsupported components, obsolete customizations,
-                third-party products and workloads requiring remediation.
-            </p>
-
-        </div>
-
-        <div class="process-item">
-
-            <div class="process-number">3</div>
-
-            <h3>Target Architecture</h3>
-
-            <p>
-                Define the target SharePoint farm, SQL Server environment,
-                service applications, authentication and operational
-                requirements.
-            </p>
-
-        </div>
-
-        <div class="process-item">
-
-            <div class="process-number">4</div>
-
-            <h3>Test Migration</h3>
-
-            <p>
-                Perform a migration in a non-production environment and
-                validate content, applications, permissions and workflows.
-            </p>
-
-        </div>
-
-        <div class="process-item">
-
-            <div class="process-number">5</div>
-
-            <h3>Business Validation</h3>
-
-            <p>
-                Verify that important business functions continue to work
-                and that users can access required content and applications.
-            </p>
-
-        </div>
-
-        <div class="process-item">
-
-            <div class="process-number">6</div>
-
-            <h3>Production Cutover</h3>
-
-            <p>
-                Execute the approved migration and cutover plan during
-                an agreed maintenance window.
-            </p>
-
-        </div>
-
-        <div class="process-item">
-
-            <div class="process-number">7</div>
-
-            <h3>Post-Migration Validation</h3>
-
-            <p>
-                Validate sites, documents, permissions, search,
-                workflows, integrations and user access after migration.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- SQL Server -->
-<section>
-
-    <div class="container">
-
-        <h2 class="section-title">
-            SQL Server Considerations
-        </h2>
-
-        <p class="section-intro">
-            SQL Server is a critical component of a SharePoint farm.
-            Migration planning therefore includes database discovery,
-            capacity planning, backup strategy and validation.
-        </p>
-
-        <div class="grid">
-
-            <div class="card">
-                <h3>Database Inventory</h3>
-
-                <p>
-                    Identify SharePoint content databases, configuration
-                    databases and service application databases associated
-                    with the environment.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Capacity Planning</h3>
-
-                <p>
-                    Review database sizes, growth patterns, storage
-                    requirements and expected future capacity.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Backup & Recovery</h3>
-
-                <p>
-                    Confirm that database and SharePoint recovery
-                    procedures are available before migration activities.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Performance</h3>
-
-                <p>
-                    Review SQL Server resources and configuration to
-                    ensure that the target environment can support
-                    expected SharePoint workloads.
-                </p>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- Dependencies -->
-<section>
-
-    <div class="container">
-
-        <h2 class="section-title">
-            Application & Workflow Dependencies
-        </h2>
-
-        <p class="section-intro">
-            Migration planning must account for components outside the
-            standard SharePoint platform.
-        </p>
-
-        <ul class="check-list">
-
-            <li>Custom SharePoint solutions</li>
-
-            <li>Farm solutions</li>
-
-            <li>Custom web parts</li>
-
-            <li>SharePoint Designer workflows</li>
-
-            <li>Third-party workflow platforms</li>
-
-            <li>Nintex workflows where applicable</li>
-
-            <li>External applications</li>
-
-            <li>Authentication integrations</li>
-
-            <li>Scheduled jobs and scripts</li>
-
-            <li>Custom APIs and integrations</li>
-
-        </ul>
-
-    </div>
-
-</section>
-
-
-<!-- Testing -->
-<section id="testing">
-
-    <div class="container">
-
-        <h2 class="section-title">
-            Testing & Validation
-        </h2>
-
-        <p class="section-intro">
-            Testing is performed at multiple levels before production
-            cutover.
-        </p>
-
-        <div class="grid">
-
-            <div class="card">
-                <h3>Infrastructure Testing</h3>
-
-                <p>
-                    Validate SharePoint servers, SQL connectivity,
-                    service applications and authentication.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Content Testing</h3>
-
-                <p>
-                    Verify sites, libraries, lists, documents,
-                    metadata and permissions.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Application Testing</h3>
-
-                <p>
-                    Test custom applications, web parts, integrations
-                    and business-specific functionality.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Workflow Testing</h3>
-
-                <p>
-                    Validate important workflows and automation processes,
-                    including third-party workflow dependencies.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Search Testing</h3>
-
-                <p>
-                    Confirm that required content is indexed and can be
-                    discovered through SharePoint search.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>User Acceptance Testing</h3>
-
-                <p>
-                    Business users validate the functions they rely on
-                    before the production cutover is approved.
-                </p>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- Cutover -->
-<section>
-
-    <div class="container">
-
-        <h2 class="section-title">
-            Cutover Planning
-        </h2>
-
-        <p class="section-intro">
-            A controlled cutover reduces operational risk and gives
-            the technical team a clear sequence of activities.
-        </p>
-
-        <div class="code-box">
-
-<pre>
-Pre-Cutover
-------------------------------
-[ ] Confirm migration readiness
-[ ] Confirm backups
-[ ] Confirm maintenance window
-[ ] Notify users
-[ ] Confirm rollback plan
-[ ] Freeze changes where required
-
-
-Migration
-------------------------------
-[ ] Execute migration activities
-[ ] Validate databases
-[ ] Validate SharePoint configuration
-[ ] Validate web applications
-[ ] Validate authentication
-
-
-Post-Cutover
-------------------------------
-[ ] Test user access
-[ ] Test documents
-[ ] Test permissions
-[ ] Test workflows
-[ ] Test search
-[ ] Test integrations
-[ ] Monitor environment
-</pre>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- Technical Skills -->
-<section>
-
-    <div class="container">
-
-        <h2 class="section-title">
-            Technical Areas
-        </h2>
-
-        <div class="tech">
-
-            <span>SharePoint 2013</span>
-            <span>SharePoint Subscription Edition</span>
-            <span>SharePoint Server</span>
-            <span>SQL Server</span>
-            <span>SharePoint Farm</span>
-            <span>Web Applications</span>
-            <span>Content Databases</span>
-            <span>Service Applications</span>
-            <span>Workflows</span>
-            <span>Nintex</span>
-            <span>PowerShell</span>
-            <span>Authentication</span>
-            <span>Migration Planning</span>
-            <span>Testing</span>
-            <span>Cutover Planning</span>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- Skills demonstrated -->
-<section>
-
-    <div class="container">
-
-        <h2 class="section-title">
-            Skills Demonstrated
-        </h2>
-
-        <div class="grid">
-
-            <div class="card">
-                <h3>SharePoint Administration</h3>
-
-                <p>
-                    Farm architecture, configuration, web applications,
-                    service applications and operational troubleshooting.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>SQL Server</h3>
-
-                <p>
-                    SharePoint database planning, connectivity,
-                    capacity and operational considerations.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Migration Planning</h3>
-
-                <p>
-                    Assessment, dependency analysis, test migrations,
-                    validation and controlled production cutover.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Application Dependencies</h3>
-
-                <p>
-                    Identification and validation of custom solutions,
-                    workflows, integrations and third-party components.
-                </p>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- Disclaimer -->
-<section>
-
-    <div class="container">
-
-        <div class="disclaimer">
-
-            <strong>Project Type: Demonstration / Reference Architecture</strong>
-
-            <p>
-                This project presents a realistic SharePoint migration
-                scenario for demonstrating technical approach,
-                architecture and planning considerations. It is not
-                presented as a specific client engagement.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- CTA -->
-<section class="cta">
-
-    <div class="container">
-
-        <h2>
-            Planning a SharePoint Migration?
-        </h2>
-
-        <p>
-            I can help assess SharePoint environments, plan migrations,
-            configure SharePoint Server and troubleshoot related
-            SQL Server and application dependencies.
-        </p>
-
-        <a class="button"
-           href="mailto:mohd.bahsoun@hotmail.com">
-            Contact Me
-        </a>
-
-    </div>
-
-</section>
-
-
-<!-- Footer -->
-<footer>
-
-    © 2026 Mohamad Bahsoun · SharePoint · SQL Server · C#/.NET · Web Development
-
-</footer>
-
+</pre></div></div></section>
+
+<section id="migration" class="alt"><div class="wrap">
+<div class="rv"><h2>Migration strategy</h2><p class="intro">The migration is treated as a controlled project rather than a simple server replacement.</p></div>
+<div class="steps" id="steps"><div class="fill"></div></div>
+</div></section>
+
+<section><div class="wrap">
+<div class="rv"><h2>SQL Server considerations</h2><p class="intro">SQL Server is a critical part of a SharePoint farm, so planning includes database discovery, capacity, backup strategy and validation.</p></div>
+<div class="grid" data-cards='[["Database Inventory","Identify content, configuration and service application databases associated with the environment."],["Capacity Planning","Review database sizes, growth patterns, storage requirements and expected future capacity."],["Backup & Recovery","Confirm database and SharePoint recovery procedures are available before migration activities."],["Performance","Review SQL Server resources and configuration so the target can support expected SharePoint workloads."]]'></div>
+</div></section>
+
+<section class="alt"><div class="wrap">
+<div class="rv"><h2>Application &amp; workflow dependencies</h2><p class="intro">Migration planning must account for components outside the standard SharePoint platform.</p></div>
+<ul class="chips" data-chips='["Custom SharePoint solutions","Farm solutions","Custom web parts","SharePoint Designer workflows","Third-party workflow platforms","Nintex workflows where applicable","External applications","Authentication integrations","Scheduled jobs and scripts","Custom APIs and integrations"]'></ul>
+</div></section>
+
+<section id="testing"><div class="wrap">
+<div class="rv"><h2>Testing &amp; validation</h2><p class="intro">Testing is performed at multiple levels before production cutover.</p></div>
+<div class="grid g3" data-cards='[["Infrastructure Testing","Validate SharePoint servers, SQL connectivity, service applications and authentication."],["Content Testing","Verify sites, libraries, lists, documents, metadata and permissions."],["Application Testing","Test custom applications, web parts, integrations and business-specific functionality."],["Workflow Testing","Validate important workflows and automation, including third-party dependencies."],["Search Testing","Confirm required content is indexed and discoverable through SharePoint search."],["User Acceptance Testing","Business users validate the functions they rely on before cutover is approved."]]'></div>
+</div></section>
+
+<section class="alt"><div class="wrap">
+<div class="rv"><h2>Cutover planning</h2><p class="intro">A controlled cutover reduces operational risk and gives the team a clear sequence of activities.</p></div>
+<div class="grid g3" data-lists='[["Pre-Cutover",["Confirm migration readiness","Confirm backups","Confirm maintenance window","Notify users","Confirm rollback plan","Freeze changes where required"]],["Migration",["Execute migration activities","Validate databases","Validate SharePoint configuration","Validate web applications","Validate authentication"]],["Post-Cutover",["Test user access","Test documents and permissions","Test workflows","Test search","Test integrations","Monitor environment"]]]'></div>
+</div></section>
+
+<section><div class="wrap">
+<div class="rv"><h2>Technical areas</h2></div>
+<div class="tech rv" data-tech='["SharePoint 2013","SharePoint Subscription Edition","SharePoint Server","SQL Server","SharePoint Farm","Web Applications","Content Databases","Service Applications","Workflows","Nintex","PowerShell","Authentication","Migration Planning","Testing","Cutover Planning"]'></div>
+</div></section>
+
+<section class="alt"><div class="wrap">
+<div class="rv"><h2>Skills demonstrated</h2></div>
+<div class="grid" data-cards='[["SharePoint Administration","Farm architecture, configuration, web applications, service applications and operational troubleshooting."],["SQL Server","SharePoint database planning, connectivity, capacity and operational considerations."],["Migration Planning","Assessment, dependency analysis, test migrations, validation and controlled production cutover."],["Application Dependencies","Identification and validation of custom solutions, workflows, integrations and third-party components."]]'></div>
+<div class="disc rv" style="margin-top:30px"><strong>Project type: Demonstration / Reference Architecture</strong>This project presents a realistic SharePoint migration scenario to demonstrate technical approach, architecture and planning considerations. It is not presented as a specific client engagement.</div>
+</div></section>
+
+<section class="cta"><div class="wrap rv">
+<h2>Planning a SharePoint migration?</h2>
+<p>I can help assess SharePoint environments, plan migrations, configure SharePoint Server and troubleshoot related SQL Server and application dependencies.</p>
+<a class="btn" href="mailto:mohd.bahsoun@hotmail.com?subject=SharePoint%20Migration">Contact me</a>
+</div></section>
+<footer>© 2026 Mohamad Bahsoun · SharePoint · SQL Server · C#/.NET · Web Development</footer>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const J=(el,k)=>JSON.parse(el.dataset[k]);
+$$('[data-cards]').forEach(g=>g.innerHTML=J(g,'cards').map(c=>`<div class="card tilt rv"><h3>${c[0]}</h3><p>${c[1]}</p></div>`).join(''));
+$$('[data-lists]').forEach(g=>g.innerHTML=J(g,'lists').map(c=>`<div class="card tilt rv"><h3>${c[0]}</h3><ul>${c[1].map(x=>`<li>${x}</li>`).join('')}</ul></div>`).join(''));
+$$('[data-chips]').forEach(g=>g.innerHTML=J(g,'chips').map(x=>`<li class="rv">${x}</li>`).join(''));
+$$('[data-tech]').forEach(g=>g.innerHTML=J(g,'tech').map(x=>`<span>${x}</span>`).join(''));
+const ST=[["Discovery","Document the existing SharePoint farm, databases, applications, customizations and dependencies."],["Assessment","Identify unsupported components, obsolete customizations, third-party products and workloads requiring remediation."],["Target Architecture","Define the target farm, SQL Server environment, service applications, authentication and operational requirements."],["Test Migration","Migrate in a non-production environment and validate content, applications, permissions and workflows."],["Business Validation","Verify that important business functions work and that users can access required content and applications."],["Production Cutover","Execute the approved migration and cutover plan during an agreed maintenance window."],["Post-Migration Validation","Validate sites, documents, permissions, search, workflows, integrations and user access."]];
+$('#steps').insertAdjacentHTML('beforeend',ST.map((s,i)=>`<div class="step rv"><b>${i+1}</b><h3>${s[0]}</h3><p>${s[1]}</p></div>`).join(''));
+$$('h1,h2').forEach(h=>{h.innerHTML=h.textContent.trim().split(/\s+/).map((w,k)=>`<span class="w"><i style="--k:${k}">${w}</i></span>`).join(' ')});
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.12});
+$$('.rv').forEach(el=>io.observe(el));
+if(!matchMedia('(prefers-reduced-motion:reduce)').matches){
+ const bar=$('#bar'),orbs=$$('.orb'),steps=$('#steps');
+ const f=()=>{const y=scrollY,m=document.documentElement.scrollHeight-innerHeight;
+  bar.style.transform=`scaleX(${m>0?y/m:0})`;
+  orbs.forEach(o=>o.style.transform=`translate3d(0,${y*o.dataset.s}px,0)`);
+  const r=steps.getBoundingClientRect();
+  steps.style.setProperty('--h',Math.min(100,Math.max(0,(innerHeight*.6-r.top)/r.height*100))+'%')};
+ addEventListener('scroll',()=>requestAnimationFrame(f),{passive:true});f();
+ if(matchMedia('(hover:hover) and (pointer:fine)').matches)addEventListener('mousemove',e=>{
+  const t=e.target.closest('.tilt');
+  $$('.tilt').forEach(el=>{if(el!==t){el.style.setProperty('--rx','0deg');el.style.setProperty('--ry','0deg')}});
+  if(!t)return;const r=t.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+  t.style.setProperty('--ry',((x-.5)*12).toFixed(2)+'deg');t.style.setProperty('--rx',((.5-y)*12).toFixed(2)+'deg');
+  t.style.setProperty('--gx',x*100+'%');t.style.setProperty('--gy',y*100+'%')});
+}
+</script>
 </body>
 </html>
