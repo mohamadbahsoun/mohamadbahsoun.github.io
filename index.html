@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mohamad Bahsoun | SharePoint & SQL Server Consultant | C#/.NET</title>
-<meta name="description" content="Mohamad Bahsoun is a Microsoft technology consultant specializing in SharePoint, SQL Server, C#/.NET, Microsoft 365, intranet portals, migrations and business websites.">
+<meta name="description" content="Mohamad Bahsoun is a Digital Solutions Consultant specializing in SharePoint, SQL Server, C#/.NET, Microsoft 365, intranet portals, migrations and business websites.">
 <link rel="canonical" href="https://mohamadbahsoun.github.io/">
 <meta property="og:title" content="Mohamad Bahsoun | SharePoint & SQL Server Consultant">
 <meta property="og:description" content="SharePoint, SQL Server, C#/.NET, Microsoft 365, intranet portals, migrations and business websites.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mohamadbahsoun.github.io">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Person","name":"Mohamad Bahsoun","url":"https://mohamadbahsoun.github.io","email":"mailto:mohd.bahsoun@hotmail.com","jobTitle":"Microsoft Technology Consultant","knowsAbout":["SharePoint","SharePoint Server","SharePoint Online","SQL Server","C#",".NET","Microsoft 365","Intranet Development","SharePoint Migration","Umbraco","Drupal","Web Development"]}
+{"@context":"https://schema.org","@type":"Person","name":"Mohamad Bahsoun","url":"https://mohamadbahsoun.github.io","email":"mailto:mohd.bahsoun@hotmail.com","jobTitle":"Digital Solutions Consultant","knowsAbout":["SharePoint","SharePoint Server","SharePoint Online","SQL Server","C#",".NET","Microsoft 365","Intranet Development","SharePoint Migration","Umbraco","Drupal","Web Development"]}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,7 +33,9 @@ h1,h2,h3{font-family:var(--head);line-height:1.1}
 
 nav{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(14px);background:rgba(8,12,26,.6);border-bottom:1px solid var(--line)}
 .nav{height:64px;display:flex;align-items:center;justify-content:space-between}
-.logo{font-family:var(--head);font-weight:700;font-size:20px}
+.logo{display:flex;align-items:center;gap:12px;font-family:var(--head)}.logo b{display:block;font-size:17px;line-height:1.2}.logo small{display:block;font:500 11.5px var(--body);color:var(--mute);letter-spacing:.04em}
+.av{width:42px;height:42px;border-radius:50%;position:relative;overflow:hidden;flex:none;display:grid;place-items:center;font:700 14px var(--head);background:linear-gradient(135deg,var(--blue),var(--teal));box-shadow:0 0 0 2px rgba(255,255,255,.25)}
+.av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%}.av.ok{font-size:0}
 .nav ul{display:flex;gap:28px;list-style:none}
 .nav ul a{color:var(--mute);font-size:15px;transition:color .2s}
 .nav ul a:hover{color:#fff}
@@ -83,10 +85,6 @@ box-shadow:0 0 24px rgba(91,124,255,.6);transition:width .25s,height .25s,margin
 .stats b{display:block;font:700 clamp(42px,6vw,66px) var(--head);background:linear-gradient(135deg,var(--blue),var(--teal));-webkit-background-clip:text;background-clip:text;color:transparent}
 .stats span{color:var(--mute)}
 .cta .btns{justify-content:center}
-/* Parallax band */
-.band{overflow:hidden;border-block:1px solid var(--line);padding:26px 0;background:var(--panel)}
-.band div{white-space:nowrap;font:700 clamp(40px,8vw,96px) var(--head);color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.35);will-change:transform;letter-spacing:-.02em}
-
 /* Sections */
 section{padding:100px 0}
 .head{margin-bottom:46px}
@@ -108,15 +106,30 @@ transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));tra
 
 /* About */
 .about{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px;align-items:center}
-.photo{perspective:900px}
-.frame{aspect-ratio:4/5;border-radius:26px;border:1px solid var(--line);overflow:hidden;position:relative;background:linear-gradient(135deg,var(--blue),var(--teal));
-transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .15s ease-out;box-shadow:0 40px 80px rgba(0,0,0,.5)}
-.frame img{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:1}
+.photo{perspective:900px;max-width:360px;margin:auto;width:100%}
+.frame{aspect-ratio:1;border-radius:50%;border:3px solid rgba(255,255,255,.22);overflow:hidden;position:relative;background:linear-gradient(135deg,var(--blue),var(--teal));
+transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .15s ease-out;box-shadow:0 0 0 10px rgba(91,124,255,.12),0 40px 80px rgba(0,0,0,.5)}
+.frame img{width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;position:relative;z-index:1}.frame.ok b{display:none}
 .frame b{position:absolute;inset:0;display:grid;place-items:center;font:700 90px var(--head);color:rgba(255,255,255,.9)}
 .about h2{font-size:clamp(30px,4vw,44px);margin-bottom:18px}
 .about p{color:var(--mute);margin-bottom:16px}
-.skills{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
-.skills span{padding:8px 14px;border:1px solid var(--line);border-radius:8px;font-size:14px}
+.skills{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:26px}
+.sg{padding:18px 20px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.04);transition:border-color .2s,transform .2s}
+.sg:hover{border-color:rgba(91,124,255,.55);transform:translateY(-3px)}
+.sg h4{font:700 13px var(--head);letter-spacing:.08em;text-transform:uppercase;color:var(--amber);margin-bottom:12px}
+.sg div{display:flex;flex-wrap:wrap;gap:8px}
+.sg span{padding:5px 12px;border-radius:99px;font-size:13px;background:rgba(91,124,255,.14);color:#c3cfff}
+button.btn{font:inherit;font-weight:700;color:inherit;cursor:pointer;background:transparent}
+.cta .w i{animation:none}.cta .btn{transition:none}.cta .btn:hover{transform:none}
+.contact{display:flex;justify-content:center;align-items:stretch;gap:14px;flex-wrap:wrap}
+.mail{display:flex;align-items:stretch;max-width:100%;border:1px solid rgba(91,124,255,.6);border-radius:16px;background:rgba(8,12,26,.65);overflow:hidden;text-align:left}
+.mail a{display:flex;align-items:center;gap:14px;padding:14px 22px;min-width:0}
+.mail a:hover{background:rgba(91,124,255,.14)}
+.mail svg{width:22px;height:22px;flex:none}.mail a svg{color:var(--amber)}
+.mail small{display:block;font:700 11px var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--mute);line-height:1.4}
+.mail span{display:block;font:700 17px var(--head);word-break:break-all}
+.mail button{display:flex;align-items:center;gap:8px;padding:0 24px;border:0;border-left:1px solid var(--line);background:linear-gradient(135deg,var(--blue),#8a63ff);color:#fff;font:700 14px var(--body);cursor:pointer}
+.mail button:hover{filter:brightness(1.15)}.mail button.done{background:var(--teal);color:#06231f}
 
 /* Contact */
 .cta{padding:60px;border-radius:28px;border:1px solid var(--line);text-align:center;background:radial-gradient(circle at 50% 0%,rgba(91,124,255,.35),transparent 60%),var(--panel)}
@@ -125,16 +138,17 @@ transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .
 footer{padding:30px 0;text-align:center;color:var(--mute);font-size:14px;border-top:1px solid var(--line)}
 
 @media(max-width:860px){
-.nav ul{gap:16px}.nav ul a{font-size:13px}.logo{font-size:16px}
+.nav ul{gap:16px}.nav ul a{font-size:13px}.logo b{font-size:15px}.av{width:36px;height:36px}.skills{grid-template-columns:1fr}
 .hero .wrap,.about{grid-template-columns:1fr}.scene{height:380px}
 .pin{height:auto}.hero{position:relative;height:auto;min-height:100vh;padding:100px 0 60px}.g3,.g2{grid-template-columns:1fr}.about{gap:40px}.photo{max-width:320px}.cta{padding:40px 22px}}
+@media(max-width:560px){.logo small{display:none}.mail{flex-direction:column;width:100%}.mail button{border-left:0;border-top:1px solid var(--line);padding:14px}}
 @media(prefers-reduced-motion:reduce){.pin{height:auto}.hero{position:relative;height:auto;min-height:100vh;padding:100px 0 60px}.w i,.layer{animation:none!important}.cur{display:none}*{transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;translate:0 0}}
 </style>
 </head>
 <body>
 
 <nav><div class="wrap nav">
-<a href="#home" class="logo">Mohamad Bahsoun</a>
+<a href="#home" class="logo" aria-label="Mohamad Bahsoun, Digital Solutions Consultant"><span class="av">MB<img src="assets/MB-Img.png" alt="" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></span><span><b>Mohamad Bahsoun</b><small>Digital Solutions Consultant</small></span></a>
 <ul><li><a href="#services">Services</a></li><li><a href="#projects">Projects</a></li><li><a href="#about">About</a></li><li><a href="#contact">Contact</a></li></ul>
 </div></nav>
 
@@ -142,8 +156,8 @@ footer{padding:30px 0;text-align:center;color:var(--mute);font-size:14px;border-
 <div class="orb o1" data-speed="0.15"></div><div class="orb o2" data-speed="-0.1"></div><div class="orb o3" data-speed="0.25"></div>
 <div class="wrap">
 <div class="lead"><div class="copy">
-<h1>I build the Microsoft systems your business runs on.</h1>
-<p>SharePoint, SQL Server, C#/.NET and business websites. I help companies build, configure, migrate and troubleshoot the platforms their teams depend on.</p>
+<h1>Reliable SharePoint, SQL Server and web solutions for modern businesses.</h1>
+<p>I design, implement and support SharePoint, SQL Server and C#/.NET platforms, from intranets and migrations to custom business applications and websites.</p>
 <div class="btns"><a href="#projects" class="btn p mag">View my work</a><a href="#contact" class="btn s mag">Contact me</a></div>
 </div><div class="caps" aria-hidden="true"></div>
 </div>
@@ -155,8 +169,6 @@ footer{padding:30px 0;text-align:center;color:var(--mute);font-size:14px;border-
 </div></div>
 </div>
 </header></div>
-
-<div class="band" aria-hidden="true"><div id="band">SharePoint &nbsp; SQL Server &nbsp; C# .NET &nbsp; Microsoft 365 &nbsp; Umbraco &nbsp; Drupal &nbsp; SharePoint &nbsp; SQL Server &nbsp; C# .NET</div></div>
 
 <div class="wrap stats" id="stats" hidden></div>
 
@@ -173,10 +185,10 @@ footer{padding:30px 0;text-align:center;color:var(--mute);font-size:14px;border-
 <section id="about"><div class="wrap about">
 <div class="photo rv"><div class="frame tilt">
 <b>MB</b>
-<img src="assets/MB-Img.png" alt="Mohamad Bahsoun, Microsoft technology consultant" width="480" height="600" loading="lazy" onerror="this.remove()">
+<img src="assets/MB-Img.png" alt="Mohamad Bahsoun, Digital Solutions Consultant" width="480" height="480" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()">
 </div></div>
 <div class="rv">
-<h2>Technology-focused problem solving</h2>
+<h2>Technical depth, with a business focus</h2>
 <p>I work with Microsoft technologies and web platforms to help businesses implement, maintain and improve their applications, collaboration platforms and websites.</p>
 <p>My experience includes SharePoint Server, SharePoint Online, SQL Server, C#/.NET applications, Microsoft 365, Umbraco and Drupal. I focus on practical solutions that are reliable, maintainable and aligned with business requirements.</p>
 <div class="skills" id="sk"></div>
@@ -184,10 +196,10 @@ footer{padding:30px 0;text-align:center;color:var(--mute);font-size:14px;border-
 </div></section>
 
 <section id="contact" style="padding-top:0"><div class="wrap">
-<div class="cta rv">
+<div class="cta">
 <h2>Let's work together</h2>
-<p>Have a project, technical issue or migration that needs attention? Tell me what you're working on and what you need help with.</p>
-<div class="btns"><a class="btn p mag" href="mailto:mohd.bahsoun@hotmail.com?subject=Project%20Inquiry">Start a conversation</a><a id="li" class="btn s mag" href="#" target="_blank" rel="noopener" hidden>LinkedIn</a></div>
+<p>Have a project, technical issue or migration that needs attention? Send me a short description of what you need and I will get back to you.</p>
+<div class="contact"><div class="mail"><a href="mailto:mohd.bahsoun@hotmail.com?subject=Project%20Inquiry"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><div><small>Email</small><span>mohd.bahsoun@hotmail.com</span></div></a><button id="cp" type="button" aria-label="Copy email address"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><b>Copy</b></button></div><a id="li" class="btn s" href="#" target="_blank" rel="noopener" hidden>LinkedIn</a></div>
 </div>
 </div></section>
 
@@ -196,8 +208,8 @@ footer{padding:30px 0;text-align:center;color:var(--mute);font-size:14px;border-
 <div class="cur" aria-hidden="true"></div>
 <script>
 /* ---- EDIT THESE ---- */
-const LINKEDIN="";            // e.g. "https://www.linkedin.com/in/your-name"
-const STATS=[];               // e.g. [[10,"+","Years of experience"],[50,"+","Projects delivered"]]
+const LINKEDIN="www.linkedin.com/in/mohamad-bahsoun-79140264";            // e.g. "https://www.linkedin.com/in/your-name"
+const STATS=[[10,"+","Years of experience"],[40,"+","Projects delivered"]];               // e.g. [[10,"+","Years of experience"],[50,"+","Projects delivered"]]
 /* -------------------- */
 const S=[["SharePoint Installation & Administration","SharePoint Server installation, configuration, administration, troubleshooting and ongoing support."],
 ["SharePoint Migration & Upgrade","Migration and upgrade of legacy environments, including SharePoint 2013 to SharePoint Subscription Edition."],
@@ -214,11 +226,15 @@ const P=[["SharePoint 2013 → SPSE Migration","A practical migration lab coveri
 ["C# / .NET Business Application","A database-driven application showing design, C#/.NET development, SQL integration and business workflows.",["C#",".NET","SQL","API"],"dotnet-business-application"],
 ["Umbraco Business Website","Content management, page structure, customization and business website requirements with Umbraco.",["Umbraco","CMS","Web"],"umbraco-business-website"],
 ["Drupal Business Website","Content management, site structure, customization and maintenance with Drupal.",["Drupal","CMS","Web"],"drupal-business-website"]];
-const K=["SharePoint Server","SharePoint Online","SQL Server","C#","ASP.NET","REST APIs","Microsoft 365","Umbraco","Drupal","Web Development"];
+const K=[["Collaboration","SharePoint Server|SharePoint Online|SharePoint Intranet|SharePoint Portals|SharePoint Migration|Microsoft 365"],
+["Data","SQL Server|Database Development"],
+["Development","C#|.NET|ASP.NET|REST APIs"],
+["Web & CMS","Umbraco|Drupal|Web Development"]];
 const $=s=>document.querySelector(s);
 $('#svc').innerHTML=S.map(s=>`<div class="card tilt rv"><h3>${s[0]}</h3><p>${s[1]}</p></div>`).join('');
 $('#prj').innerHTML=P.map(p=>`<div class="card proj tilt rv"><h3>${p[0]}</h3><p>${p[1]}</p><div>${p[2].map(t=>`<span class="tag">${t}</span>`).join('')}</div><a class="more" href="projects/${p[3]}.html">View case study →</a></div>`).join('');
-$('#sk').innerHTML=K.map(k=>`<span>${k}</span>`).join('');
+$('#sk').innerHTML=K.map(k=>`<div class="sg"><h4>${k[0]}</h4><div>${k[1].split('|').map(x=>`<span>${x}</span>`).join('')}</div></div>`).join('');
+$('#cp').onclick=async function(){const m='mohd.bahsoun@hotmail.com',l=this.querySelector('b');try{await navigator.clipboard.writeText(m)}catch(e){const t=document.createElement('textarea');t.value=m;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove()}this.classList.add('done');l.textContent='Copied ✓';setTimeout(()=>{this.classList.remove('done');l.textContent='Copy'},2000)};
 
 const calm=matchMedia('(prefers-reduced-motion:reduce)').matches;
 const root=document.documentElement;
@@ -234,7 +250,7 @@ const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 
 if(!calm){
-const orbs=[...document.querySelectorAll('.orb')],band=$('#band'),pin=$('.pin'),hero=$('.hero'),copy=$('.copy'),caps=$('.caps'),lay=[...document.querySelectorAll('.layer')];
+const orbs=[...document.querySelectorAll('.orb')],pin=$('.pin'),hero=$('.hero'),copy=$('.copy'),caps=$('.caps'),lay=[...document.querySelectorAll('.layer')];
 const L=[["SQL Server","The foundation. Installation, tuning, backup and migration so your data stays safe and fast.","Layer 1 of 4"],
 ["C# / .NET","Custom applications, APIs and integrations that turn business rules into working software.","Layer 2 of 4"],
 ["SharePoint","Intranets, portals and document management that your teams actually use.","Layer 3 of 4"],
@@ -246,8 +262,6 @@ function onScroll(){
  root.style.setProperty('--p',p.toFixed(3));
  root.style.setProperty('--spread',(p*110).toFixed(1));
  orbs.forEach(o=>o.style.transform=`translate3d(0,${y*o.dataset.speed}px,0)`);
- const r=band.parentElement.getBoundingClientRect();
- band.style.transform=`translateX(${(r.top-innerHeight)*0.35}px)`;
  const idx=pinned&&p>=.3?Math.min(3,Math.floor((p-.3)/.7*4)):-1;
  copy.style.opacity=pinned?Math.max(0,1-p*4):'';
  copy.style.translate=pinned?`0 ${-p*80}px`:'';
