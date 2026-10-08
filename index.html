@@ -208,7 +208,7 @@ footer{padding:30px 0;text-align:center;color:var(--mute);font-size:14px;border-
 <div class="cur" aria-hidden="true"></div>
 <script>
 /* ---- EDIT THESE ---- */
-const LINKEDIN="www.linkedin.com/in/mohamad-bahsoun-79140264";            // e.g. "https://www.linkedin.com/in/your-name"
+const LINKEDIN="https://www.linkedin.com/in/mohamad-bahsoun-79140264";            // e.g. "https://www.linkedin.com/in/your-name"
 const STATS=[[10,"+","Years of experience"],[40,"+","Projects delivered"]];               // e.g. [[10,"+","Years of experience"],[50,"+","Projects delivered"]]
 /* -------------------- */
 const S=[["SharePoint Installation & Administration","SharePoint Server installation, configuration, administration, troubleshooting and ongoing support."],
@@ -238,7 +238,7 @@ $('#cp').onclick=async function(){const m='mohd.bahsoun@hotmail.com',l=this.quer
 
 const calm=matchMedia('(prefers-reduced-motion:reduce)').matches;
 const root=document.documentElement;
-if(LINKEDIN){$('#li').href=LINKEDIN;$('#li').hidden=false}
+if(LINKEDIN){$('#li').href=LINKEDIN;$('#li a').attr('target','blank');}else{$('#li').hidden=false;}
 if(STATS.length){const st=$('#stats');st.hidden=false;
  st.innerHTML=STATS.map(s=>`<div><b data-n="${s[0]}" data-x="${s[1]}">${calm?s[0]+s[1]:'0'+s[1]}</b><span>${s[2]}</span></div>`).join('');
  if(!calm){const so=new IntersectionObserver(e=>e.forEach(x=>{if(!x.isIntersecting)return;so.unobserve(x.target);
