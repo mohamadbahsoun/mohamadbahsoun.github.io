@@ -238,7 +238,7 @@ $('#cp').onclick=async function(){const m='mohd.bahsoun@hotmail.com',l=this.quer
 
 const calm=matchMedia('(prefers-reduced-motion:reduce)').matches;
 const root=document.documentElement;
-if(LINKEDIN){$('#li').href=LINKEDIN;$('#li a').attr('target','blank');}else{$('#li').hidden=false;}
+if(LINKEDIN){$('#li').href=LINKEDIN;$('#li').attr('target','blank');}else{$('#li').hidden=false;}
 if(STATS.length){const st=$('#stats');st.hidden=false;
  st.innerHTML=STATS.map(s=>`<div><b data-n="${s[0]}" data-x="${s[1]}">${calm?s[0]+s[1]:'0'+s[1]}</b><span>${s[2]}</span></div>`).join('');
  if(!calm){const so=new IntersectionObserver(e=>e.forEach(x=>{if(!x.isIntersecting)return;so.unobserve(x.target);
