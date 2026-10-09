@@ -257,9 +257,9 @@ function onScroll(){
  root.style.setProperty('--p',p.toFixed(3));
  root.style.setProperty('--spread',(p*110).toFixed(1));
  orbs.forEach(o=>o.style.transform=`translate3d(0,${y*o.dataset.speed}px,0)`);
- copy.style.opacity=pinned?Math.max(0,1-p*4):'';
- copy.style.translate=pinned?`0 ${-p*80}px`:'';
- copy.style.pointerEvents=pinned&&p>.2?'none':'';
+ //copy.style.opacity=pinned?Math.max(0,1-p*4):'';
+ //copy.style.translate=pinned?`0 ${-p*80}px`:'';
+ //copy.style.pointerEvents=pinned&&p>.2?'none':'';
 
 }
 addEventListener('scroll',()=>requestAnimationFrame(onScroll),{passive:true});onScroll();
