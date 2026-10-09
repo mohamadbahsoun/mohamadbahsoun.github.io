@@ -134,7 +134,7 @@ button.btn{font:inherit;font-weight:700;color:inherit;cursor:pointer;background:
 .mail button{display:flex;align-items:center;gap:8px;padding:0 24px;border:0;border-left:1px solid var(--line);background:linear-gradient(135deg,var(--blue),#8a63ff);color:#fff;font:700 14px var(--body);cursor:pointer}
 .mail button:hover{filter:brightness(1.15)}.mail button.done{background:var(--teal);color:#06231f}
 .li{display:flex;align-items:center;justify-content:center;padding:0 22px;border-radius:16px;background:#0a66c2;color:#fff;border:1px solid rgba(255,255,255,.2)}
-.li svg{width:24px;height:24px;animation:bounce 2.4s ease-in-out infinite}
+.li svg{display:block;width:24px;height:24px;transform-origin:center bottom;will-change:transform;animation:bounce 2.4s ease-in-out infinite}
 .li:hover{background:#0b5cad}.li:hover svg{animation-play-state:paused}
 .mail button .ck{display:none}.mail button.done .ck{display:block}.mail button.done .cp{display:none}
 .mail button{padding:0 20px}
