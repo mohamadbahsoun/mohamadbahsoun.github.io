@@ -41,7 +41,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(14px);ba
 .nav ul a:hover{color:#fff}
 
 /* Hero */
-.pin{height:220vh;position:relative}.hero{position:sticky;top:0;height:100vh;display:flex;align-items:center;padding:60px 0 0;overflow:hidden}
+.pin{height:100vh;position:relative}.hero{position:sticky;top:0;height:100vh;display:flex;align-items:center;padding:60px 0 0;overflow:hidden}
 .orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.55;will-change:transform;pointer-events:none}
 .o1{width:460px;height:460px;background:var(--blue);top:-120px;left:-120px}
 .o2{width:380px;height:380px;background:var(--teal);bottom:-100px;right:10%;opacity:.35}
@@ -268,8 +268,8 @@ if(matchMedia('(hover:hover) and (pointer:fine)').matches){
  const cur=$('.cur'),mags=[...document.querySelectorAll('.mag')];let cx=0,cy=0,tx=0,ty=0;
  mags.forEach(b=>{b._x=0;b._y=0});
  addEventListener('mousemove',e=>{
-  root.style.setProperty('--mx',(e.clientX/innerWidth*2-1).toFixed(3));
-  root.style.setProperty('--my',(e.clientY/innerHeight*2-1).toFixed(3));
+  //root.style.setProperty('--mx',(e.clientX/innerWidth*2-1).toFixed(3));
+  //root.style.setProperty('--my',(e.clientY/innerHeight*2-1).toFixed(3));
   tx=e.clientX;ty=e.clientY;cur.style.opacity=1;
   cur.classList.toggle('big',!!e.target.closest('a,button,.card'));
   mags.forEach(b=>{const r=b.getBoundingClientRect(),dx=e.clientX-(r.left+r.width/2-b._x),dy=e.clientY-(r.top+r.height/2-b._y);
