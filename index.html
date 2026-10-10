@@ -99,6 +99,9 @@ section{padding:100px 0}
 transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transform-style:preserve-3d;transition:transform .15s ease-out,border-color .2s;overflow:hidden}
 .card::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at var(--gx,50%) var(--gy,0%),rgba(255,255,255,.16),transparent 55%);opacity:0;transition:opacity .2s}
 .card:hover{border-color:rgba(91,124,255,.6)}.card:hover::after{opacity:1}
+.ic{width:46px;height:46px;margin-bottom:18px;border-radius:12px;display:grid;place-items:center;color:var(--teal);background:linear-gradient(135deg,rgba(91,124,255,.22),rgba(34,195,176,.14));border:1px solid rgba(91,124,255,.35);transform:translateZ(36px);transition:color .2s,background .2s}
+.ic svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.card:hover .ic{color:#fff;background:linear-gradient(135deg,var(--blue),#8a63ff)}
 .card h3{font-size:21px;margin-bottom:10px;transform:translateZ(30px)}
 .card p{color:var(--mute);font-size:15px;transform:translateZ(16px)}
 .proj h3{font-size:25px}.proj p{margin-bottom:18px}
@@ -131,29 +134,30 @@ button.btn{font:inherit;font-weight:700;color:inherit;cursor:pointer;background:
 .mail svg{width:22px;height:22px;flex:none}.mail a svg{color:var(--amber)}
 .mail small{display:block;font:700 11px var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--mute);line-height:1.4}
 .mail span{display:block;font:700 17px var(--head);word-break:break-all}
-.mail button{display:flex;align-items:center;gap:8px;padding:0 24px;border:0;border-left:1px solid var(--line);background:linear-gradient(135deg,var(--blue),#8a63ff);color:#fff;font:700 14px var(--body);cursor:pointer}
-.mail button:hover{filter:brightness(1.15)}.mail button.done{background:var(--teal);color:#06231f}
+.mail button{display:flex;align-items:center;gap:8px;padding:0 20px;border:0;border-left:1px solid var(--line);background:linear-gradient(135deg,var(--blue),#8a63ff);color:#fff;font:700 14px var(--body);cursor:pointer}
+.mail button .ck{display:none}.mail button.done .ck{display:block}.mail button.done .cp{display:none}
 .li{display:flex;align-items:center;justify-content:center;padding:0 22px;border-radius:16px;background:#0a66c2;color:#fff;border:1px solid rgba(255,255,255,.2)}
 .li svg{display:block;width:24px;height:24px;transform-origin:center bottom;will-change:transform;animation:bounce 2.4s ease-in-out infinite}
 .li:hover{background:#0b5cad}.li:hover svg{animation-play-state:paused}
-.mail button .ck{display:none}.mail button.done .ck{display:block}.mail button.done .cp{display:none}
-.mail button{padding:0 20px}
 @keyframes bounce{0%,50%,100%{transform:translateY(0)}20%{transform:translateY(-9px)}35%{transform:translateY(0)}42%{transform:translateY(-4px)}}
+.cta{position:relative;overflow:hidden}
+.cta::before{content:"";position:absolute;top:0;left:-40%;width:40%;height:2px;background:linear-gradient(90deg,transparent,var(--amber),var(--blue),transparent);box-shadow:0 0 14px var(--blue);animation:sweep 4.5s ease-in-out infinite}
+@keyframes sweep{0%{left:-40%}100%{left:100%}}
+.mail button:hover{filter:brightness(1.15)}.mail button.done{background:var(--teal);color:#06231f}
+
+
 /* Contact */
 .cta{padding:60px;border-radius:28px;border:1px solid var(--line);text-align:center;background:radial-gradient(circle at 50% 0%,rgba(91,124,255,.35),transparent 60%),var(--panel)}
 .cta h2{font-size:clamp(32px,5vw,56px);margin-bottom:16px}
 .cta p{color:var(--mute);max-width:560px;margin:0 auto 30px}
 footer{padding:30px 0;text-align:center;color:var(--mute);font-size:14px;border-top:1px solid var(--line)}
- .cta{position:relative;overflow:hidden}
-.cta::before{content:"";position:absolute;top:0;left:-40%;width:40%;height:2px;background:linear-gradient(90deg,transparent,var(--amber),var(--blue),transparent);box-shadow:0 0 14px var(--blue);animation:sweep 4.5s ease-in-out infinite}
-@keyframes sweep{0%{left:-40%}100%{left:100%}}
 
 @media(max-width:860px){
 .nav ul{gap:16px}.nav ul a{font-size:13px}.logo b{font-size:15px}.av{width:36px;height:36px}.skills{grid-template-columns:1fr}
 .hero .wrap,.about{grid-template-columns:1fr}.scene{height:auto}:root{--ry0:-14deg}.layer{padding:12px 16px;height:104px}.layer em{display:none}.layer b{font-size:18px}.layer .d{font-size:12px}
-.pin{height:auto}.hero{position:relative;height:auto;min-height:100vh;padding:100px 0 60px}.g3,.g2{grid-template-columns:1fr}.about{gap:40px}.photo{max-width:320px}.cta{padding:40px 22px}.li svg{animation:none}}
-@media(max-width:560px){.logo small{display:none}.mail{flex-direction:column;width:100%}.mail button{border-left:0;border-top:1px solid var(--line);padding:14px}}
-@media(prefers-reduced-motion:reduce){.pin{height:auto}.hero{position:relative;height:auto;min-height:100vh;padding:100px 0 60px}.w i,.layer,.stack-wrap{animation:none!important}.cur{display:none}*{transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;translate:0 0}.cta::before{animation:none;display:none}}
+.pin{height:auto}.hero{position:relative;height:auto;min-height:100vh;padding:100px 0 60px}.g3,.g2{grid-template-columns:1fr}.about{gap:40px}.photo{max-width:320px}.cta{padding:40px 22px}}
+@media(max-width:560px){.logo small{display:none}.mail{flex-direction:column;width:100%}.mail button{border-left:0;border-top:1px solid var(--line);padding:14px;justify-content:center}.li{width:100%;padding:14px}}
+@media(prefers-reduced-motion:reduce){.li svg{animation:none}.cta::before{animation:none;display:none}.pin{height:auto}.hero{position:relative;height:auto;min-height:100vh;padding:100px 0 60px}.w i,.layer,.stack-wrap{animation:none!important}.cur{display:none}*{transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;translate:0 0}}
 </style>
 </head>
 <body>
@@ -220,7 +224,7 @@ footer{padding:30px 0;text-align:center;color:var(--mute);font-size:14px;border-
 <script>
 /* ---- EDIT THESE ---- */
 const LINKEDIN="https://www.linkedin.com/in/mohamad-bahsoun-79140264";            // e.g. "https://www.linkedin.com/in/your-name"
-const STATS=[[10,"+","Years of experience"],[40,"+","Projects delivered"]];               // e.g. [[10,"+","Years of experience"],[50,"+","Projects delivered"]]
+const STATS=[[10,"+","Years of experience"],[35,"+","Projects delivered"]];               // e.g. [[10,"+","Years of experience"],[50,"+","Projects delivered"]]
 /* -------------------- */
 const S=[["SharePoint Installation & Administration","SharePoint Server installation, configuration, administration, troubleshooting and ongoing support."],
 ["SharePoint Migration & Upgrade","Migration and upgrade of legacy environments, including SharePoint 2013 to SharePoint Subscription Edition."],
@@ -242,8 +246,20 @@ const K=[["Collaboration","SharePoint Server|SharePoint Online|SharePoint Intran
 ["Development","C#|.NET|ASP.NET|REST APIs"],
 ["Web & CMS","Umbraco|Drupal|Web Development"]];
 const $=s=>document.querySelector(s);
-$('#svc').innerHTML=S.map(s=>`<div class="card tilt rv"><h3>${s[0]}</h3><p>${s[1]}</p></div>`).join('');
-$('#prj').innerHTML=P.map(p=>`<div class="card proj tilt rv"><h3>${p[0]}</h3><p>${p[1]}</p><div>${p[2].map(t=>`<span class="tag">${t}</span>`).join('')}</div><a class="more" href="projects/${p[3]}.html">View case study →</a></div>`).join('');
+const IC={
+server:'<rect x="3" y="4" width="18" height="6" rx="1.5"/><rect x="3" y="14" width="18" height="6" rx="1.5"/><path d="M7 7h.01M7 17h.01"/>',
+migrate:'<path d="M4 8h13l-3-3M20 16H7l3 3"/>',
+portal:'<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/>',
+db:'<ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/>',
+code:'<path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 5l-4 14"/>',
+cloud:'<path d="M6.5 18a4.5 4.5 0 0 1-.4-8.98A6 6 0 0 1 17.6 8a4.5 4.5 0 0 1-.1 10z"/>',
+layers:'<path d="m12 3 9 5-9 5-9-5 9-5zM3 13l9 5 9-5"/>',
+drop:'<path d="M12 3s6 6.2 6 10.5A6 6 0 0 1 6 13.5C6 9.2 12 3 12 3z"/>',
+globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"/>'};
+const SI=['server','migrate','portal','db','code','cloud','layers','drop','globe'],PI=['migrate','portal','db','code','layers','drop'];
+const ico=k=>`<div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24">${IC[k]}</svg></div>`;
+$('#svc').innerHTML=S.map((s,i)=>`<div class="card tilt rv">${ico(SI[i])}<h3>${s[0]}</h3><p>${s[1]}</p></div>`).join('');
+$('#prj').innerHTML=P.map((p,i)=>`<div class="card proj tilt rv">${ico(PI[i])}<h3>${p[0]}</h3><p>${p[1]}</p><div>${p[2].map(t=>`<span class="tag">${t}</span>`).join('')}</div><a class="more" href="projects/${p[3]}.html">View case study →</a></div>`).join('');
 $('#sk').innerHTML=K.map(k=>`<div class="sg"><h4>${k[0]}</h4><div>${k[1].split('|').map(x=>`<span>${x}</span>`).join('')}</div></div>`).join('');
 $('#cp').onclick=async function(){const m='mohd.bahsoun@hotmail.com';try{await navigator.clipboard.writeText(m)}catch(e){const t=document.createElement('textarea');t.value=m;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove()}this.classList.add('done');setTimeout(()=>this.classList.remove('done'),2000)};
 
@@ -265,22 +281,22 @@ const orbs=[...document.querySelectorAll('.orb')],pin=$('.pin'),hero=$('.hero'),
 function onScroll(){
  const y=scrollY,pinned=getComputedStyle(hero).position==='sticky';
  const p=pinned?Math.min(Math.max(y/(pin.offsetHeight-innerHeight),0),1):Math.min(y/700,1)*.5;
- root.style.setProperty('--p',p.toFixed(3));
- root.style.setProperty('--spread',(p*110).toFixed(1));
+ //root.style.setProperty('--p',p.toFixed(3));
+ //root.style.setProperty('--spread',(p*110).toFixed(1));
  orbs.forEach(o=>o.style.transform=`translate3d(0,${y*o.dataset.speed}px,0)`);
  //copy.style.opacity=pinned?Math.max(0,1-p*4):'';
  //copy.style.translate=pinned?`0 ${-p*80}px`:'';
  //copy.style.pointerEvents=pinned&&p>.2?'none':'';
 
 }
-//addEventListener('scroll',()=>requestAnimationFrame(onScroll),{passive:true});onScroll();
+addEventListener('scroll',()=>requestAnimationFrame(onScroll),{passive:true});onScroll();
 
 if(matchMedia('(hover:hover) and (pointer:fine)').matches){
  const cur=$('.cur'),mags=[...document.querySelectorAll('.mag')];let cx=0,cy=0,tx=0,ty=0;
  mags.forEach(b=>{b._x=0;b._y=0});
  addEventListener('mousemove',e=>{
-  //root.style.setProperty('--mx',(e.clientX/innerWidth*2-1).toFixed(3));
-  //root.style.setProperty('--my',(e.clientY/innerHeight*2-1).toFixed(3));
+  root.style.setProperty('--mx',(e.clientX/innerWidth*2-1).toFixed(3));
+  root.style.setProperty('--my',(e.clientY/innerHeight*2-1).toFixed(3));
   tx=e.clientX;ty=e.clientY;cur.style.opacity=1;
   cur.classList.toggle('big',!!e.target.closest('a,button,.card'));
   mags.forEach(b=>{const r=b.getBoundingClientRect(),dx=e.clientX-(r.left+r.width/2-b._x),dy=e.clientY-(r.top+r.height/2-b._y);
