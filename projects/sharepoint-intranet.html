@@ -1,991 +1,267 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SharePoint Intranet &amp; Portal Development | Mohamad Bahsoun</title>
+<meta name="description" content="Portfolio case study demonstrating the design and development of a SharePoint-based company intranet portal.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#080c1a;--panel:#111833;--line:rgba(255,255,255,.12);--text:#e9edf8;--mute:#9aa6c4;--blue:#5b7cff;--teal:#22c3b0;--amber:#ffb454;--head:'Space Grotesk',system-ui,sans-serif;--body:'DM Sans',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{font-family:var(--body);background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+.wrap{width:90%;max-width:1100px;margin:auto}
+h1,h2,h3{font-family:var(--head);line-height:1.12}
+#bar{position:fixed;top:0;left:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--blue),var(--teal),var(--amber));z-index:60}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(14px);background:rgba(8,12,26,.6);border-bottom:1px solid var(--line)}
+.nav{height:64px;display:flex;align-items:center;justify-content:space-between}
+.logo{font:700 20px var(--head)}
+.nav ul{display:flex;gap:26px;list-style:none}.nav ul a{color:var(--mute);font-size:15px;transition:color .2s}.nav ul a:hover{color:#fff}
+.hero{position:relative;overflow:hidden;padding:170px 0 110px;border-bottom:1px solid var(--line)}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;will-change:transform}
+.o1{width:420px;height:420px;background:var(--blue);top:-140px;left:-100px;opacity:.5}.o2{width:340px;height:340px;background:var(--teal);right:5%;bottom:-120px;opacity:.3}
+.hero .wrap{position:relative}
+.badge{display:inline-block;margin-bottom:22px;padding:7px 16px;border-radius:99px;border:1px solid var(--line);background:rgba(255,255,255,.06);color:#b9c6ff;font-size:14px;font-weight:700}
+.hero h1{font-size:clamp(36px,5.6vw,68px);letter-spacing:-.02em;margin-bottom:22px;max-width:900px}
+.hero p{font-size:19px;color:var(--mute);max-width:760px}
+section{padding:90px 0}.alt{background:var(--panel)}
+h2{font-size:clamp(28px,4vw,42px);margin-bottom:14px}
+.intro{color:var(--mute);max-width:780px;margin-bottom:40px}
+.grid{display:grid;gap:22px;grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}
+.card{padding:28px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));position:relative;overflow:hidden;
+transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transform-style:preserve-3d;transition:transform .15s ease-out,border-color .2s}
+.card::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .2s;background:radial-gradient(circle at var(--gx,50%) var(--gy,0%),rgba(255,255,255,.15),transparent 55%)}
+.card:hover{border-color:rgba(91,124,255,.6)}.card:hover::after{opacity:1}
+.ic{width:46px;height:46px;margin-bottom:16px;border-radius:12px;display:grid;place-items:center;color:var(--teal);background:linear-gradient(135deg,rgba(91,124,255,.22),rgba(34,195,176,.14));border:1px solid rgba(91,124,255,.35);transform:translateZ(36px);transition:color .2s,background .2s}
+.ic svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.card:hover .ic{color:#fff;background:linear-gradient(135deg,var(--blue),#8a63ff)}
+.card h3{font-size:20px;margin-bottom:8px;transform:translateZ(26px)}.card p,.card li{color:var(--mute);font-size:15px}
+.card ul{list-style:none}.card li{padding:5px 0 5px 26px;position:relative}.card li::before{content:"✓";position:absolute;left:0;color:var(--teal);font-weight:700}
+.chips{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;list-style:none}
+.chips li{padding:16px 18px 16px 48px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.04);position:relative;transition:transform .2s,border-color .2s}
+.chips li:hover{transform:translateY(-4px);border-color:var(--teal)}
+.chips li::before{content:"✓";position:absolute;left:18px;color:var(--teal);font-weight:700}
+.note{padding:26px;border-radius:16px;border:1px solid rgba(91,124,255,.45);background:rgba(91,124,255,.1);color:#cdd7ff}.note strong{display:block;margin-bottom:6px;color:#fff}
+.arch{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:16px;align-items:stretch;padding:28px;border-radius:20px;border:1px solid var(--line);background:#050816}
+.col{min-width:0;padding:20px 14px 22px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.03);text-align:center}
+.tag{display:inline-block;margin-bottom:18px;padding:5px 14px;border-radius:99px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:linear-gradient(135deg,var(--c1),var(--c2))}
+.tree,.pipe{display:flex;flex-direction:column;align-items:center}
+.node{padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.06);font-size:14px;line-height:1.35}
+.node.root{border:0;font:700 15px var(--head);color:#fff;background:linear-gradient(135deg,var(--c1),var(--c2));box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.node.sm{font-size:13px;padding:7px 10px;color:var(--mute);width:100%;border-left:3px solid var(--c2)}
+.vline{width:2px;height:22px;background:var(--line)}
+.vline.f{background:linear-gradient(var(--c2) 50%,transparent 50%);background-size:2px 8px;animation:flow .7s linear infinite}
+@keyframes flow{to{background-position:0 8px}}
+.branches{display:flex;width:100%;justify-content:center}
+.branch{position:relative;flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:6px;padding:22px 5px 0}
+.branch::before{content:"";position:absolute;top:0;left:50%;width:2px;height:22px;background:var(--line)}
+.branch::after{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--line)}
+.branch:first-child::after{left:50%}.branch:last-child::after{right:50%}
+.branch>.node:first-child{font-weight:700;width:100%}
+.kids{display:flex;flex-direction:column;gap:6px;width:100%;padding-top:4px;position:relative}
+.pipe .node{width:100%;font-weight:700;border-left:3px solid var(--c2)}
+.arrow{align-self:center;font-size:30px;color:var(--teal);animation:nudge 1.4s ease-in-out infinite}
+@keyframes nudge{50%{translate:6px 0}}
+@keyframes nudgey{50%{translate:0 6px}}
+.steps{position:relative;padding-left:70px}
+.steps::before,.fill{content:"";position:absolute;left:21px;top:0;width:3px;border-radius:3px}
+.steps::before{bottom:0;background:var(--line)}
+.fill{height:var(--h,0%);background:linear-gradient(var(--blue),var(--teal));box-shadow:0 0 14px var(--blue)}
+.step{position:relative;padding:22px 26px;margin-bottom:18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.04)}
+.step b{position:absolute;left:-70px;top:20px;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font:700 18px var(--head);background:var(--bg);border:2px solid var(--blue);transition:background .4s,box-shadow .4s}
+.step.in b{background:linear-gradient(135deg,var(--blue),#8a63ff);box-shadow:0 0 20px rgba(91,124,255,.7)}
+.step h3{margin-bottom:4px}.step p{color:var(--mute)}
+.tech{display:flex;flex-wrap:wrap;gap:10px}.tech span{padding:9px 16px;border-radius:99px;border:1px solid var(--line);font-size:14px;font-weight:700;background:rgba(91,124,255,.12);color:#c3cfff}
+.disc{padding:26px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--mute)}.disc strong{display:block;color:#fff;margin-bottom:6px}
+.cta{text-align:center;background:radial-gradient(circle at 50% 0%,rgba(91,124,255,.35),transparent 60%),var(--panel)}
+.cta p{color:var(--mute);max-width:640px;margin:0 auto 30px}
+.btn{display:inline-block;padding:14px 28px;border-radius:99px;font-weight:700;background:linear-gradient(135deg,var(--blue),#8a63ff);box-shadow:0 10px 30px rgba(91,124,255,.4);transition:transform .2s}.btn:hover{transform:translateY(-3px)}
+footer{padding:28px 0;text-align:center;color:var(--mute);font-size:14px;border-top:1px solid var(--line)}
+@keyframes up{from{transform:translateY(110%)}to{transform:none}}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.14em;margin-bottom:-.14em}
+.w i{display:inline-block;font-style:normal;animation:up .8s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--d,0s) + var(--k)*.06s);animation-play-state:paused}
+h1{--d:.2s}h1 .w i,.in .w i{animation-play-state:running}
+.rv{opacity:0;translate:0 36px;transition:opacity .7s,translate .7s}.rv.in{opacity:1;translate:0 0}
+.mf{border:1px solid var(--line);border-radius:20px;background:#050816;padding:20px;overflow-x:auto}
+.mf svg{display:block;width:100%;min-width:760px;height:auto}
+.mf .n{fill:rgba(255,255,255,.06);stroke-width:1.5}
+.mf .a{stroke:#ffb454}.mf .s{stroke:#8a63ff}.mf .t{stroke:#22c3b0}
+.mf .ln{stroke:rgba(255,255,255,.22);stroke-width:2;stroke-dasharray:6 6}
+.mf text{fill:#e9edf8;font:700 15px var(--head);text-anchor:middle}
+.mf .sub{font:400 12px var(--body);fill:#9aa6c4}
+.mf .dot{opacity:0;animation:mv 7.2s linear infinite}
+.mf .d1{fill:#ffb454}.mf .d2{fill:#8a63ff;animation-delay:2.4s}.mf .d3{fill:#22c3b0;animation-delay:4.8s}
+@keyframes mv{0%{transform:translateX(0);opacity:0}3%{opacity:1}30%{opacity:1}33%{transform:translateX(105px);opacity:0}33.1%,100%{transform:translateX(0);opacity:0}}
+.cta{position:relative;overflow:hidden}
+.cta::before{content:"";position:absolute;top:0;left:-40%;width:40%;height:2px;background:linear-gradient(90deg,transparent,var(--amber),var(--blue),transparent);box-shadow:0 0 14px var(--blue);animation:sweep 4.5s ease-in-out infinite}
+@keyframes sweep{0%{left:-40%}100%{left:100%}}
+.contact{display:flex;justify-content:center;align-items:stretch;gap:14px;flex-wrap:wrap}
+.mail{display:flex;align-items:stretch;max-width:100%;border:1px solid rgba(91,124,255,.6);border-radius:16px;background:rgba(8,12,26,.65);overflow:hidden;text-align:left}
+.mail a{display:flex;align-items:center;gap:14px;padding:14px 22px;min-width:0}
+.mail a:hover{background:rgba(91,124,255,.14)}
+.mail svg{width:22px;height:22px;flex:none}.mail a svg{color:var(--amber)}
+.mail small{display:block;font:700 11px var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--mute);line-height:1.4}
+.mail span{display:block;font:700 17px var(--head);word-break:break-all}
+.mail button{display:flex;align-items:center;gap:8px;padding:0 20px;border:0;border-left:1px solid var(--line);background:linear-gradient(135deg,var(--blue),#8a63ff);color:#fff;font:700 14px var(--body);cursor:pointer}
+.mail button .ck{display:none}.mail button.done .ck{display:block}.mail button.done .cp{display:none}
+.mail button:hover{filter:brightness(1.15)}.mail button.done{background:var(--teal);color:#06231f}
+.li{display:flex;align-items:center;justify-content:center;padding:0 22px;border-radius:16px;background:#0a66c2;color:#fff;border:1px solid rgba(255,255,255,.2)}
+.li svg{display:block;width:24px;height:24px;transform-origin:center bottom;will-change:transform;animation:bounce 2.4s ease-in-out infinite}
+.li:hover{background:#0b5cad}.li:hover svg{animation-play-state:paused}
+@keyframes bounce{0%,50%,100%{transform:translateY(0)}20%{transform:translateY(-9px)}35%{transform:translateY(0)}42%{transform:translateY(-4px)}}
+[hidden]{display:none!important}
+@media(max-width:560px){.mail{flex-direction:column;width:100%}.mail button{border-left:0;border-top:1px solid var(--line);padding:14px;justify-content:center}.li{width:100%;padding:14px}}
+@media(max-width:900px){.arch{grid-template-columns:1fr}.arrow{rotate:90deg;animation:nudgey 1.4s ease-in-out infinite}}
+@media(max-width:800px){.nav ul{gap:14px}.nav ul a{font-size:13px}.logo{font-size:16px}.grid,.g3{grid-template-columns:1fr}.hero{padding:130px 0 80px}section{padding:60px 0}.steps{padding-left:58px}.step b{left:-58px;width:38px;height:38px}.steps::before,.fill{left:18px}}
+@media(max-width:600px){.logo{white-space:nowrap}.nav ul li:nth-child(n+3){display:none}}
+@media(prefers-reduced-motion:reduce){.li svg{animation:none}.cta::before{animation:none;display:none}.mf .dot{display:none}.vline.f,.arrow{animation:none!important}*{transition:none!important;scroll-behavior:auto!important}.w i{animation:none!important}.rv{opacity:1;translate:0 0}}
 
-    <title>SharePoint Intranet & Portal Development | Mohamad Bahsoun</title>
-
-    <meta name="description"
-          content="Portfolio case study demonstrating the design and development of a SharePoint-based company intranet portal.">
-
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f5f7fa;
-            color: #1f2937;
-            line-height: 1.7;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1100px;
-            margin: auto;
-        }
-
-        /* Navigation */
-        nav {
-            background: #0f172a;
-            color: white;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .nav-container {
-            width: 90%;
-            max-width: 1100px;
-            margin: auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            min-height: 70px;
-        }
-
-        .logo {
-            font-size: 21px;
-            font-weight: bold;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 25px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: #e5e7eb;
-            font-size: 15px;
-        }
-
-        .nav-links a:hover {
-            color: white;
-        }
-
-        /* Hero */
-        .hero {
-            background: linear-gradient(135deg, #0f172a, #1e3a5f);
-            color: white;
-            padding: 90px 20px;
-        }
-
-        .hero h1 {
-            font-size: 48px;
-            line-height: 1.2;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            max-width: 800px;
-            font-size: 19px;
-            color: #dbeafe;
-        }
-
-        .badge {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 7px 14px;
-            border-radius: 20px;
-            background: rgba(255,255,255,0.12);
-            color: #bfdbfe;
-            font-size: 14px;
-            font-weight: bold;
-        }
-
-        /* Sections */
-        section {
-            padding: 70px 0;
-        }
-
-        .section-title {
-            font-size: 32px;
-            margin-bottom: 18px;
-            color: #111827;
-        }
-
-        .section-intro {
-            max-width: 800px;
-            color: #4b5563;
-            margin-bottom: 35px;
-        }
-
-        /* Cards */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
-        }
-
-        .card {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            border: 1px solid #e5e7eb;
-            box-shadow: 0 5px 18px rgba(0,0,0,0.05);
-        }
-
-        .card h3 {
-            margin-bottom: 12px;
-            color: #0f172a;
-            font-size: 20px;
-        }
-
-        .card p {
-            color: #4b5563;
-        }
-
-        /* Architecture */
-        .architecture {
-            background: #111827;
-            color: white;
-            border-radius: 14px;
-            padding: 35px;
-            margin-top: 25px;
-            overflow-x: auto;
-        }
-
-        .architecture pre {
-            font-family: Consolas, monospace;
-            font-size: 15px;
-            line-height: 1.8;
-            color: #dbeafe;
-        }
-
-        /* Features */
-        .feature-list {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            list-style: none;
-        }
-
-        .feature-list li {
-            background: white;
-            padding: 18px 20px;
-            border-radius: 8px;
-            border: 1px solid #e5e7eb;
-        }
-
-        .feature-list li::before {
-            content: "✓";
-            font-weight: bold;
-            margin-right: 10px;
-        }
-
-        /* Process */
-        .process {
-            counter-reset: process;
-        }
-
-        .process-item {
-            position: relative;
-            padding: 20px 20px 20px 70px;
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 10px;
-            margin-bottom: 15px;
-        }
-
-        .process-item::before {
-            counter-increment: process;
-            content: counter(process);
-            position: absolute;
-            left: 20px;
-            top: 20px;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: #0f172a;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-
-        .process-item h3 {
-            margin-bottom: 5px;
-        }
-
-        /* Technologies */
-        .tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .tech span {
-            background: #e5e7eb;
-            padding: 8px 14px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: bold;
-        }
-
-        /* Disclaimer */
-        .disclaimer {
-            background: #fff7ed;
-            border: 1px solid #fed7aa;
-            padding: 25px;
-            border-radius: 10px;
-            color: #7c2d12;
-        }
-
-        /* CTA */
-        .cta {
-            background: #0f172a;
-            color: white;
-            text-align: center;
-            padding: 70px 20px;
-        }
-
-        .cta h2 {
-            font-size: 32px;
-            margin-bottom: 15px;
-        }
-
-        .cta p {
-            color: #cbd5e1;
-            margin-bottom: 25px;
-        }
-
-        .button {
-            display: inline-block;
-            background: white;
-            color: #0f172a;
-            padding: 12px 24px;
-            border-radius: 7px;
-            font-weight: bold;
-        }
-
-        /* Footer */
-        footer {
-            background: #020617;
-            color: #94a3b8;
-            text-align: center;
-            padding: 25px;
-            font-size: 14px;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-
-            .nav-container {
-                flex-direction: column;
-                padding: 18px 0;
-                gap: 15px;
-            }
-
-            .nav-links {
-                gap: 15px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .hero h1 {
-                font-size: 36px;
-            }
-
-            .grid,
-            .feature-list {
-                grid-template-columns: 1fr;
-            }
-
-            section {
-                padding: 50px 0;
-            }
-        }
-    </style>
+.tier{width:min(100%,340px);padding:12px 16px;border-radius:12px;color:#fff;font:700 16px var(--head);text-align:center;background:linear-gradient(135deg,var(--c1),var(--c2));box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.tier small{display:block;font:400 13px var(--body);opacity:.85}
+.flow{--c2:#8a63ff;max-width:700px;margin:auto;display:flex;flex-direction:column;align-items:center;padding:30px 20px;border-radius:20px;border:1px solid var(--line);background:#050816}
+.flow.wide{max-width:100%}
+.flow .branches{max-width:640px}.flow.wide .branches{max-width:100%}
+.flow.wide .branch{flex:1 1 0}
+.row{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:28px;padding-top:24px;border-top:1px dashed var(--line);width:100%}
+.row .tier{width:auto;min-width:220px}.row .l{width:100%;text-align:center;color:var(--mute);font-size:13px}
+.row .kids{flex-direction:row;flex-wrap:wrap;width:auto;gap:8px;justify-content:center}.row .node.sm{width:auto}
+.mf2{border:1px solid var(--line);border-radius:20px;background:#050816;padding:20px;overflow-x:auto}
+.mf2 svg{display:block;width:100%;min-width:760px;height:auto}
+.mf2 .n{fill:rgba(255,255,255,.06);stroke-width:1.5}
+.mf2 .a{stroke:#ffb454}.mf2 .s{stroke:#8a63ff}.mf2 .t{stroke:#22c3b0}
+.mf2 .ln{stroke:rgba(255,255,255,.22);stroke-width:2;stroke-dasharray:6 6}
+.mf2 text{fill:#e9edf8;font:700 15px var(--head);text-anchor:middle}
+.mf2 .sub{font:400 12px var(--body);fill:#9aa6c4}
+.mf2 .ttl{font:700 13px var(--body);fill:#b9c6ff;text-anchor:start}
+.mf2 .dot{opacity:0;animation:mv70 6s linear infinite}
+.mf2 .a1,.mf2 .a2,.mf2 .a3{fill:#5b7cff}.mf2 .b1,.mf2 .b2,.mf2 .b3{fill:#22c3b0}
+.mf2 .a2{animation-delay:2s}.mf2 .a3{animation-delay:4s}.mf2 .b1{animation-delay:1s}.mf2 .b2{animation-delay:3s}.mf2 .b3{animation-delay:5s}
+@keyframes mv70{0%{transform:translateX(0);opacity:0}4%{opacity:1}30%{opacity:1}33%{transform:translateX(70px);opacity:0}33.1%,100%{transform:translateX(0);opacity:0}}
+@media(max-width:900px){.flow.wide .branches{flex-direction:column;align-items:stretch}.flow.wide .branch{padding-top:14px}.flow.wide .branch::before,.flow.wide .branch::after{display:none}}
+@media(prefers-reduced-motion:reduce){.mf2 .dot{display:none}}
+</style>
 </head>
-
 <body>
-
-<!-- Navigation -->
-<nav>
-    <div class="nav-container">
-
-        <div class="logo">
-            Mohamad Bahsoun
-        </div>
-
-        <ul class="nav-links">
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="#overview">Overview</a></li>
-            <li><a href="#solution">Solution</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#technologies">Technologies</a></li>
-        </ul>
-
-    </div>
-</nav>
-
-
-<!-- Hero -->
-<header class="hero">
-
-    <div class="container">
-
-        <div class="badge">
-            Portfolio Demonstration
-        </div>
-
-        <h1>
-            SharePoint Intranet & Portal Development
-        </h1>
-
-        <p>
-            Designing and developing a centralized SharePoint-based
-            intranet portal for company information, documents,
-            departments, forms, announcements and employee resources.
-        </p>
-
-    </div>
-
-</header>
-
-
-<!-- Overview -->
-<section id="overview">
-
-    <div class="container">
-
-        <h2 class="section-title">
-            Project Overview
-        </h2>
-
-        <p class="section-intro">
-            This portfolio project demonstrates how a SharePoint intranet
-            can be designed to provide employees with a centralized
-            location for company information, documents, policies,
-            departmental resources and internal business processes.
-        </p>
-
-        <div class="grid">
-
-            <div class="card">
-                <h3>Business Scenario</h3>
-
-                <p>
-                    A company needs an internal portal where employees
-                    can quickly access company news, policies, procedures,
-                    forms, departmental information and frequently used
-                    resources.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Business Objective</h3>
-
-                <p>
-                    Create a structured and easy-to-navigate intranet
-                    that centralizes information while providing
-                    appropriate access to departments and employees.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Primary Users</h3>
-
-                <p>
-                    Employees, department managers, HR, Finance,
-                    Sales, IT and management.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Platform</h3>
-
-                <p>
-                    Microsoft SharePoint with structured sites,
-                    pages, document libraries, lists, permissions
-                    and navigation.
-                </p>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- Requirements -->
-<section>
-
-    <div class="container">
-
-        <h2 class="section-title">
-            Business Requirements
-        </h2>
-
-        <p class="section-intro">
-            The portal was designed around common requirements found
-            in business intranet environments.
-        </p>
-
-        <ul class="feature-list">
-
-            <li>Centralized company information</li>
-
-            <li>Company news and announcements</li>
-
-            <li>Department-specific information</li>
-
-            <li>Central document management</li>
-
-            <li>Policies and procedures</li>
-
-            <li>Employee forms and requests</li>
-
-            <li>Quick links to business resources</li>
-
-            <li>Controlled access to sensitive information</li>
-
-            <li>Searchable documents and information</li>
-
-            <li>Simple and consistent navigation</li>
-
-        </ul>
-
-    </div>
-
-</section>
-
-
-<!-- Solution -->
-<section id="solution">
-
-    <div class="container">
-
-        <h2 class="section-title">
-            Solution Architecture
-        </h2>
-
-        <p class="section-intro">
-            The intranet is organized into logical areas so employees
-            can access information according to their responsibilities.
-        </p>
-
-        <div class="architecture">
-
-<pre>
-                         COMPANY EMPLOYEES
-                                |
-                                v
-                    +------------------------+
-                    |   SharePoint Intranet  |
-                    |        Home Page       |
-                    +-----------+------------+
-                                |
-          +---------------------+---------------------+
-          |                     |                     |
-          v                     v                     v
-   +-------------+       +-------------+       +-------------+
-   | Departments |       |  Documents  |       |    Forms    |
-   +-------------+       +-------------+       +-------------+
-   | HR          |       | Policies    |       | IT Request  |
-   | Finance     |       | Procedures  |       | Vacation    |
-   | Sales       |       | Templates   |       | Purchase    |
-   | IT          |       | Resources   |       | Other       |
-   +-------------+       +-------------+       +-------------+
-          |
-          v
-   +-------------------+
-   | Employee Resources|
-   +-------------------+
-   | Links             |
-   | Contacts          |
-   | Procedures        |
-   | Internal Resources|
-   +-------------------+
-</pre>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- Site Structure -->
-<section>
-
-    <div class="container">
-
-        <h2 class="section-title">
-            SharePoint Site Structure
-        </h2>
-
-        <p class="section-intro">
-            A clear information architecture helps employees locate
-            content quickly and provides a foundation for future
-            expansion of the intranet.
-        </p>
-
-        <div class="card">
-
-<pre>
-Company Intranet
-│
-├── Home
-│   ├── Company News
-│   ├── Announcements
-│   └── Quick Links
-│
-├── Departments
-│   ├── HR
-│   ├── Finance
-│   ├── Sales
-│   └── IT
-│
-├── Documents
-│   ├── Policies
-│   ├── Procedures
-│   └── Templates
-│
-├── Forms
-│   ├── IT Request
-│   ├── Vacation Request
-│   └── Purchase Request
-│
-└── Employee Resources
-    ├── Contacts
-    ├── Internal Links
-    └── Useful Resources
-</pre>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- Features -->
-<section id="features">
-
-    <div class="container">
-
-        <h2 class="section-title">
-            Intranet Features
-        </h2>
-
-        <p class="section-intro">
-            The portal can provide a range of features to improve
-            internal communication and document accessibility.
-        </p>
-
-        <div class="grid">
-
-            <div class="card">
-                <h3>Company News</h3>
-
-                <p>
-                    Centralized announcements and company news allow
-                    employees to stay informed about important
-                    organizational updates.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Document Libraries</h3>
-
-                <p>
-                    Policies, procedures, templates and other business
-                    documents are organized into searchable SharePoint
-                    document libraries.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Department Pages</h3>
-
-                <p>
-                    Dedicated areas can provide each department with
-                    its own information, documents, links and resources.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Forms & Requests</h3>
-
-                <p>
-                    Internal requests such as IT support, vacation
-                    requests and purchase requests can be organized
-                    using SharePoint lists and forms.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Quick Links</h3>
-
-                <p>
-                    Frequently used internal applications, resources
-                    and websites can be exposed through centralized
-                    quick links.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Search & Navigation</h3>
-
-                <p>
-                    Structured navigation and SharePoint search help
-                    employees locate documents and information quickly.
-                </p>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- Document Management -->
-<section>
-
-    <div class="container">
-
-        <h2 class="section-title">
-            Document Management
-        </h2>
-
-        <p class="section-intro">
-            The intranet uses SharePoint document libraries to provide
-            structured storage for common business documents.
-        </p>
-
-        <div class="grid">
-
-            <div class="card">
-                <h3>Policies</h3>
-                <p>
-                    Company policies can be organized by category
-                    and made available to employees according to
-                    their access permissions.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Procedures</h3>
-                <p>
-                    Operational procedures can be maintained in a
-                    centralized and searchable location.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Templates</h3>
-                <p>
-                    Standard business templates can be maintained
-                    so employees always have access to approved
-                    versions.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Version Management</h3>
-                <p>
-                    SharePoint document management capabilities can
-                    help maintain document history and controlled
-                    collaboration.
-                </p>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- Permissions -->
-<section>
-
-    <div class="container">
-
-        <h2 class="section-title">
-            Permissions & Security
-        </h2>
-
-        <p class="section-intro">
-            Access should be designed according to business roles
-            and information sensitivity.
-        </p>
-
-        <div class="grid">
-
-            <div class="card">
-                <h3>Employee Access</h3>
-
-                <p>
-                    General company information and employee resources
-                    can be available to the appropriate employee groups.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Department Access</h3>
-
-                <p>
-                    Department-specific resources can be restricted
-                    to the appropriate teams or groups.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Management Access</h3>
-
-                <p>
-                    Sensitive management information can be protected
-                    through appropriate SharePoint permissions.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Permission Strategy</h3>
-
-                <p>
-                    Access should be planned around groups and roles
-                    rather than relying on unnecessary individual
-                    permissions.
-                </p>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- Implementation -->
-<section>
-
-    <div class="container">
-
-        <h2 class="section-title">
-            Implementation Approach
-        </h2>
-
-        <div class="process">
-
-            <div class="process-item">
-                <h3>Requirements Analysis</h3>
-
-                <p>
-                    Identify business departments, users, documents,
-                    processes and information that need to be included
-                    in the intranet.
-                </p>
-            </div>
-
-            <div class="process-item">
-                <h3>Information Architecture</h3>
-
-                <p>
-                    Define the site structure, navigation, pages,
-                    libraries, lists and departmental areas.
-                </p>
-            </div>
-
-            <div class="process-item">
-                <h3>SharePoint Configuration</h3>
-
-                <p>
-                    Configure sites, pages, libraries, lists,
-                    permissions and navigation.
-                </p>
-            </div>
-
-            <div class="process-item">
-                <h3>Content Organization</h3>
-
-                <p>
-                    Organize documents, policies, procedures,
-                    templates and internal resources.
-                </p>
-            </div>
-
-            <div class="process-item">
-                <h3>Testing</h3>
-
-                <p>
-                    Validate navigation, permissions, document access,
-                    forms and search functionality.
-                </p>
-            </div>
-
-            <div class="process-item">
-                <h3>Deployment & Maintenance</h3>
-
-                <p>
-                    Deploy the completed portal and establish a process
-                    for ongoing content and permission management.
-                </p>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- Business Benefits -->
-<section>
-
-    <div class="container">
-
-        <h2 class="section-title">
-            Business Benefits
-        </h2>
-
-        <div class="grid">
-
-            <div class="card">
-                <h3>Centralized Information</h3>
-
-                <p>
-                    Employees have a central location for important
-                    company information and resources.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Improved Accessibility</h3>
-
-                <p>
-                    Employees can find documents, forms and resources
-                    without searching across multiple locations.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Better Organization</h3>
-
-                <p>
-                    Standardized information architecture provides a
-                    consistent structure for business content.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Controlled Access</h3>
-
-                <p>
-                    Business information can be organized according
-                    to departments, teams and user responsibilities.
-                </p>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- Technologies -->
-<section id="technologies">
-
-    <div class="container">
-
-        <h2 class="section-title">
-            Technologies Used
-        </h2>
-
-        <p class="section-intro">
-            Technologies and Microsoft platforms relevant to the
-            solution include:
-        </p>
-
-        <div class="tech">
-
-            <span>SharePoint</span>
-            <span>SharePoint Server</span>
-            <span>SharePoint Online</span>
-            <span>Microsoft 365</span>
-            <span>Document Libraries</span>
-            <span>SharePoint Lists</span>
-            <span>Permissions</span>
-            <span>Search</span>
-            <span>Site Pages</span>
-            <span>Microsoft Technologies</span>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- Disclaimer -->
-<section>
-
-    <div class="container">
-
-        <div class="disclaimer">
-
-            <strong>Portfolio Demonstration</strong>
-
-            <p>
-                This is a portfolio demonstration based on a realistic
-                business scenario. It is intended to demonstrate
-                SharePoint architecture, intranet design and
-                implementation capabilities and is not presented as
-                a specific client project.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- CTA -->
-<section class="cta">
-
-    <div class="container">
-
-        <h2>
-            Need a SharePoint Intranet?
-        </h2>
-
-        <p>
-            I can help design, configure, migrate and develop
-            SharePoint-based business solutions and internal portals.
-        </p>
-
-        <a class="button"
-           href="mailto:mohd.bahsoun@hotmail.com">
-            Contact Me
-        </a>
-
-    </div>
-
-</section>
-
-
-<!-- Footer -->
-<footer>
-
-    © 2026 Mohamad Bahsoun · SharePoint · SQL Server · C#/.NET · Web Development
-
-</footer>
-
+<div id="bar"></div>
+<nav><div class="wrap nav"><a class="logo" href="../index.html">Mohamad Bahsoun</a>
+<ul><li><a href="../index.html">Home</a></li><li><a href="#overview">Overview</a></li><li><a href="#solution">Solution</a></li><li><a href="#features">Features</a></li><li><a href="#technologies">Technologies</a></li></ul></div></nav>
+
+<header class="hero"><div class="orb o1" data-s=".2"></div><div class="orb o2" data-s="-.12"></div>
+<div class="wrap"><div class="badge">Portfolio Demonstration</div>
+<h1>SharePoint Intranet &amp; Portal Development</h1>
+<p>Designing and developing a centralized SharePoint-based intranet portal for company information, documents, departments, forms, announcements and employee resources.</p></div></header>
+
+<section id="overview"><div class="wrap">
+<div class="rv"><h2>Project overview</h2><p class="intro">This portfolio project demonstrates how a SharePoint intranet can be designed to provide employees with a centralized location for company information, documents, policies, departmental resources and internal business processes.</p></div>
+<div class="grid " data-icons='["building", "goal", "users", "server"]' data-cards='[["Business Scenario", "A company needs an internal portal where employees can quickly access company news, policies, procedures, forms, departmental information and frequently used resources."], ["Business Objective", "Create a structured and easy-to-navigate intranet that centralizes information while providing appropriate access to departments and employees."], ["Primary Users", "Employees, department managers, HR, Finance, Sales, IT and management."], ["Platform", "Microsoft SharePoint with structured sites, pages, document libraries, lists, permissions and navigation."]]'></div>
+</div></section>
+
+<section class="alt"><div class="wrap">
+<div class="rv"><h2>Business requirements</h2><p class="intro">The portal was designed around common requirements found in business intranet environments.</p></div>
+<ul class="chips" data-chips='["Centralized company information", "Company news and announcements", "Department-specific information", "Central document management", "Policies and procedures", "Employee forms and requests", "Quick links to business resources", "Controlled access to sensitive information", "Searchable documents and information", "Simple and consistent navigation"]'></ul>
+</div></section>
+
+<section id="solution"><div class="wrap">
+<div class="rv"><h2>Solution architecture</h2><p class="intro">The intranet is organized into logical areas so employees can access information according to their responsibilities.</p></div>
+<div class="flow wide rv" role="img" aria-label="Intranet architecture: company employees reach the SharePoint intranet home page, which leads to departments, documents and forms; departments link to employee resources"><div class="tier" style="--c1:#b8741a;--c2:#ffb454">Company Employees<small>Everyone who uses the intranet</small></div><div class="vline f"></div><div class="tier" style="--c1:#2a3fd0;--c2:#5b7cff">SharePoint Intranet<small>Home Page</small></div><div class="vline f"></div><div class="branches"><div class="branch" style="--c2:#ffb454"><div class="node">Departments</div><div class="vline f"></div><div class="kids"><div class="node sm">HR</div><div class="node sm">Finance</div><div class="node sm">Sales</div><div class="node sm">IT</div></div></div><div class="branch" style="--c2:#8a63ff"><div class="node">Documents</div><div class="vline f"></div><div class="kids"><div class="node sm">Policies</div><div class="node sm">Procedures</div><div class="node sm">Templates</div><div class="node sm">Resources</div></div></div><div class="branch" style="--c2:#22c3b0"><div class="node">Forms</div><div class="vline f"></div><div class="kids"><div class="node sm">IT Request</div><div class="node sm">Vacation</div><div class="node sm">Purchase</div><div class="node sm">Other</div></div></div></div><div class="row"><span class="l">Departments also link to</span><div class="tier" style="--c1:#0e7584;--c2:#22c3b0">Employee Resources<small></small></div><div class="kids"><div class="node sm">Links</div><div class="node sm">Contacts</div><div class="node sm">Procedures</div><div class="node sm">Internal Resources</div></div></div></div><div class="rv" style="margin-top:60px"><h3 style="font-size:clamp(24px,3vw,32px);margin-bottom:12px">Intranet data flow</h3><p class="intro" style="margin-bottom:24px">How information moves when employees read content or submit a request. Illustrative flow.</p></div>
+<div class="mf2 rv"><svg viewBox="0 0 870 290" role="img" aria-label="Intranet data flow: an employee reads content through the home page and a permissions check, or submits a request through a form into a SharePoint list for the department team"><text class="ttl" x="10" y="26">Reading content</text><line class="ln" x1="170" y1="75" x2="240" y2="75"/><line class="ln" x1="400" y1="75" x2="470" y2="75"/><line class="ln" x1="630" y1="75" x2="700" y2="75"/><rect class="n a" x="10" y="40" width="160" height="70" rx="14"/><text x="90" y="72">Employee</text><text class="sub" x="90" y="92">Opens the intranet</text><rect class="n s" x="240" y="40" width="160" height="70" rx="14"/><text x="320" y="72">Intranet Home</text><text class="sub" x="320" y="92">Navigation + search</text><rect class="n s" x="470" y="40" width="160" height="70" rx="14"/><text x="550" y="72">Permissions</text><text class="sub" x="550" y="92">Groups and roles</text><rect class="n t" x="700" y="40" width="160" height="70" rx="14"/><text x="780" y="72">Content</text><text class="sub" x="780" y="92">Pages + libraries</text><text class="sub" x="205" y="67">visit</text><text class="sub" x="435" y="67">check</text><text class="sub" x="665" y="67">show</text><circle class="dot a1" cx="170" cy="75" r="6"/><circle class="dot a2" cx="400" cy="75" r="6"/><circle class="dot a3" cx="630" cy="75" r="6"/><text class="ttl" x="10" y="176">Submitting a request</text><line class="ln" x1="170" y1="225" x2="240" y2="225"/><line class="ln" x1="400" y1="225" x2="470" y2="225"/><line class="ln" x1="630" y1="225" x2="700" y2="225"/><rect class="n a" x="10" y="190" width="160" height="70" rx="14"/><text x="90" y="222">Employee</text><text class="sub" x="90" y="242">Needs IT, HR or purchase</text><rect class="n s" x="240" y="190" width="160" height="70" rx="14"/><text x="320" y="222">Request Form</text><text class="sub" x="320" y="242">Intranet form</text><rect class="n s" x="470" y="190" width="160" height="70" rx="14"/><text x="550" y="222">SharePoint List</text><text class="sub" x="550" y="242">Stores the request</text><rect class="n t" x="700" y="190" width="160" height="70" rx="14"/><text x="780" y="222">Department Team</text><text class="sub" x="780" y="242">Reviews and responds</text><text class="sub" x="205" y="217">fill in</text><text class="sub" x="435" y="217">submit</text><text class="sub" x="665" y="217">notify</text><circle class="dot b1" cx="170" cy="225" r="6"/><circle class="dot b2" cx="400" cy="225" r="6"/><circle class="dot b3" cx="630" cy="225" r="6"/></svg></div>
+</div></section>
+
+<section class="alt"><div class="wrap">
+<div class="rv"><h2>SharePoint site structure</h2><p class="intro">A clear information architecture helps employees locate content quickly and provides a foundation for future expansion of the intranet.</p></div>
+<div class="flow wide rv" role="img" aria-label="SharePoint site structure: Company Intranet with Home, Departments, Documents, Forms and Employee Resources"><div class="node root" style="--c1:#2a3fd0;--c2:#8a63ff;padding:12px 22px;font-size:17px">Company Intranet</div><div class="vline f"></div><div class="branches"><div class="branch" style="--c2:#5b7cff"><div class="node">Home</div><div class="vline f"></div><div class="kids"><div class="node sm">Company News</div><div class="node sm">Announcements</div><div class="node sm">Quick Links</div></div></div><div class="branch" style="--c2:#ffb454"><div class="node">Departments</div><div class="vline f"></div><div class="kids"><div class="node sm">HR</div><div class="node sm">Finance</div><div class="node sm">Sales</div><div class="node sm">IT</div></div></div><div class="branch" style="--c2:#8a63ff"><div class="node">Documents</div><div class="vline f"></div><div class="kids"><div class="node sm">Policies</div><div class="node sm">Procedures</div><div class="node sm">Templates</div></div></div><div class="branch" style="--c2:#22c3b0"><div class="node">Forms</div><div class="vline f"></div><div class="kids"><div class="node sm">IT Request</div><div class="node sm">Vacation Request</div><div class="node sm">Purchase Request</div></div></div><div class="branch" style="--c2:#0e7584"><div class="node">Employee Resources</div><div class="vline f"></div><div class="kids"><div class="node sm">Contacts</div><div class="node sm">Internal Links</div><div class="node sm">Useful Resources</div></div></div></div></div>
+</div></section>
+
+<section id="features"><div class="wrap">
+<div class="rv"><h2>Intranet features</h2><p class="intro">The portal can provide a range of features to improve internal communication and document accessibility.</p></div>
+<div class="grid g3" data-icons='["megaphone", "folder", "building", "clipboard", "link", "search"]' data-cards='[["Company News", "Centralized announcements and company news allow employees to stay informed about important organizational updates."], ["Document Libraries", "Policies, procedures, templates and other business documents are organized into searchable SharePoint document libraries."], ["Department Pages", "Dedicated areas can provide each department with its own information, documents, links and resources."], ["Forms & Requests", "Internal requests such as IT support, vacation requests and purchase requests can be organized using SharePoint lists and forms."], ["Quick Links", "Frequently used internal applications, resources and websites can be exposed through centralized quick links."], ["Search & Navigation", "Structured navigation and SharePoint search help employees locate documents and information quickly."]]'></div>
+</div></section>
+
+<section class="alt"><div class="wrap">
+<div class="rv"><h2>Document management</h2><p class="intro">The intranet uses SharePoint document libraries to provide structured storage for common business documents.</p></div>
+<div class="grid " data-icons='["file", "list", "copy", "history"]' data-cards='[["Policies", "Company policies can be organized by category and made available to employees according to their access permissions."], ["Procedures", "Operational procedures can be maintained in a centralized and searchable location."], ["Templates", "Standard business templates can be maintained so employees always have access to approved versions."], ["Version Management", "SharePoint document management capabilities can help maintain document history and controlled collaboration."]]'></div>
+</div></section>
+
+<section><div class="wrap">
+<div class="rv"><h2>Permissions &amp; security</h2><p class="intro">Access should be designed according to business roles and information sensitivity.</p></div>
+<div class="grid " data-icons='["user", "users", "key", "shield"]' data-cards='[["Employee Access", "General company information and employee resources can be available to the appropriate employee groups."], ["Department Access", "Department-specific resources can be restricted to the appropriate teams or groups."], ["Management Access", "Sensitive management information can be protected through appropriate SharePoint permissions."], ["Permission Strategy", "Access should be planned around groups and roles rather than relying on unnecessary individual permissions."]]'></div>
+</div></section>
+
+<section class="alt"><div class="wrap">
+<div class="rv"><h2>Implementation approach</h2></div>
+<div class="steps" data-steps='[["Requirements Analysis", "Identify business departments, users, documents, processes and information that need to be included in the intranet."], ["Information Architecture", "Define the site structure, navigation, pages, libraries, lists and departmental areas."], ["SharePoint Configuration", "Configure sites, pages, libraries, lists, permissions and navigation."], ["Content Organization", "Organize documents, policies, procedures, templates and internal resources."], ["Testing", "Validate navigation, permissions, document access, forms and search functionality."], ["Deployment & Maintenance", "Deploy the completed portal and establish a process for ongoing content and permission management."]]'><div class="fill"></div></div>
+</div></section>
+
+<section><div class="wrap">
+<div class="rv"><h2>Business benefits</h2></div>
+<div class="grid " data-icons='["home", "search", "layers", "key"]' data-cards='[["Centralized Information", "Employees have a central location for important company information and resources."], ["Improved Accessibility", "Employees can find documents, forms and resources without searching across multiple locations."], ["Better Organization", "Standardized information architecture provides a consistent structure for business content."], ["Controlled Access", "Business information can be organized according to departments, teams and user responsibilities."]]'></div>
+</div></section>
+
+<section id="technologies" class="alt"><div class="wrap">
+<div class="rv"><h2>Technologies used</h2><p class="intro">Technologies and Microsoft platforms relevant to the solution include:</p></div>
+<div class="tech rv" data-tech='["SharePoint", "SharePoint Server", "SharePoint Online", "Microsoft 365", "Document Libraries", "SharePoint Lists", "Permissions", "Search", "Site Pages", "Microsoft Technologies"]'></div>
+</div></section>
+
+<section><div class="wrap"><div class="disc rv"><strong>Portfolio demonstration</strong>This is a portfolio demonstration based on a realistic business scenario. It is intended to demonstrate SharePoint architecture, intranet design and implementation capabilities and is not presented as a specific client project.</div></div></section>
+
+<section class="cta"><div class="wrap">
+<h2>Need a SharePoint intranet?</h2>
+<p>I can help design, configure, migrate and develop SharePoint-based business solutions and internal portals.</p>
+<div class="contact"><div class="mail"><a href="mailto:mohd.bahsoun@hotmail.com?subject=SharePoint%20Intranet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><div><small>Email</small><span>mohd.bahsoun@hotmail.com</span></div></a><button id="cp" type="button" aria-label="Copy email address" title="Copy email"><svg class="cp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7"/></svg></button></div><a id="li" class="li" href="#" target="_blank" rel="noopener" aria-label="LinkedIn profile" title="LinkedIn" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a></div>
+</div></section>
+<footer>© 2026 Mohamad Bahsoun · SharePoint · SQL Server · C#/.NET · Web Development</footer>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const J=(el,k)=>JSON.parse(el.dataset[k]);
+const LINKEDIN="";   // paste your LinkedIn profile URL here
+if(LINKEDIN){$('#li').href=LINKEDIN;$('#li').hidden=false}
+$('#cp').onclick=async function(){const m='mohd.bahsoun@hotmail.com';try{await navigator.clipboard.writeText(m)}catch(e){const t=document.createElement('textarea');t.value=m;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove()}this.classList.add('done');setTimeout(()=>this.classList.remove('done'),2000)};
+const IC={
+building:'<path d="M4 21V5a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v16M14 9h5a1 1 0 0 1 1 1v11M3 21h18M8 8h2M8 12h2M8 16h2"/>',
+goal:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><path d="M12 12h.01"/>',
+users:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6.5 6.5 0 0 1 3.5 6"/>',
+server:'<rect x="3" y="4" width="18" height="6" rx="1.5"/><rect x="3" y="14" width="18" height="6" rx="1.5"/><path d="M7 7h.01M7 17h.01"/>',
+megaphone:'<path d="M4 10v4a1 1 0 0 0 1 1h3l7 4V5L8 9H5a1 1 0 0 0-1 1zM18 9a4 4 0 0 1 0 6"/>',
+folder:'<path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>',
+clipboard:'<rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4h6v3H9zM9 12h6M9 16h4"/>',
+link:'<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>',
+search:'<circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.5-4.5"/>',
+file:'<path d="M6 3h8l4 4v14H6zM14 3v4h4"/>',
+list:'<path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/>',
+copy:'<rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/>',
+history:'<path d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5M12 8v4l3 2"/>',
+user:'<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+key:'<circle cx="8" cy="15" r="4"/><path d="m11 12 9-9M16 7l3 3"/>',
+shield:'<path d="M12 3 5 6v5c0 4.5 3 8 7 10 4-2 7-5.5 7-10V6z"/>',
+home:'<path d="M3 11 12 4l9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',
+layers:'<path d="m12 3 9 5-9 5-9-5 9-5zM3 13l9 5 9-5"/>'};
+const ic=(g,i)=>g.dataset.icons?`<div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24">${IC[J(g,'icons')[i]]}</svg></div>`:'';
+$$('[data-cards]').forEach(g=>g.innerHTML=J(g,'cards').map((c,i)=>`<div class="card tilt rv">${ic(g,i)}<h3>${c[0]}</h3><p>${c[1]}</p></div>`).join(''));
+$$('[data-chips]').forEach(g=>g.innerHTML=J(g,'chips').map(x=>`<li class="rv">${x}</li>`).join(''));
+$$('[data-tech]').forEach(g=>g.innerHTML=J(g,'tech').map(x=>`<span>${x}</span>`).join(''));
+$$('[data-steps]').forEach(g=>g.insertAdjacentHTML('beforeend',J(g,'steps').map((s,i)=>`<div class="step rv"><b>${i+1}</b><h3>${s[0]}</h3><p>${s[1]}</p></div>`).join('')));
+$$('h1,h2').forEach(h=>{h.innerHTML=h.textContent.trim().split(/\s+/).map((w,k)=>`<span class="w"><i style="--k:${k}">${w}</i></span>`).join(' ')});
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.12});
+$$('.rv').forEach(el=>io.observe(el));
+if(!matchMedia('(prefers-reduced-motion:reduce)').matches){
+ const bar=$('#bar'),orbs=$$('.orb'),stp=$$('.steps');
+ const f=()=>{const y=scrollY,m=document.documentElement.scrollHeight-innerHeight;
+  bar.style.transform=`scaleX(${m>0?y/m:0})`;
+  orbs.forEach(o=>o.style.transform=`translate3d(0,${y*o.dataset.s}px,0)`);
+  stp.forEach(s=>{const r=s.getBoundingClientRect();s.style.setProperty('--h',Math.min(100,Math.max(0,(innerHeight*.6-r.top)/r.height*100))+'%')})};
+ addEventListener('scroll',()=>requestAnimationFrame(f),{passive:true});f();
+ if(matchMedia('(hover:hover) and (pointer:fine)').matches)addEventListener('mousemove',e=>{
+  const t=e.target.closest('.tilt');
+  $$('.tilt').forEach(el=>{if(el!==t){el.style.setProperty('--rx','0deg');el.style.setProperty('--ry','0deg')}});
+  if(!t)return;const r=t.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+  t.style.setProperty('--ry',((x-.5)*12).toFixed(2)+'deg');t.style.setProperty('--rx',((.5-y)*12).toFixed(2)+'deg');
+  t.style.setProperty('--gx',x*100+'%');t.style.setProperty('--gy',y*100+'%')});
+}
+</script>
 </body>
 </html>
