@@ -19,7 +19,9 @@ h1,h2,h3{font-family:var(--head);line-height:1.12}
 #bar{position:fixed;top:0;left:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--blue),var(--teal),var(--amber));z-index:60}
 nav{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(14px);background:rgba(8,12,26,.6);border-bottom:1px solid var(--line)}
 .nav{height:64px;display:flex;align-items:center;justify-content:space-between}
-.logo{font:700 20px var(--head)}
+.logo{display:flex;align-items:center;gap:12px}.logo b{display:block;font:700 17px/1.2 var(--head)}.logo small{display:block;font:500 11.5px var(--body);color:var(--mute);letter-spacing:.04em}
+.av{width:42px;height:42px;border-radius:50%;position:relative;overflow:hidden;flex:none;display:grid;place-items:center;font:700 14px var(--head);background:linear-gradient(135deg,var(--blue),var(--teal));box-shadow:0 0 0 2px rgba(255,255,255,.25)}
+.av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%}.av.ok{font-size:0}
 .nav ul{display:flex;gap:26px;list-style:none}.nav ul a{color:var(--mute);font-size:15px;transition:color .2s}.nav ul a:hover{color:#fff}
 .hero{position:relative;overflow:hidden;padding:170px 0 110px;border-bottom:1px solid var(--line)}
 .orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;will-change:transform}
@@ -58,7 +60,7 @@ transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));tra
 .branch::before{content:"";position:absolute;top:0;left:50%;width:2px;height:22px;background:var(--line)}
 .branch::after{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--line)}
 .branch:first-child::after{left:50%}.branch:last-child::after{right:50%}
-.branch .node:first-child{font-weight:700;width:100%}
+.branch>.node:first-child{font-weight:700;width:100%}
 .kids{display:flex;flex-direction:column;gap:6px;width:100%;padding-top:4px;position:relative}
 .pipe .node{width:100%;font-weight:700;border-left:3px solid var(--c2)}
 .arrow{align-self:center;font-size:30px;color:var(--teal);animation:nudge 1.4s ease-in-out infinite}
@@ -83,9 +85,45 @@ footer{padding:28px 0;text-align:center;color:var(--mute);font-size:14px;border-
 .w i{display:inline-block;font-style:normal;animation:up .8s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--d,0s) + var(--k)*.06s);animation-play-state:paused}
 h1{--d:.2s}h1 .w i,.in .w i{animation-play-state:running}
 .rv{opacity:0;translate:0 36px;transition:opacity .7s,translate .7s}.rv.in{opacity:1;translate:0 0}
+.cta{position:relative;overflow:hidden}
+.cta::before{content:"";position:absolute;top:0;left:-40%;width:40%;height:2px;background:linear-gradient(90deg,transparent,var(--amber),var(--blue),transparent);box-shadow:0 0 14px var(--blue);animation:sweep 4.5s ease-in-out infinite}
+@keyframes sweep{0%{left:-40%}100%{left:100%}}
+.contact{display:flex;justify-content:center;align-items:stretch;gap:14px;flex-wrap:wrap}
+.mail{display:flex;align-items:stretch;max-width:100%;border:1px solid rgba(91,124,255,.6);border-radius:16px;background:rgba(8,12,26,.65);overflow:hidden;text-align:left}
+.mail a{display:flex;align-items:center;gap:14px;padding:14px 22px;min-width:0}
+.mail a:hover{background:rgba(91,124,255,.14)}
+.mail svg{width:22px;height:22px;flex:none}.mail a svg{color:var(--amber)}
+.mail small{display:block;font:700 11px var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--mute);line-height:1.4}
+.mail span{display:block;font:700 17px var(--head);word-break:break-all}
+.mail button{display:flex;align-items:center;gap:8px;padding:0 20px;border:0;border-left:1px solid var(--line);background:linear-gradient(135deg,var(--blue),#8a63ff);color:#fff;font:700 14px var(--body);cursor:pointer}
+.mail button .ck{display:none}.mail button.done .ck{display:block}.mail button.done .cp{display:none}
+.mail button:hover{filter:brightness(1.15)}.mail button.done{background:var(--teal);color:#06231f}
+.li{display:flex;align-items:center;justify-content:center;padding:0 22px;border-radius:16px;background:#0a66c2;color:#fff;border:1px solid rgba(255,255,255,.2)}
+.li svg{display:block;width:24px;height:24px;transform-origin:center bottom;will-change:transform;animation:bounce 2.4s ease-in-out infinite}
+.li:hover{background:#0b5cad}.li:hover svg{animation-play-state:paused}
+@keyframes bounce{0%,50%,100%{transform:translateY(0)}20%{transform:translateY(-9px)}35%{transform:translateY(0)}42%{transform:translateY(-4px)}}
+[hidden]{display:none!important}
+@media(max-width:560px){.mail{flex-direction:column;width:100%}.mail button{border-left:0;border-top:1px solid var(--line);padding:14px;justify-content:center}.li{width:100%;padding:14px}}
+.ic{width:46px;height:46px;margin-bottom:16px;border-radius:12px;display:grid;place-items:center;color:var(--teal);background:linear-gradient(135deg,rgba(91,124,255,.22),rgba(34,195,176,.14));border:1px solid rgba(91,124,255,.35);transform:translateZ(36px);transition:color .2s,background .2s}
+.ic svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.card:hover .ic{color:#fff;background:linear-gradient(135deg,var(--blue),#8a63ff)}
+.mf2{border:1px solid var(--line);border-radius:20px;background:#050816;padding:20px;overflow-x:auto}
+.mf2 svg{display:block;width:100%;min-width:760px;height:auto}
+.mf2 .n{fill:rgba(255,255,255,.06);stroke-width:1.5}
+.mf2 .a{stroke:#ffb454}.mf2 .s{stroke:#8a63ff}.mf2 .t{stroke:#22c3b0}
+.mf2 .ln{stroke:rgba(255,255,255,.22);stroke-width:2;stroke-dasharray:6 6}
+.mf2 text{fill:#e9edf8;font:700 15px var(--head);text-anchor:middle}
+.mf2 .sub{font:400 12px var(--body);fill:#9aa6c4}
+.mf2 .ttl{font:700 13px var(--body);fill:#b9c6ff;text-anchor:start}
+.mf2 .dot{opacity:0;animation:mv70 6s linear infinite}
+.mf2 .a1,.mf2 .a2,.mf2 .a3{fill:#5b7cff}.mf2 .b1,.mf2 .b2,.mf2 .b3{fill:#22c3b0}.mf2 .c1,.mf2 .c2,.mf2 .c3{fill:#ffb454}
+.mf2 .a2{animation-delay:2s}.mf2 .a3{animation-delay:4s}.mf2 .b1{animation-delay:1s}.mf2 .b2{animation-delay:3s}.mf2 .b3{animation-delay:5s}.mf2 .c1{animation-delay:.5s}.mf2 .c2{animation-delay:2.5s}.mf2 .c3{animation-delay:4.5s}
+@keyframes mv70{0%{transform:translateX(0);opacity:0}4%{opacity:1}30%{opacity:1}33%{transform:translateX(70px);opacity:0}33.1%,100%{transform:translateX(0);opacity:0}}
+@media(prefers-reduced-motion:reduce){.mf2 .dot{display:none}}
 @media(max-width:900px){.arch{grid-template-columns:1fr}.arrow{rotate:90deg;animation:nudgey 1.4s ease-in-out infinite}}
-@media(max-width:800px){.nav ul{gap:14px}.nav ul a{font-size:13px}.logo{font-size:16px}.grid,.g3{grid-template-columns:1fr}.hero{padding:130px 0 80px}section{padding:60px 0}.steps{padding-left:58px}.step b{left:-58px;width:38px;height:38px}.steps::before,.fill{left:18px}}
-@media(prefers-reduced-motion:reduce){.vline.f,.arrow{animation:none!important}*{transition:none!important;scroll-behavior:auto!important}.w i{animation:none!important}.rv{opacity:1;translate:0 0}}
+@media(max-width:800px){.nav ul{gap:14px}.nav ul a{font-size:13px}.logo b{font-size:15px}.av{width:36px;height:36px}.grid,.g3{grid-template-columns:1fr}.hero{padding:130px 0 80px}section{padding:60px 0}.steps{padding-left:58px}.step b{left:-58px;width:38px;height:38px}.steps::before,.fill{left:18px}}
+@media(max-width:600px){.logo{white-space:nowrap}.logo small{display:none}.nav ul li:nth-child(n+3){display:none}}
+@media(prefers-reduced-motion:reduce){.li svg{animation:none}.cta::before{animation:none;display:none}.vline.f,.arrow{animation:none!important}*{transition:none!important;scroll-behavior:auto!important}.w i{animation:none!important}.rv{opacity:1;translate:0 0}}
 
 .flow{max-width:700px;margin:auto;display:flex;flex-direction:column;align-items:center;padding:30px 20px;border-radius:20px;border:1px solid var(--line);background:#050816}
 .tier{width:min(100%,340px);padding:12px 16px;border-radius:12px;color:#fff;font:700 16px var(--head);text-align:center;background:linear-gradient(135deg,var(--c1),var(--c2));box-shadow:0 8px 24px rgba(0,0,0,.35)}
@@ -103,18 +141,20 @@ h1{--d:.2s}h1 .w i,.in .w i{animation-play-state:running}
 </head>
 <body>
 <div id="bar"></div>
-<nav><div class="wrap nav"><a class="logo" href="../index.html">Mohamad Bahsoun</a><ul><li><a href="../index.html">Home</a></li><li><a href="#overview">Overview</a></li><li><a href="#architecture">Architecture</a></li><li><a href="#features">Features</a></li><li><a href="#technology">Technology</a></li></ul></div></nav>
+<nav><div class="wrap nav"><a class="logo" href="../index.html" aria-label="Mohamad Bahsoun, Digital Solutions Consultant"><span class="av">MB<img src="../assets/MB-Img.png" alt="" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></span><span><b>Mohamad Bahsoun</b><small>Digital Solutions Consultant</small></span></a><ul><li><a href="../index.html">Home</a></li><li><a href="#overview">Overview</a></li><li><a href="#architecture">Architecture</a></li><li><a href="#features">Features</a></li><li><a href="#technology">Technology</a></li></ul></div></nav>
 <header class="hero"><div class="orb o1" data-s=".2"></div><div class="orb o2" data-s="-.12"></div>
 <div class="wrap"><div class="badge">Demonstration / Reference Application</div>
 <h1>C# / .NET Business Application</h1>
 <p>A business request and approval application designed to demonstrate C#/.NET development, SQL Server integration, role-based access, business workflows and REST API integration.</p></div></header>
 <section id="overview"><div class="wrap">
 <div class="rv"><h2>Project overview</h2><p class="intro">A centralized way for employees to submit business requests and for authorized users to review, approve or reject them.</p></div>
-<div class="grid " data-cards='[["Business Scenario", "Employees currently submit requests through email or disconnected processes. The organization wants a centralized application to manage requests and approvals."], ["Business Objective", "Provide a simple application where requests can be submitted, tracked and processed according to defined business roles."], ["Application Users", "Employees, managers and administrators, with each role receiving the functionality required for their responsibilities."], ["Core Platform", "C# / .NET application with SQL Server as the primary relational database."]]'></div>
+<div class="grid " data-icons='["building", "goal", "users", "code"]' data-cards='[["Business Scenario", "Employees currently submit requests through email or disconnected processes. The organization wants a centralized application to manage requests and approvals."], ["Business Objective", "Provide a simple application where requests can be submitted, tracked and processed according to defined business roles."], ["Application Users", "Employees, managers and administrators, with each role receiving the functionality required for their responsibilities."], ["Core Platform", "C# / .NET application with SQL Server as the primary relational database."]]'></div>
 </div></section>
 <section id="architecture" class="alt"><div class="wrap">
 <div class="rv"><h2>Application architecture</h2><p class="intro">Presentation, business logic and data-access responsibilities are separated to make the solution easier to maintain and extend.</p></div>
 <div class="flow rv" role="img" aria-label="Application architecture: users, web interface, business services, data access layer to SQL Server, and REST API integrations"><div class="tier" style="--c1:#b8741a;--c2:#ffb454">Users<small>People using the application</small></div><div class="vline f" style="--c2:#8a63ff"></div><div class="tier" style="--c1:#2a3fd0;--c2:#5b7cff">Web Interface<small>ASP.NET / UI</small></div><div class="vline f" style="--c2:#8a63ff"></div><div class="tier" style="--c1:#4a2bd0;--c2:#8a63ff">Business Services<small>Business Rules</small></div><div class="vline f" style="--c2:#8a63ff"></div><div class="branches"><div class="branch" style="--c2:#22c3b0"><div class="node">Data Access Layer</div><div class="vline f"></div><div class="db"><b>SQL Server</b><div class="kids"><div class="node sm">Users</div><div class="node sm">Requests</div><div class="node sm">Approvals</div><div class="node sm">Audit Records</div></div></div></div><div class="branch" style="--c2:#ffb454"><div class="node">REST API Integrations</div><div class="vline f"></div><div class="kids"><div class="node sm">External systems</div></div></div></div></div>
+<div class="rv" style="margin-top:60px"><h3 style="font-size:clamp(24px,3vw,32px);margin-bottom:12px">Application data flow</h3><p class="intro" style="margin-bottom:24px">How information moves through the application for the three most common actions. Illustrative flow.</p></div>
+<div class="mf2 rv"><svg viewBox="0 0 870 430" role="img" aria-label="Application data flow: submitting a request, approving a request and an API integration, each passing through the web interface or API, business services and SQL Server"><text class="ttl" x="10" y="26">Submitting a request</text><line class="ln" x1="170" y1="75" x2="240" y2="75"/><line class="ln" x1="400" y1="75" x2="470" y2="75"/><line class="ln" x1="630" y1="75" x2="700" y2="75"/><rect class="n a" x="10" y="40" width="160" height="70" rx="14"/><text x="90" y="72">Employee</text><text class="sub" x="90" y="92">Fills in the form</text><rect class="n s" x="240" y="40" width="160" height="70" rx="14"/><text x="320" y="72">Web Interface</text><text class="sub" x="320" y="92">ASP.NET UI</text><rect class="n s" x="470" y="40" width="160" height="70" rx="14"/><text x="550" y="72">Business Services</text><text class="sub" x="550" y="92">Validation rules</text><rect class="n t" x="700" y="40" width="160" height="70" rx="14"/><text x="780" y="72">SQL Server</text><text class="sub" x="780" y="92">Requests table</text><text class="sub" x="205" y="67">submit</text><text class="sub" x="435" y="67">validate</text><text class="sub" x="665" y="67">save</text><circle class="dot a1" cx="170" cy="75" r="6"/><circle class="dot a2" cx="400" cy="75" r="6"/><circle class="dot a3" cx="630" cy="75" r="6"/><text class="ttl" x="10" y="176">Approving a request</text><line class="ln" x1="170" y1="225" x2="240" y2="225"/><line class="ln" x1="400" y1="225" x2="470" y2="225"/><line class="ln" x1="630" y1="225" x2="700" y2="225"/><rect class="n a" x="10" y="190" width="160" height="70" rx="14"/><text x="90" y="222">Manager</text><text class="sub" x="90" y="242">Reviews the request</text><rect class="n s" x="240" y="190" width="160" height="70" rx="14"/><text x="320" y="222">Web Interface</text><text class="sub" x="320" y="242">Role-based access</text><rect class="n s" x="470" y="190" width="160" height="70" rx="14"/><text x="550" y="222">Business Services</text><text class="sub" x="550" y="242">Approval rules</text><rect class="n t" x="700" y="190" width="160" height="70" rx="14"/><text x="780" y="222">SQL Server</text><text class="sub" x="780" y="242">Approvals + audit log</text><text class="sub" x="205" y="217">decide</text><text class="sub" x="435" y="217">check</text><text class="sub" x="665" y="217">record</text><circle class="dot b1" cx="170" cy="225" r="6"/><circle class="dot b2" cx="400" cy="225" r="6"/><circle class="dot b3" cx="630" cy="225" r="6"/><text class="ttl" x="10" y="326">API integration</text><line class="ln" x1="170" y1="375" x2="240" y2="375"/><line class="ln" x1="400" y1="375" x2="470" y2="375"/><line class="ln" x1="630" y1="375" x2="700" y2="375"/><rect class="n a" x="10" y="340" width="160" height="70" rx="14"/><text x="90" y="372">External System</text><text class="sub" x="90" y="392">Calls the API</text><rect class="n s" x="240" y="340" width="160" height="70" rx="14"/><text x="320" y="372">REST API</text><text class="sub" x="320" y="392">Authenticated endpoint</text><rect class="n s" x="470" y="340" width="160" height="70" rx="14"/><text x="550" y="372">Business Services</text><text class="sub" x="550" y="392">Same business rules</text><rect class="n t" x="700" y="340" width="160" height="70" rx="14"/><text x="780" y="372">SQL Server</text><text class="sub" x="780" y="392">Via data access layer</text><text class="sub" x="205" y="367">call</text><text class="sub" x="435" y="367">validate</text><text class="sub" x="665" y="367">query</text><circle class="dot c1" cx="170" cy="375" r="6"/><circle class="dot c2" cx="400" cy="375" r="6"/><circle class="dot c3" cx="630" cy="375" r="6"/></svg></div>
 </div></section>
 <section><div class="wrap">
 <div class="rv"><h2>Business workflow</h2><p class="intro">The application follows a simple request lifecycle.</p></div>
@@ -126,7 +166,7 @@ h1{--d:.2s}h1 .w i,.in .w i{animation-play-state:running}
 </div></section>
 <section><div class="wrap">
 <div class="rv"><h2>Role-based access</h2></div>
-<div class="grid " data-cards='[["Employee", "Submit requests, view personal requests and monitor request status."], ["Manager", "Review requests assigned to the manager and approve or reject them."], ["Administrator", "Manage application configuration, users, roles and system information."], ["Auditor", "Review historical request activity and audit information where required."]]'></div>
+<div class="grid " data-icons='["user", "users", "key", "eye"]' data-cards='[["Employee", "Submit requests, view personal requests and monitor request status."], ["Manager", "Review requests assigned to the manager and approve or reject them."], ["Administrator", "Manage application configuration, users, roles and system information."], ["Auditor", "Review historical request activity and audit information where required."]]'></div>
 </div></section>
 <section class="alt"><div class="wrap">
 <div class="rv"><h2>SQL Server database design</h2><p class="intro">The database stores the core business entities and maintains relationships between requests, users and approval activities.</p></div>
@@ -134,7 +174,7 @@ h1{--d:.2s}h1 .w i,.in .w i{animation-play-state:running}
 </div></section>
 <section><div class="wrap">
 <div class="rv"><h2>REST API</h2><p class="intro">A REST API provides a controlled interface for external applications and integrations.</p></div>
-<div class="grid " data-cards='[["Request API", "Create, retrieve and update business requests through defined API endpoints."], ["Approval API", "Provide controlled operations for approval and rejection processes."], ["Authentication", "API access should be protected using an appropriate authentication and authorization mechanism."], ["Integration", "External systems can consume approved endpoints without directly accessing the database."]]'></div>
+<div class="grid " data-icons='["api", "done", "shield", "link"]' data-cards='[["Request API", "Create, retrieve and update business requests through defined API endpoints."], ["Approval API", "Provide controlled operations for approval and rejection processes."], ["Authentication", "API access should be protected using an appropriate authentication and authorization mechanism."], ["Integration", "External systems can consume approved endpoints without directly accessing the database."]]'></div>
 </div></section>
 <section class="alt"><div class="wrap">
 <div class="rv"><h2>Development approach</h2></div>
@@ -142,7 +182,7 @@ h1{--d:.2s}h1 .w i,.in .w i{animation-play-state:running}
 </div></section>
 <section><div class="wrap">
 <div class="rv"><h2>Reliability &amp; error handling</h2></div>
-<div class="grid " data-cards='[["Input Validation", "Validate user input before processing business operations or database requests."], ["Database Errors", "Handle database exceptions without exposing sensitive implementation details to users."], ["Application Logging", "Record useful application events and errors to support troubleshooting and maintenance."], ["Transaction Handling", "Use transactions where multiple database operations must be completed consistently."]]'></div>
+<div class="grid " data-icons='["check", "db", "file", "backup"]' data-cards='[["Input Validation", "Validate user input before processing business operations or database requests."], ["Database Errors", "Handle database exceptions without exposing sensitive implementation details to users."], ["Application Logging", "Record useful application events and errors to support troubleshooting and maintenance."], ["Transaction Handling", "Use transactions where multiple database operations must be completed consistently."]]'></div>
 </div></section>
 <section id="technology" class="alt"><div class="wrap">
 <div class="rv"><h2>Technologies</h2></div>
@@ -150,18 +190,43 @@ h1{--d:.2s}h1 .w i,.in .w i{animation-play-state:running}
 </div></section>
 <section><div class="wrap">
 <div class="rv"><h2>Skills demonstrated</h2></div>
-<div class="grid " data-cards='[["C# / .NET Development", "Building maintainable business applications using C# and the .NET platform."], ["Business Logic", "Translating business requirements into validation rules, workflows and application functionality."], ["SQL Server Integration", "Designing database structures and connecting applications to SQL Server."], ["API Development", "Creating controlled REST interfaces for application integrations."]]'></div><div class="disc rv" style="margin-top:30px"><strong>Project type: Demonstration / Reference Application</strong>This project represents a realistic business application scenario created to demonstrate C#/.NET development, SQL Server integration and business workflow design. It is not presented as a specific client engagement.</div>
+<div class="grid " data-icons='["code", "flow", "db", "api"]' data-cards='[["C# / .NET Development", "Building maintainable business applications using C# and the .NET platform."], ["Business Logic", "Translating business requirements into validation rules, workflows and application functionality."], ["SQL Server Integration", "Designing database structures and connecting applications to SQL Server."], ["API Development", "Creating controlled REST interfaces for application integrations."]]'></div><div class="disc rv" style="margin-top:30px"><strong>Project type: Demonstration / Reference Application</strong>This project represents a realistic business application scenario created to demonstrate C#/.NET development, SQL Server integration and business workflow design. It is not presented as a specific client engagement.</div>
 </div></section>
-<section class="cta"><div class="wrap rv">
+<section class="cta"><div class="wrap">
 <h2>Need a custom business application?</h2>
 <p>I can develop database-driven business applications, internal tools, APIs and custom solutions using C#, .NET and SQL Server.</p>
-<a class="btn" href="mailto:mohd.bahsoun@hotmail.com?subject=Custom%20Business%20Application">Contact me</a>
+<div class="contact"><div class="mail"><a href="mailto:mohd.bahsoun@hotmail.com?subject=Custom%20Business%20Application"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><div><small>Email</small><span>mohd.bahsoun@hotmail.com</span></div></a><button id="cp" type="button" aria-label="Copy email address" title="Copy email"><svg class="cp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7"/></svg></button></div><a id="li" class="li" href="#" target="_blank" rel="noopener" aria-label="LinkedIn profile" title="LinkedIn" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a></div>
 </div></section>
-<footer>© 2026 Mohamad Bahsoun · SharePoint · SQL Server · C#/.NET · Web Development</footer>
+<footer>© 2026 Mohamad Bahsoun</footer>
 <script>
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const J=(el,k)=>JSON.parse(el.dataset[k]);
-$$('[data-cards]').forEach(g=>g.innerHTML=J(g,'cards').map(c=>`<div class="card tilt rv"><h3>${c[0]}</h3><p>${c[1]}</p></div>`).join(''));
+const IC={
+building:'<path d="M4 21V5a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v16M14 9h5a1 1 0 0 1 1 1v11M3 21h18M8 8h2M8 12h2M8 16h2"/>',
+goal:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><path d="M12 12h.01"/>',
+users:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6.5 6.5 0 0 1 3.5 6"/>',
+user:'<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+code:'<path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 5l-4 14"/>',
+key:'<circle cx="8" cy="15" r="4"/><path d="m11 12 9-9M16 7l3 3"/>',
+eye:'<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+api:'<path d="M8 8H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h3M16 8h3a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-3M8 12h8"/>',
+done:'<circle cx="12" cy="12" r="9"/><path d="m8 12.5 3 3 5-6"/>',
+shield:'<path d="M12 3 5 6v5c0 4.5 3 8 7 10 4-2 7-5.5 7-10V6z"/>',
+link:'<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>',
+check:'<path d="m4 7 2 2 3-3M4 17l2 2 3-3M12 8h8M12 18h8"/>',
+db:'<ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/>',
+file:'<path d="M6 3h8l4 4v14H6zM14 3v4h4"/>',
+backup:'<path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v4h-4"/>',
+flow:'<circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="12" r="2.5"/><path d="M6 8.5v7M8.5 6c5 0 7 2 7 4"/>',
+clipboard:'<rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4h6v3H9zM9 12h6M9 16h4"/>',
+tool:'<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.3-.5-.5-2.3z"/>',
+layers:'<path d="m12 3 9 5-9 5-9-5 9-5zM3 13l9 5 9-5"/>',
+globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"/>'};
+const ic=(g,i)=>g.dataset.icons?`<div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24">${IC[J(g,'icons')[i]]}</svg></div>`:'';
+const LINKEDIN="";   // paste your LinkedIn profile URL here
+if(LINKEDIN){$('#li').href=LINKEDIN;$('#li').hidden=false}
+$('#cp').onclick=async function(){const m='mohd.bahsoun@hotmail.com';try{await navigator.clipboard.writeText(m)}catch(e){const t=document.createElement('textarea');t.value=m;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove()}this.classList.add('done');setTimeout(()=>this.classList.remove('done'),2000)};
+$$('[data-cards]').forEach(g=>g.innerHTML=J(g,'cards').map((c,i)=>`<div class="card tilt rv">${ic(g,i)}<h3>${c[0]}</h3><p>${c[1]}</p></div>`).join(''));
 $$('[data-lists]').forEach(g=>g.innerHTML=J(g,'lists').map(c=>`<div class="card tilt rv"><h3>${c[0]}</h3><ul>${c[1].map(x=>`<li>${x}</li>`).join('')}</ul></div>`).join(''));
 $$('[data-chips]').forEach(g=>g.innerHTML=J(g,'chips').map(x=>`<li class="rv">${x}</li>`).join(''));
 $$('[data-tech]').forEach(g=>g.innerHTML=J(g,'tech').map(x=>`<span>${x}</span>`).join(''));
