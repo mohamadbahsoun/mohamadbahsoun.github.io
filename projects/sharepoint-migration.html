@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SharePoint 2013 to SPSE Migration | Mohamad Bahsoun</title>
+<title>Mohamad Bahsoun | SharePoint & SQL Server Consultant | C#/.NET</title>
 <meta name="description" content="SharePoint migration and upgrade portfolio project covering assessment, architecture, SQL Server, migration planning, testing and cutover.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
@@ -19,7 +19,9 @@ h1,h2,h3{font-family:var(--head);line-height:1.12}
 #bar{position:fixed;top:0;left:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--blue),var(--teal),var(--amber));z-index:60}
 nav{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(14px);background:rgba(8,12,26,.6);border-bottom:1px solid var(--line)}
 .nav{height:64px;display:flex;align-items:center;justify-content:space-between}
-.logo{font:700 20px var(--head)}
+.logo{display:flex;align-items:center;gap:12px}.logo b{display:block;font:700 17px/1.2 var(--head)}.logo small{display:block;font:500 11.5px var(--body);color:var(--mute);letter-spacing:.04em}
+.av{width:42px;height:42px;border-radius:50%;position:relative;overflow:hidden;flex:none;display:grid;place-items:center;font:700 14px var(--head);background:linear-gradient(135deg,var(--blue),var(--teal));box-shadow:0 0 0 2px rgba(255,255,255,.25)}
+.av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%}.av.ok{font-size:0}
 .nav ul{display:flex;gap:26px;list-style:none}.nav ul a{color:var(--mute);font-size:15px;transition:color .2s}.nav ul a:hover{color:#fff}
 .hero{position:relative;overflow:hidden;padding:170px 0 110px;border-bottom:1px solid var(--line)}
 .orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;will-change:transform}
@@ -116,13 +118,14 @@ h1{--d:.2s}h1 .w i,.in .w i{animation-play-state:running}
 [hidden]{display:none!important}
 @media(max-width:560px){.mail{flex-direction:column;width:100%}.mail button{border-left:0;border-top:1px solid var(--line);padding:14px;justify-content:center}.li{width:100%;padding:14px}}
 @media(max-width:900px){.arch{grid-template-columns:1fr}.arrow{rotate:90deg;animation:nudgey 1.4s ease-in-out infinite}}
-@media(max-width:800px){.nav ul{gap:14px}.nav ul a{font-size:13px}.logo{font-size:16px}.grid,.g3{grid-template-columns:1fr}.hero{padding:130px 0 80px}section{padding:60px 0}.steps{padding-left:58px}.step b{left:-58px;width:38px;height:38px}.steps::before,.fill{left:18px}}
-@media(prefers-reduced-motion:reduce){.li svg{animation:none}.cta::before{animation:none;display:none}.mf .dot{display:none}.vline.f,.arrow{animation:none!important}*{transition:none!important;scroll-behavior:auto!important}.w i{animation:none!important}.rv{opacity:1;translate:0 0}}
+@media(max-width:800px){.nav ul{gap:14px}.nav ul a{font-size:13px}.logo b{font-size:15px}.av{width:36px;height:36px}.grid,.g3{grid-template-columns:1fr}.hero{padding:130px 0 80px}section{padding:60px 0}.steps{padding-left:58px}.step b{left:-58px;width:38px;height:38px}.steps::before,.fill{left:18px}}
+@media(prefers-reduced-motion:reduce){.li svg{animation:none}.cta::before{animation:none;display:none}.mf .dot{display:none}.vline.f,.arrow{animation:none!important}*{transition:none!important;scroll-behavior:auto!important}.w i{animation:none!important}.rv{opacity:1;translate:0 0}@media(max-width:600px){.logo{white-space:nowrap}.logo small{display:none}.nav ul li:nth-child(n+3){display:none}}}
 </style>
 </head>
 <body>
+ 
 <div id="bar"></div>
-<nav><div class="wrap nav"><a class="logo" href="../index.html">Mohamad Bahsoun</a>
+<nav><div class="wrap nav"><a class="logo" href="../index.html" aria-label="Mohamad Bahsoun, Digital Solutions Consultant"><span class="av">MB<img src="../assets/MB-Img.png" alt="" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></span><span><b>Mohamad Bahsoun</b><small>Digital Solutions Consultant</small></span></a>
 <ul><li><a href="../index.html">Home</a></li><li><a href="#overview">Overview</a></li><li><a href="#assessment">Assessment</a></li><li><a href="#migration">Migration</a></li><li><a href="#testing">Testing</a></li></ul></div></nav>
 
 <header class="hero"><div class="orb o1" data-s=".2"></div><div class="orb o2" data-s="-.12"></div>
@@ -198,7 +201,7 @@ h1{--d:.2s}h1 .w i,.in .w i{animation-play-state:running}
 <p>I can help assess SharePoint environments, plan migrations, configure SharePoint Server and troubleshoot related SQL Server and application dependencies.</p>
 <div class="contact"><div class="mail"><a href="mailto:mohd.bahsoun@hotmail.com?subject=SharePoint%20Migration"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><div><small>Email</small><span>mohd.bahsoun@hotmail.com</span></div></a><button id="cp" type="button" aria-label="Copy email address" title="Copy email"><svg class="cp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7"/></svg></button></div><a id="li" class="li" href="#" target="_blank" rel="noopener" aria-label="LinkedIn profile" title="LinkedIn" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a></div>
 </div></section>
-<footer>© 2026 Mohamad Bahsoun · SharePoint · SQL Server · C#/.NET · Web Development</footer>
+<footer>2026 Mohamad Bahsoun</footer>
 
 <script>
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
